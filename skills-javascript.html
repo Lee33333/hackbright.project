@@ -106,7 +106,6 @@
 </script>
 
 
-
 "
 "
 <h3>Manipulating the DOM</h3>
@@ -153,6 +152,17 @@ document.addEventListener("click", function(){
 
 <script>
   // code here for above problem
+var searchForm = document.getElementById('prevent-form-submission-button');
+
+function flakySearch(evt) {
+
+ alert("I don't feel like searching");
+ evt.preventDefault();
+
+}
+
+searchForm.addEventListener('click', flakySearch);
+
 </script>
 
 <div class="hint">
@@ -179,6 +189,17 @@ document.addEventListener("click", function(){
 
 <script>
   // code here for above problem
+var button = document.getElementsByClassName('tricky-to-find');
+
+function prompt(evt) {
+
+ alert("Congrats Daria!");
+ evt.preventDefault();
+
+}
+
+button[0].addEventListener('click', prompt);
+
 </script>
 
 <div class="hint">
