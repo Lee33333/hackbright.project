@@ -43,7 +43,7 @@ class Doctor(Base):
     lon = Column(Float(50), nullable=True)
     specialties = Column(String(200), nullable=True)
     gender = Column(String(15), nullable=True)
-    cert = Column(String, (50), nullable=True)
+    cert = Column(String(50), nullable=True)
     recommended_by = Column(String(50), nullable=False)
 
     def __repr__(self):
