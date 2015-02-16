@@ -39,9 +39,11 @@ class Doctor(Base):
     phone_number = Column(String(25), nullable=False)
     business_name = Column(String (100), nullable=True)
     address = Column(String(250), nullable=True)
-    lat_long = Column(Float(50), nullable=True)
+    lat = Column(Float(50), nullable=True)
+    lon = Column(Float(50), nullable=True)
     specialties = Column(String(200), nullable=True)
     gender = Column(String(15), nullable=True)
+    cert = Column(String, (50), nullable=True)
     recommended_by = Column(String(50), nullable=False)
 
     def __repr__(self):
