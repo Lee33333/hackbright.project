@@ -29,6 +29,8 @@ class User(Base):
     def __repr__(self):
         return "<user id = %r, email = %s>" % (self.id, self.email)
 
+# Do I need to define how big a Float or an Integer is?
+
 class Doctor(Base):
     __tablename__ = 'doctors'
 
@@ -43,15 +45,9 @@ class Doctor(Base):
     recommended_by = Column(String(50), nullable=False)
 
     def __repr__(self):
-        return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)
+        return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)ß
 
-Rating
-
-id: integer, auto-generated, required
-doctor_id: integer, foreign key, required
-user_id:integer, foreign key, required
-rating: integer, required
-review: string, optional
+#What is the best way to structure the review portion or the rating? How big to make it?
 
 class Rating(Base):
     __tablename__ = "ratings"
