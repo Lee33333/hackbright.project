@@ -106,8 +106,6 @@
 </script>
 
 
-"
-"
 <h3>Manipulating the DOM</h3>
 <p>Change the word "hello" to "goodbye" when the button is pressed.</p>
 <p>(Don't get rid of the italics tag itself, though!)</p>
@@ -120,9 +118,23 @@
 
 <script>
   // code here for above-problem
-document.addEventListener("click", function(){
-    document.getElementById("message-to-change").innerHTML = "goodbye!";
-});
+
+// document.addEventListener("click", function(){
+//     document.getElementById("message-to-change").innerHTML = "goodbye!";
+// });
+
+var helloButton = document.getElementById("change-hello-to-goodbye-button");
+var textChange = document.getElementById("message-to-change");
+
+function helloFunction(evt) {
+
+  textChange.innerHTML = "goodbye!";
+  
+
+}
+helloButton.addEventListener('click', helloFunction);
+
+
 </script>
 
 <div class="hint">
@@ -241,9 +253,21 @@ button[0].addEventListener('click', prompt);
 
 <script>
   // code here for above problem
-  document.addEventListener("click", function(){
-    document.getElementById("empty-todo-list").innerHTML ="<li>item 1</li><li>item 2</li><li>item 3</li><li> item 4</li>";
-});
+//   document.addEventListener("click", function(){
+//     document.getElementById("empty-todo-list").innerHTML ="<li>item 1</li><li>item 2</li><li>item 3</li><li> item 4</li>";
+// });
+
+var makeListButton = document.getElementById("make-todo-list");
+var textChanges = document.getElementById("empty-todo-list");
+
+function listMaker(evt) {
+
+  textChanges.innerHTML = "<li>1</li><li>2</li><li>3</li>";
+  
+}
+makeListButton.addEventListener('click', listMaker);
+
+
 </script>
 
 <div class="hint">
@@ -270,22 +294,23 @@ button[0].addEventListener('click', prompt);
 </fieldset>
 
 <script>
-//  Here's a stub of a function you can use!
 
-//  function reverseString() {
-//    var msg = "Porcupines are cute";
-//
-//    // do some stuff here to reverse that string into a new variable
-//    var newMsg = "This should be the reversed string";
-//
-//    alert(newMsg);
-//  }
 
-// Here's a stub of event stuff you could use
-//
+ function reverseString() {
+   var msg = "Porcupines are cute";
 
-//  var button = document.getElementById('reverse-string-button');
-//  button.addEventListener('click', reverseString);
+   var newMsg = msg.split("").reverse().join("");
+   // do some stuff here to reverse that string into a new variable
+   // var newMsg = "This should be the reversed string";
+
+   alert(newMsg);
+ }
+
+
+
+
+ var button = document.getElementById('reverse-string-button');
+ button.addEventListener('click', reverseString);
 </script>
 
 
@@ -313,9 +338,18 @@ button[0].addEventListener('click', prompt);
   <img src="http://www.wallspick.com/wp-content/uploads/2014/12/Grey-Eyes-Cute-Cat-640x400.jpg"
        alt="Adorbz" id="kittenz-rule">
 </fieldset>
-
+<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
 <script>
   // put your code here
+
+// $('img#kittenz-rule').on("click", function (evt) {
+//   $('img#kittenz-rule').attr("src", "http://willrees.com/wp-content/uploads/2014/05/happy-smiling-cute-corgi-dog.jpg"):
+// });
+
+
+$('img#kittenz-rule').on("click", function (evt) {
+      $('img#kittenz-rule').attr("src", "http://willrees.com/wp-content/uploads/2014/05/happy-smiling-cute-corgi-dog.jpg");
+  } );
 </script>
 
 <div class="hint">
@@ -349,6 +383,30 @@ button[0].addEventListener('click', prompt);
 
 <script>
   // put your code here
+
+$('#make-a-porcupine').on('click', function(){
+
+setTimeout(function(){
+
+$('#cute-porcupine-image').fadeIn(3000); }, 3000);
+
+});
+
+
+
+  // $('#make-a-porcupine').on("click", function (evt) {
+  //     setTimeout(function () {
+  //         $('#cute-porcupine-image').fadeIn(3000);} ,5000);
+    
+      
+  //   });
+
+   // $('#make-a-porcupine').on("click", function (evt) {
+   //    // $('#cute-porcupine-image').setTimeout(5000);
+   //    $('#cute-porcupine-image').setTimeout(3000);
+      
+   //  });
+
 </script>
 
 <div class="hint">
@@ -381,6 +439,38 @@ button[0].addEventListener('click', prompt);
 
 <script>
   // put your code here
+
+
+
+
+
+
+
+
+
+
+  
+
+// function agree(evt) {
+//     evt.preventDefault();
+//     var theirFood = $('#favorite-food-input').val();
+//     $('#agreeable-text').text("I like " + theirFood + ", too!");
+// }
+
+// $('#agreeable-form').on('submit', agree);
+
+
+
+  // .on("submit",
+  //   function (evt) {
+  //   evt.preventDefault();
+  //   var ourInput = $('#favorite-food-input').val();
+  //   $('agreeable-text').text(ourInput);
+    
+  //   });
+
+
+
 </script>
 
 <div class="hint">
