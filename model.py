@@ -45,7 +45,7 @@ class Doctor(Base):
     recommended_by = Column(String(50), nullable=False)
 
     def __repr__(self):
-        return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)ß
+        return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)
 
 #What is the best way to structure the review portion or the rating? How big to make it?
 
@@ -56,10 +56,10 @@ class Rating(Base):
     doctor_id = Column(Integer, ForeignKey('doctors.id'))
     user_id = Column(Integer, ForeignKey('users.id'))
     rating = Column(Integer, nullable=False)
-    review = Column(Integer(500), nullable=True)
+    review = Column(String(500), nullable=True)
 
     user = relationship("User",
-            backref=bckref("ratings", order_by=id))
+            backref=backref("ratings", order_by=id))
 
     doctor = relationship("Doctor",
             backref=backref("ratings", order_by=id))
