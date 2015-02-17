@@ -4,6 +4,7 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
+from geopy.geocoders import Nominatim
 
 
 #This part connects it to the database? Echo prints sqla calls, autocommit and autoflush will not occur
@@ -13,6 +14,8 @@ session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=F
 #Base allows you to model your classes, not totally sue what the rest does here
 Base = declarative_base()
 Base.query = session.query_property()
+
+geolocator = Nominatim()
 
 
 #Class declarations 
