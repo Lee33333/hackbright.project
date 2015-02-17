@@ -2,7 +2,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, update
 from sqlalchemy.orm import relationship, backref
 from geopy.geocoders import Nominatim
 
@@ -75,9 +75,31 @@ class Rating(Base):
 
 # End class declarations
 
-#Main function because I think we need one here, 
+def addgeo():
+    """ Queries all doctors, gets lat/long for their address, adds them to the db entry"""
+
+    all_doctors = session.query(Doctor).all()
+
+    for doctor in all_doctors:
+        address = doctor.address
+        location = getgeo(address)
+        doctor.lat = location[0]
+        doctor.lon = location[1]
+        session.add(doctor)
+
+    session.commit()
+
+    return
+
+def getgeo(address):
+    """ Return the latitude and longitude in a tuple"""
+    location = geolocator.geocode(address)
+
+    return ((location.latitude, location.longitude))
+
+
+#Main function because I think we need one here? 
 def main():
-    """In case we need this for something"""
     pass
 
 if __name__ == "__main__":
