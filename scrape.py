@@ -1,5 +1,6 @@
 import requests
 from BeautifulSoup import BeautifulSoup
+import csv
 
 #create a global variable of the page you are scraping
 
@@ -40,10 +41,17 @@ def order(found):
             if i == 1:
                 # name in <b> tag
                 print child.text
+                text1 = child.text
+                ourlist.extend(text1)
             elif i == 4:
                 # affiliate
                 print child.strip()
+                text2 = child.text
+                ourlist.extend(text2)
             i += 1
+
+    with open("test.csv", "wb") as csvfile:
+        
 
 
 
