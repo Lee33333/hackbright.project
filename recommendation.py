@@ -10,8 +10,8 @@ def index():
     coordinates = model.getlonlat()
     coordinates = json.dumps(coordinates)
     # jsoned = jsonify(coordinates)
-
     # return render_template("index.html") 
+    
     return render_template("base.html", coordinates = coordinates)
 
 if __name__== "__main__":
