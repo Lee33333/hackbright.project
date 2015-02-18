@@ -1,8 +1,11 @@
 import requests
 from BeautifulSoup import BeautifulSoup
 
+#create a global variable of the page you are scraping
 
 GLMADIR = "https://glmaimpak.networkats.com/members_online_new/members/dir_provider.asp?action=search&address_zip_radius=25&address_state_code=CA&address_city=san+Francisco&location_type=S&pn=4"
+
+#this function gets the text from your url
 
 def download():
     response = requests.get(GLMADIR)
@@ -11,15 +14,22 @@ def download():
 
     print(soup.prettify())
 
+# here beautiful soup traverses through the text, identifying the areas you want to select by attribute
+
 def parse():
 
     page1 = open("page1.html")
     soup = BeautifulSoup(page1)
 
+    #these are teh details of the tag we are searching for
+
     found = soup.findAll("td", {"class" : "top", "colspan" : "2"})
-    import pdb; pdb.set_trace()
+
+    # if you want to test your code you can import pdb; pdb.set_trace()
 
     return found
+
+# this function creates logic to sort the items in what we found
 
 def order(found):
     ourlist = []
@@ -37,7 +47,8 @@ def order(found):
 
 
 
-#    for 
+#  next we have to output this to a scv using the csv module, in a way that acocunts for divergent formatting
+
 parsed = parse()
 
 order(parsed)
