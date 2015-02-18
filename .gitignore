@@ -1,3 +1,5 @@
 env/
 *.pyc
 /yelp_tokens.py
+/mapbox-studio/
+/mapbox-studio
