@@ -1,3 +1,7 @@
+// obj = JSON.parse{{coordinates}};
+// console.log(obj);
+// console.log("okay!'");
+
 L.mapbox.featureLayer({
     // this feature is in the GeoJSON format: see geojson.org
     // for the full specification

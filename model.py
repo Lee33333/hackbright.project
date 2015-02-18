@@ -2,10 +2,9 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import ForeignKey, update
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 from geopy.geocoders import Nominatim
-
 
 #This part connects it to the database? Echo prints sqla calls, autocommit and autoflush will not occur
 engine = create_engine("sqlite:///doctors.db", echo=True)
@@ -96,6 +95,21 @@ def getgeo(address):
     location = geolocator.geocode(address)
 
     return ((location.latitude, location.longitude))
+
+def getlonlat():
+    """ creates a list of doctors name and their lat/long"""
+
+    all_doctors = session.query(Doctor).all()
+
+    coordinates = {}
+
+    for doctor in all_doctors:
+        location = (doctor.lon, doctor.lat)
+        coordinates[doctor.name] = location
+
+    return coordinates
+
+
 
 
 #Main function because I think we need one here? 
