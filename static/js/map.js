@@ -1,6 +1,13 @@
-// obj = JSON.parse{{coordinates}};
-// console.log(obj);
-// console.log("okay!'");
+var obj = "{{coordinates}}";
+console.log(obj);
+console.log("!!!!!!!!!!!!'");
+
+
+// var items = [4, 8, 15, 16, 23, 42];
+// for (var i = 0; i < items.length; i++) {
+//     console.log("The next winning number is:" + items[i]);
+// }
+
 
 L.mapbox.featureLayer({
     // this feature is in the GeoJSON format: see geojson.org

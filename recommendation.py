@@ -8,7 +8,7 @@ app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2
 @app.route("/")
 def index():
     coordinates = model.getlonlat()
-    coordinate = json.dumps(coordinates)
+    coordinates = json.dumps(coordinates)
     # jsoned = jsonify(coordinates)
 
     # return render_template("index.html") 
