@@ -40,17 +40,21 @@ def order(found):
         for child in obj:
             if i == 1:
                 # name in <b> tag
-                print child.text
-                text1 = child.text
-                ourlist.extend(text1)
+                names=child.text
+                ourlist.append(names)
+
             elif i == 4:
                 # affiliate
                 print child.strip()
-                text2 = child.text
-                ourlist.extend(text2)
+               
             i += 1
 
-    with open("test.csv", "wb") as csvfile:
+    # print ourlist
+
+    # with open("test.csv", "wb") as csvfile:
+    #     writer = csv.writer(csvfile, delimeter=" ", quotechar=",")
+    #     for row in obj:
+    #         writer.writerow(row)
         
 
 

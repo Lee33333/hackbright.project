@@ -104,9 +104,12 @@ def getlonlat():
     coordinates = {}
 
     for doctor in all_doctors:
-        location = (doctor.lon, doctor.lat)
-        coordinates[doctor.name] = location
+        longitude = doctor.lon
+        latitude = doctor.lat
+        name = doctor.name
+        coordinates[name] = {'lon':longitude, 'lat':latitude}
 
+    
     return coordinates
 
 

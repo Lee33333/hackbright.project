@@ -13,6 +13,7 @@ def index():
     # coordinates = json.stringify(coordinates)
     # print coordinates
     coordinates = json.dumps(coordinates)
+    
    
 
     # jsoned = jsonify(coordinates)
