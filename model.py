@@ -81,6 +81,7 @@ def addgeo():
 
     for doctor in all_doctors:
         address = doctor.address
+        print address
         location = getgeo(address)
         doctor.lat = location[0]
         doctor.lon = location[1]
@@ -92,9 +93,9 @@ def addgeo():
 
 def getgeo(address):
     """ Return the latitude and longitude in a tuple"""
-    location = geolocator.geocode(address)
+    location = geolocator.geocode(address, timeout=5)
 
-    return ((location.latitude, location.longitude))
+    return (location.latitude, location.longitude)
 
 def getlonlat():
     """ creates a list of doctors name and their lat/long"""
