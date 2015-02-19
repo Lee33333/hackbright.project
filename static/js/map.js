@@ -1,23 +1,24 @@
 
-// console.log(coordinates);
+console.log(coordinates);
 // console.log(coordinates["obj"]["CAM"]["lat"]);
 
 // var lon = (coordinates["obj"]["CAM"]["lon"]);
 // var lat = (coordinates["obj"]["CAM"]["lat"]);
 
+// How do I access names in the data structure that I created?!!!!!!!!!!!!!!!!
 
-
+var i = 0;
+var names = Object.keys(coordinates["obj"]);
 
 for (var key in coordinates["obj"]) {
     if (coordinates["obj"].hasOwnProperty(key)){
         var lon = (coordinates["obj"][key]["lon"]);
         var lat = (coordinates["obj"][key]["lat"]);
-        var name = (coordinates["obj"][key]["lat"]);
-        console.log(lon);
-        console.log(lat);
+        
+        var docName = (names[i]);
+        console.log(docName);
 
-
-        // console.log(coordinates["obj"][key]);
+        var i = i + 1;
 
             L.mapbox.featureLayer({
         // this feature is in the GeoJSON format: see geojson.org
@@ -34,7 +35,7 @@ for (var key in coordinates["obj"]) {
             ]
         },
         properties: {
-            title: coordinates["obj"],
+            title: docName,
             description: '1718 14th St NW, Washington, DC',
             // one can customize markers by adding simplestyle properties
             // https://www.mapbox.com/guides/an-open-platform/#simplestyle

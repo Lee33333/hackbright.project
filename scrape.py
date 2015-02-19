@@ -19,7 +19,7 @@ def download():
 
 def parse():
 
-    page1 = open("page1.html")
+    page1 = open("page4.html")
     soup = BeautifulSoup(page1)
 
     #these are teh details of the tag we are searching for
@@ -37,19 +37,31 @@ def order(found):
 
     for obj in found:
         i = 0
+        j = 0
         for child in obj:
-            if i == 1:
-                # name in <b> tag
-                names=child.text
-                ourlist.append(names)
+            # if i == 1:
+            #     # name in <b> tag
+            #     names=child.text
+            #     print child.text
 
-            elif i == 4:
-                # affiliate
-                print child.strip()
+            if i == 4:
+                if child[14].isnumeric() == False:
+                    # print child.strip()
+
+                    if 
+
+
+            
+
+
+
+            # elif i == 4:
+            #     # affiliate
+            #     print child.strip()
                
             i += 1
 
-    # print ourlist
+
 
     # with open("test.csv", "wb") as csvfile:
     #     writer = csv.writer(csvfile, delimeter=" ", quotechar=",")
