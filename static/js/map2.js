@@ -46,7 +46,7 @@ var points = {
     }
     };
 
-var layer = L.mapbox.featureLayer(points).addTo(map);
+var layer = L.mapbox.featureLayer(points).addTo(map); 
 
     // }
 // }
@@ -59,7 +59,7 @@ var center = L.latLng(37.7493, -122.4555);
 
 console.log(center);
 
-var RADIUS = 6500;
+var RADIUS = 6500;       hphy i        
 var filterCircle = L.circle(center, RADIUS, {
     opacity: 1,
     weight: 1,

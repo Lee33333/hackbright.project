@@ -33,40 +33,38 @@ def parse():
 # this function creates logic to sort the items in what we found
 
 def order(found):
-    ourlist = []
+
+    csvf = open("test.csv", "wb") 
+    writer = csv.writer(csvf, delimiter = "")
 
     for obj in found:
         i = 0
         j = 0
+       
         for child in obj:
-            # if i == 1:
-            #     # name in <b> tag
-            #     names=child.text
-            #     print child.text
-
-            if i == 4:
-                if child[14].isnumeric() == False:
-                    # print child.strip()
-
-                    if 
-
-
             
+            if i == 1:
+                # name in <b> tag
+                writer.writerow(child.text)
+                print child.text
+
+            # if i == 4:
+            #     if child[14].isnumeric() == False:
+            #         print child.strip()
+
+    #         #     else:
+    #         #         print child.strip()
+
+    #         # if i == 6 AND child[14].isnumeric() == False:
+    #         #     print child.strip()
 
 
-
-            # elif i == 4:
-            #     # affiliate
-            #     print child.strip()
-               
             i += 1
 
 
 
-    # with open("test.csv", "wb") as csvfile:
-    #     writer = csv.writer(csvfile, delimeter=" ", quotechar=",")
-    #     for row in obj:
-    #         writer.writerow(row)
+    
+
         
 
 
