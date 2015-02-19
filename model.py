@@ -81,7 +81,6 @@ def addgeo():
 
     for doctor in all_doctors:
         address = doctor.address
-        print address
         location = getgeo(address)
         doctor.lat = location[0]
         doctor.lon = location[1]

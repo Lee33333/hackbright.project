@@ -1,21 +1,25 @@
 
-console.log(coordinates);
-console.log(coordinates["obj"]["Kitty Cat"].lon);
-var lon = (coordinates["obj"]["Kitty Cat"].lon);
-var lat = (coordinates["obj"]["Kitty Cat"].lat);
+// console.log(coordinates);
+// console.log(coordinates["obj"]["CAM"]["lat"]);
 
-// for (var i = 0; i <obj.length; i++){
-//     console.log(obj[i]);
-// }
-
-// for (var key in obj) {
-//     if (obj.hasOwnProperty(key)){
-//         console.log(obj[key]);
-//     }
-// }
+// var lon = (coordinates["obj"]["CAM"]["lon"]);
+// var lat = (coordinates["obj"]["CAM"]["lat"]);
 
 
-    L.mapbox.featureLayer({
+
+
+for (var key in coordinates["obj"]) {
+    if (coordinates["obj"].hasOwnProperty(key)){
+        var lon = (coordinates["obj"][key]["lon"]);
+        var lat = (coordinates["obj"][key]["lat"]);
+        var name = (coordinates["obj"][key]["lat"]);
+        console.log(lon);
+        console.log(lat);
+
+
+        // console.log(coordinates["obj"][key]);
+
+            L.mapbox.featureLayer({
         // this feature is in the GeoJSON format: see geojson.org
         // for the full specification
         type: 'Feature',
@@ -30,7 +34,7 @@ var lat = (coordinates["obj"]["Kitty Cat"].lat);
             ]
         },
         properties: {
-            title: 'Peregrine Espresso',
+            title: coordinates["obj"],
             description: '1718 14th St NW, Washington, DC',
             // one can customize markers by adding simplestyle properties
             // https://www.mapbox.com/guides/an-open-platform/#simplestyle
@@ -40,29 +44,10 @@ var lat = (coordinates["obj"]["Kitty Cat"].lat);
         }
     }).addTo(map);
 
+    }
+}
 
 
-// L.mapbox.featureLayer({
-//     // this feature is in the GeoJSON format: see geojson.org
-//     // for the full specification
-//     type: 'Feature',
-//     geometry: {
-//         type: 'Point',
-//         // coordinates here are in longitude, latitude order because
-//         // x, y is the standard for GeoJSON and many formats
-//         coordinates: [
-//           -122.411570,
-//           37.78876
-          
-//         ]
-//     },
-//     properties: {
-//         title: 'Peregrine Espresso',
-//         description: '1718 14th St NW, Washington, DC',
-//         // one can customize markers by adding simplestyle properties
-//         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-//         'marker-size': 'large',
-//         'marker-color': '#BE9A6B',
-//         'marker-symbol': 'cafe'
-//     }
-// }).addTo(map);
+
+
+
