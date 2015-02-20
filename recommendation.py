@@ -10,7 +10,7 @@ def index():
 
     coordinates = model.getlonlat()
     
-    coordinates = json.dumps(coordinates)
+    # coordinates = json.dumps(coordinates)
     
     return render_template("base.html", coordinates = coordinates)
 

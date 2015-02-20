@@ -3,30 +3,32 @@ coordinates = coordinates.obj;
 
 // creates a geojson object called points, in the future it needs to take it in from somewhere
 
-var points = {
-    // this feature is in the GeoJSON format: see geojson.org
-    // for the full specification
-    type: 'Feature',
-    geometry: {
-        type: 'Point',
-        // coordinates here are in longitude, latitude order because
-        // x, y is the standard for GeoJSON and many formats
-        coordinates: [
-          coordinates.CAM.lon,
-          coordinates.CAM.lat
+var points = coordinates;
+
+// {
+//     // this feature is in the GeoJSON format: see geojson.org
+//     // for the full specification
+//     type: 'Feature',
+//     geometry: {
+//         type: 'Point',
+//         // coordinates here are in longitude, latitude order because
+//         // x, y is the standard for GeoJSON and many formats
+//         coordinates: [
+//           coordinates.CAM.lon,
+//           coordinates.CAM.lat
           
-        ]
-    },
-    properties: {
-        title: "name",
-        description: '1718 14th St NW, Washington, DC',
-        // one can customize markers by adding simplestyle properties
-        // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-        'marker-size': 'large',
-        'marker-color': '#BE9A6B',
-        'marker-symbol': 'cafe'
-    }
-    };
+//         ]
+//     },
+//     properties: {
+//         title: "name",
+//         description: '1718 14th St NW, Washington, DC',
+//         // one can customize markers by adding simplestyle properties
+//         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
+//         'marker-size': 'large',
+//         'marker-color': '#BE9A6B',
+//         'marker-symbol': 'cafe'
+//     }
+//     };
 
 //creates a feature layer using our geojson points variable and adds it to map
 
@@ -45,7 +47,7 @@ var RADIUS = 6500;
 var filterCircle = L.circle(center, RADIUS, {
     opacity: 1,
     weight: 1,
-    fillOpacity: 0.4
+    fillOpacity: 0.05
 }).addTo(map);
 
 // filters through our points evaluating them with a function that calls on a function calculating

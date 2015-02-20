@@ -111,8 +111,8 @@ def getlonlat():
         name = doctor.name
         address = doctor.address
 
-        
-        my_feature = Feature(geometry=Point((longitude, latitude)))
+        #figure out how to structure with additional information
+        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"name": name, "Address":address})
         coordinates.append(my_feature)
 
         
@@ -120,8 +120,7 @@ def getlonlat():
         # coordinates[name] = {'lon':longitude, 'lat':latitude}
 
     new_coords = FeatureCollection(coordinates)
-    print new_coords
-    return 
+    return new_coords
 
 
 
