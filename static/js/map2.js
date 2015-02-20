@@ -1,10 +1,14 @@
+coordinates = coordinates.obj;
+
 $(document).ready(function(){
         $("#radiussubmit").click(function(evt){
             evt.preventDefault();
-            console.log("hi");
+            mapSearch(coordinates);
+           });
+});
 
 
-    coordinates = coordinates.obj;
+function mapSearch(coordinates){
 
     // creates a geojson object called points, in the future it needs to take it in from somewhere
 
@@ -16,11 +20,8 @@ $(document).ready(function(){
 
     // establishes a center variable in the latLng format
 
-    // var center = L.latLng(37.7493, -122.4555);
     var lat = parseFloat($("#lattext").val());
     var lon = parseFloat($("#lontext").val());
-    console.log(lat);
-    console.log(lon);
 
     var center = L.latLng(lat, lon);
 
@@ -44,9 +45,8 @@ $(document).ready(function(){
             feature.geometry.coordinates[1],
             feature.geometry.coordinates[0])) < RADIUS;
     });
+}
 
-   });
-});
 
 // {
 //     // this feature is in the GeoJSON format: see geojson.org
