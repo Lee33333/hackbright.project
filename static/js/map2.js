@@ -1,3 +1,9 @@
+
+    $("#radiussubmit").on("click", function(evt) {
+        evt.preventdefault();
+        console.log("hi");
+    });
+
     coordinates = coordinates.obj;
 
     // creates a geojson object called points, in the future it needs to take it in from somewhere
@@ -7,7 +13,7 @@
 
     //creates a feature layer using our geojson points variable and adds it to map
 
-    var layer = L.mapbox.featureLayer(points).addTo(map); 
+    var layer = L.mapbox.featureLayer(points).addTo(map);
 
     // establishes a center variable in the latLng format
 
