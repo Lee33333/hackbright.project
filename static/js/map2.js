@@ -1,9 +1,41 @@
+    coordinates = coordinates.obj;
 
-coordinates = coordinates.obj;
+    // creates a geojson object called points, in the future it needs to take it in from somewhere
 
-// creates a geojson object called points, in the future it needs to take it in from somewhere
+    var points = coordinates;
 
-var points = coordinates;
+
+    //creates a feature layer using our geojson points variable and adds it to map
+
+    var layer = L.mapbox.featureLayer(points).addTo(map); 
+
+    // establishes a center variable in the latLng format
+
+    var center = L.latLng(37.7493, -122.4555);
+
+    // creates a radius, this needs to be imputed in the future
+
+    // var RADIUS = radius;   
+
+    var RADIUS = 6500;
+
+    // creates a circle which we don't really need, adds it as ab object to the map
+
+    var filterCircle = L.circle(center, RADIUS, {
+        opacity: 1,
+        weight: 1,
+        fillOpacity: 0.05
+    }).addTo(map);
+
+    // filters through our points evaluating them with a function that calls on a function calculating
+    //distance and compares it to the radius
+
+    layer.setFilter(function showdrs(feature){
+        return center.distanceTo(L.latLng(
+            feature.geometry.coordinates[1],
+            feature.geometry.coordinates[0])) < RADIUS;
+    });
+
 
 // {
 //     // this feature is in the GeoJSON format: see geojson.org
@@ -29,33 +61,3 @@ var points = coordinates;
 //         'marker-symbol': 'cafe'
 //     }
 //     };
-
-//creates a feature layer using our geojson points variable and adds it to map
-
-var layer = L.mapbox.featureLayer(points).addTo(map); 
-
-// establishes a center variable in the latLng format
-
-var center = L.latLng(37.7493, -122.4555);
-
-// creates a radius, this needs to be imputed in the future
-
-var RADIUS = 6500;   
-
-// creates a circle which we don't really need, adds it as ab object to the map
-
-var filterCircle = L.circle(center, RADIUS, {
-    opacity: 1,
-    weight: 1,
-    fillOpacity: 0.05
-}).addTo(map);
-
-// filters through our points evaluating them with a function that calls on a function calculating
-//distance and compares it to the radius
-
-layer.setFilter(function showdrs(feature){
-    return center.distanceTo(L.latLng(
-        feature.geometry.coordinates[1],
-        feature.geometry.coordinates[0])) < RADIUS;
-});
-

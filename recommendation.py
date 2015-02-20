@@ -10,9 +10,13 @@ def index():
 
     coordinates = model.getlonlat()
     
-    # coordinates = json.dumps(coordinates)
-    
-    return render_template("base.html", coordinates = coordinates)
+    return render_template("input.html", coordinates = coordinates)
+
+# @app.route("/sub", methods=["POST"])
+# def showradius():
+#     radius = request.form.get("radius")
+
+#     return render_template("base.html", radius = radius)
 
 if __name__== "__main__":
     app.run(debug = True)
