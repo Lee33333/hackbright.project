@@ -5,6 +5,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, backref
 from geopy.geocoders import Nominatim
+from geojson import Feature, Point, FeatureCollection
 
 #This part connects it to the database? Echo prints sqla calls, autocommit and autoflush will not occur
 engine = create_engine("sqlite:///doctors.db", echo=True)
@@ -101,16 +102,26 @@ def getlonlat():
 
     all_doctors = session.query(Doctor).all()
 
-    coordinates = {}
+    coordinates = []
 
     for doctor in all_doctors:
+        
         longitude = doctor.lon
         latitude = doctor.lat
         name = doctor.name
-        coordinates[name] = {'lon':longitude, 'lat':latitude}
+        address = doctor.address
 
-    
-    return coordinates
+        
+        my_feature = Feature(geometry=Point((longitude, latitude)))
+        coordinates.append(my_feature)
+
+        
+
+        # coordinates[name] = {'lon':longitude, 'lat':latitude}
+
+    new_coords = FeatureCollection(coordinates)
+    print new_coords
+    return 
 
 
 
@@ -121,3 +132,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

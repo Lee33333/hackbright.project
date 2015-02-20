@@ -1,26 +1,8 @@
 
-console.log(coordinates);
-
 coordinates = coordinates.obj;
-// console.log(coordinates["obj"]["CAM"]["lat"]);
 
-// var lon = (coordinates["obj"]["CAM"]["lon"]);
-// var lat = (coordinates["obj"]["CAM"]["lat"]);
+// creates a geojson object called points, in the future it needs to take it in from somewhere
 
-// How do I access names in the data structure that I created?!!!!!!!!!!!!!!!!
-
-// var i = 0;
-// var names = Object.keys(coordinates["obj"]);
-
-
-
-// // for (var key in coordinates["obj"]) {
-//     if (coordinates["obj"].hasOwnProperty(key)){
-//         var lon = (coordinates["obj"][key]["lon"]);
-//         var lat = (coordinates["obj"][key]["lat"]);
-//         var docName = (names[i]);
-
-//         var i = i + 1;
 var points = {
     // this feature is in the GeoJSON format: see geojson.org
     // for the full specification
@@ -46,29 +28,32 @@ var points = {
     }
     };
 
+//creates a feature layer using our geojson points variable and adds it to map
+
 var layer = L.mapbox.featureLayer(points).addTo(map); 
 
-    // }
-// }
-
-
-
-console.log(coordinates);
+// establishes a center variable in the latLng format
 
 var center = L.latLng(37.7493, -122.4555);
 
-console.log(center);
+// creates a radius, this needs to be imputed in the future
 
-var RADIUS = 6500;       hphy i        
+var RADIUS = 6500;   
+
+// creates a circle which we don't really need, adds it as ab object to the map
+
 var filterCircle = L.circle(center, RADIUS, {
     opacity: 1,
     weight: 1,
     fillOpacity: 0.4
 }).addTo(map);
 
+// filters through our points evaluating them with a function that calls on a function calculating
+//distance and compares it to the radius
 
 layer.setFilter(function showdrs(feature){
     return center.distanceTo(L.latLng(
         feature.geometry.coordinates[1],
         feature.geometry.coordinates[0])) < RADIUS;
 });
+

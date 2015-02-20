@@ -35,7 +35,7 @@ def parse():
 def order(found):
 
     csvf = open("test.csv", "wb") 
-    writer = csv.writer(csvf, delimiter = "")
+    writer = csv.writer(csvf, delimiter = " ")
 
     for obj in found:
         i = 0
