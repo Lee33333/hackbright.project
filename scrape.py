@@ -24,7 +24,7 @@ def parse():
 
     #these are teh details of the tag we are searching for
 
-    found = soup.findAll("td", {"class" : "top", "colspan" : "2"})
+    found = soup.findAll("td", {"class" : "top", "colspan" : "2"}, )
 
     # if you want to test your code you can import pdb; pdb.set_trace()
 
@@ -35,18 +35,26 @@ def parse():
 def order(found):
 
     csvf = open("test.csv", "wb") 
-    writer = csv.writer(csvf, delimiter = " ")
+    writer = csv.writer(csvf)
 
     for obj in found:
         i = 0
-        j = 0
        
         for child in obj:
-            
+
+
+            # text= str(child.text)
+            # print text
+
             if i == 1:
-                # name in <b> tag
+               
+                text = "".join(str(child.text))
+                print text
+
+
+            #     # name in <b> tag
                 writer.writerow(child.text)
-                print child.text
+            #     print child.text
 
             # if i == 4:
             #     if child[14].isnumeric() == False:

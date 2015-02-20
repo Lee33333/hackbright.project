@@ -1,5 +1,4 @@
-
-    $(document).ready(function(){
+$(document).ready(function(){
         $("#radiussubmit").click(function(evt){
             evt.preventDefault();
             console.log("hi");
@@ -18,12 +17,12 @@
     // establishes a center variable in the latLng format
 
     // var center = L.latLng(37.7493, -122.4555);
-    var lat = parseFloat($("lattext").val());
-    var lon = parseFloat($("lontext").val());
+    var lat = parseFloat($("#lattext").val());
+    var lon = parseFloat($("#lontext").val());
     console.log(lat);
     console.log(lon);
 
-    var center = L.latLng(lon, lat);
+    var center = L.latLng(lat, lon);
 
     // grabs a radius from the form, but doesn't reset it for some reason.
 
