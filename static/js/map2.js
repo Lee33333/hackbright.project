@@ -1,15 +1,17 @@
 
-    $("#radiussubmit").on("click", function(evt) {
-        evt.preventdefault();
-        console.log("hi");
-    });
+    $(document).ready(function(){
+        $("#radiussubmit").click(function(evt){
+            evt.preventDefault();
+            console.log("hi");
+            // $("#radiustext").val("");
+//         });
+// });
 
     coordinates = coordinates.obj;
 
     // creates a geojson object called points, in the future it needs to take it in from somewhere
 
     var points = coordinates;
-
 
     //creates a feature layer using our geojson points variable and adds it to map
 
@@ -19,11 +21,9 @@
 
     var center = L.latLng(37.7493, -122.4555);
 
-    // creates a radius, this needs to be imputed in the future
+    // grabs a radius from the form, but doesn't reset it for some reason.
 
-    // var RADIUS = radius;   
-
-    var RADIUS = 6500;
+    var RADIUS = $("#radiustext").val();
 
     // creates a circle which we don't really need, adds it as ab object to the map
 
@@ -42,6 +42,8 @@
             feature.geometry.coordinates[0])) < RADIUS;
     });
 
+   });
+});
 
 // {
 //     // this feature is in the GeoJSON format: see geojson.org
