@@ -1,14 +1,27 @@
 coordinates = coordinates.obj;
 
+// $(document).ready(function(){
+//         $("#radiussubmit").click(function(evt){
+//             evt.preventDefault();
+//             mapSearch(coordinates);
+//            });
+// });
 $(document).ready(function(){
-        $("#radiussubmit").click(function(evt){
-            evt.preventDefault();
-            mapSearch(coordinates);
-           });
+function changeaddy(evt) {
+    evt.preventDefault();
+    $.post("/geocode", {addy:$("#addytext").val()},function (result) {
+        mapSearch(coordinates, result);
+        console.log(coordinates);
+        console.log(result);
+    } );
+    // $("#addytext").load('/geocode');
+
+}
+
+$("#radiussubmit").on('submit', changeaddy);
 });
 
-
-function mapSearch(coordinates){
+function mapSearch(coordinates, result){
 
     // creates a geojson object called points, in the future it needs to take it in from somewhere
 
@@ -20,14 +33,15 @@ function mapSearch(coordinates){
 
     // establishes a center variable in the latLng format
 
-    var lat = parseFloat($("#lattext").val());
-    var lon = parseFloat($("#lontext").val());
+    // var lat = parseFloat($("#lattext").val());
+    // var lon = parseFloat($("#lontext").val());
 
-    var center = L.latLng(lat, lon);
+    var center = L.latLng(result);
 
     // grabs a radius from the form, but doesn't reset it for some reason.
 
-    var RADIUS = $("#radiustext").val();
+    // var RADIUS = $("#radiustext").val();
+    var RADIUS = 5;
 
     // creates a circle which we don't really need, adds it as ab object to the map
 

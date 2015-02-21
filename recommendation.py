@@ -13,6 +13,5 @@ def index():
     return render_template("input.html", coordinates = coordinates)
 
 
-
 if __name__== "__main__":
     app.run(debug = True)
