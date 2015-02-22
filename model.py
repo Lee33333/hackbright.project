@@ -11,7 +11,7 @@ from geojson import Feature, Point, FeatureCollection
 engine = create_engine("sqlite:///doctors.db", echo=True)
 session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
-#Base allows you to model your classes, not totally sue what the rest does here
+#Base allows you to model your classes, not totally sure what the rest does here
 Base = declarative_base()
 Base.query = session.query_property()
 
@@ -23,7 +23,7 @@ geolocator = Nominatim()
 class User(Base):
     __tablename__= "users"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)   
     email = Column(String(64), nullable=False, unique=True)
     password = Column(String(64), nullable=False)
     zipcode = Column(String(15), nullable=True)
@@ -38,15 +38,16 @@ class Doctor(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(100), nullable=False)
-    phone_number = Column(String(25), nullable=False)
+    cert = Column(String(50), nullable=True)
     business_name = Column(String (100), nullable=True)
-    address = Column(String(250), nullable=True)
+    address = Column(String(250), nullable=False)
+    phone_number = Column(String(25), nullable=True)
+    recommended_by = Column(String(50), nullable=False)
+    gender = Column(String(15), nullable=True)
     lat = Column(Float(50), nullable=True)
     lon = Column(Float(50), nullable=True)
     specialties = Column(String(200), nullable=True)
-    gender = Column(String(15), nullable=True)
-    cert = Column(String(50), nullable=True)
-    recommended_by = Column(String(50), nullable=False)
+    
 
     def __repr__(self):
         return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)
