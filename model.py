@@ -38,6 +38,7 @@ class Doctor(Base):
     cert = Column(Unicode(50), nullable=True)
     business_name = Column(Unicode (100), nullable=True)
     address = Column(Unicode(500), nullable=False)
+    suite = Column(Unicode(500), nullable=True)
     phone_number = Column(Unicode(25), nullable=True)
     recommended_by = Column(Unicode(50), nullable=False)
     gender = Column(Unicode(15), nullable=True)
@@ -79,13 +80,16 @@ def addgeo():
 
     for doctor in all_doctors:
         address = doctor.address
-        location = getgeo(address)
-        doctor.lat = location[0]
-        doctor.lon = location[1]
-        session.add(doctor)
+        location = getgeo(str(address))
+        try:
+            print location
+        except AttributeError,err:
+            print err
+        # doctor.lat = location[0]
+        # doctor.lon = location[1]
+        # session.add(doctor)
 
-    session.commit()
-
+    # session.commit()
     return
 
 def getgeo(address):
