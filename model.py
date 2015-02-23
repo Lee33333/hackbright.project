@@ -1,9 +1,6 @@
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import create_engine
-from sqlalchemy import Column, Integer, String, Float
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy import ForeignKey
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Float, Unicode
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 from geopy.geocoders import Nominatim
 from geojson import Feature, Point, FeatureCollection
 
@@ -37,16 +34,16 @@ class Doctor(Base):
     __tablename__ = 'doctors'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String(100), nullable=False)
-    cert = Column(String(50), nullable=True)
-    business_name = Column(String (100), nullable=True)
-    address = Column(String(250), nullable=False)
-    phone_number = Column(String(25), nullable=True)
-    recommended_by = Column(String(50), nullable=False)
-    gender = Column(String(15), nullable=True)
+    name = Column(Unicode(100), nullable=False)
+    cert = Column(Unicode(50), nullable=True)
+    business_name = Column(Unicode (100), nullable=True)
+    address = Column(Unicode(250), nullable=False)
+    phone_number = Column(Unicode(25), nullable=True)
+    recommended_by = Column(Unicode(50), nullable=False)
+    gender = Column(Unicode(15), nullable=True)
     lat = Column(Float(50), nullable=True)
     lon = Column(Float(50), nullable=True)
-    specialties = Column(String(200), nullable=True)
+    specialties = Column(Unicode(500), nullable=True)
     
 
     def __repr__(self):

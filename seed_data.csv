@@ -1,14 +1,10 @@
 Bart Magee,PhD,NULL,459 Fulton Street Suite 202 San Francisco CA 94102,415-606-9805,GLMA,NULL,NULL,NULL,Individual or Group Therapy/Counseling Mental Health Psychodynamic/Eclectic Psychotherapy
-
-Regina Marshall,PhD,NULL,4155 24th St. San Francisco CA 94114,415-734-8820,GLMA,NULL,NULL,NULL,NULL
-          
+Regina Marshall,PhD,NULL,4155 24th St. San Francisco CA 94114,415-734-8820,GLMA,NULL,NULL,NULL,NULL          
 Robb Mayberry,NULL,Pacific Fertility Center,55 Francisco St. Fifth Floor San Francisco CA 94133,415-834-3000,GLMA,NULL,NULL,NULL,Reproductive and Fertility Services           
-
 Veronika Mesheriakova,MD,UCSF Teen Clinic,400 Parnassus Avenue San Francisco CA 94143,415-353-2002,GLMA,NULL,NULL,NULL,Adolescent Medicine
-
 Sherron Mills,NP,Pacific Reproductive Services,444 De Haro Suite 222 San Francisco CA 94107,888 469 5800,GLMA,NULL,NULL,NULL,Reproductive and Fertility Services; Transgender - Other Transition Services
           
-Carlos Morales,MA,582 Market St. Suite 718 San Francisco CA 94114,415-820-1510,GLMA,NULL,NULL,NULL,NULL,NULL          
+Carlos Morales,MA,NULL, 582 Market St. Suite 718 San Francisco CA 94114,415-820-1510,GLMA,NULL,NULL,NULL,NULL        
 
 Anthony Nguyen,DPM,Financial District Foot & Ankle Center,100 Bush Suite 420 San Francisco CA 94104,415-956-2884,GLMA,NULL,NULL,NULL,Podiatry
          
@@ -18,7 +14,7 @@ Michael Perona,DDS,Michael J Perona DDS,120 Howard Street Suite A San Francisco 
 
 Mark Philpot,NULL,Asian Pacific Islander Wellness Center Wellness Clinic,730 Polk St. San Francisco CA 94109,415-293-3400,GLMA,NULL,NULL,NULL,NULL          
 
-Philip Richardson,MD,NULL,535 Pennsylvania Ave. San Francisco CA 94107-2913,GLMA,NULL,NULL,NULL,General Practice            
+Philip Richardson,MD,NULL,535 Pennsylvania Ave. San Francisco CA 94107-2913,Null,GLMA,NULL,NULL,NULL,General Practice         
 
 Rachel Robbins,Psy.D.,NULL,459 Fulton St. Suite 105 San Francisco CA 94102,(415) 625-9778,GLMA,NULL,NULL,NULL,Counseling; Individual or Group Therapy/Counseling; Psychodynamic/Eclectic; Psychotherapy; Transgender - Transition counseling; Transgender - Transition Services; Referrals Psychology                    
 
@@ -26,15 +22,15 @@ Stephen Sabin,PsyD,NULL,2489 Washington Street San Francisco CA 94115,415-567-70
 
 Lydia Sausa,PhD MSEd,NULL,597C Dolores Street San Francisco CA 94110,415-554-0130,GLMA,NULL,NULL,NULL, Trans Youth; Sexuality Educator Trainer & Consultant   
 
-Adrienne Shapiro,NULL,NULL,1001 Portrero Ave San Francisco CA 94110,(415) 206-8000,GLMA,NULL,NULL,NULL
+Adrienne Shapiro,NULL,NULL,1001 Portrero Ave San Francisco CA 94110,(415) 206-8000,GLMA,NULL,NULL,NULL,NULL
 
 Nick Venegoni,MFT & CHT,Holistic Therapy SF,1801 Bush Street San Francisco CA 94109,415-766-9629,GLMA,NULL,NULL,NULL,Art/Dance/Music Therapy; Counseling; Holistic Medicine; Hospice; Hypnotherapy; Individual or Group Therapy/Counseling; Meditation; Psychodynamic/Eclectic; Psychotherapy; Sexual Health;Spiritual; Support Groups; Psychology
         
-Peter Washburn,MD,NULL,1201 Filmore Street San Francisco CA,NULL,GLMA,NULL,NULL,NULL Addiction Medicine; Internal Medicine
+Peter Washburn,MD,NULL,1201 Filmore Street San Francisco CA,NULL,GLMA,NULL,NULL,NULL, Addiction Medicine; Internal Medicine
           
 John Watson,Ph.D,NULL,220 Montgomery St. Suite 1019 San Francisco CA 94104,415-595-7384,GLMA,NULL,NULL,NULL,Cognitive Behavioral Therapy (CBT); Counseling Psychotherapy Psychology
 
-Stan Yantis,MD,NULL,45 Castro St. #402 San Francisco CA 94114,415-241-5601,GLMA,NULL,NULL,Psychiatry
+Stan Yantis,MD,NULL,45 Castro St. #402 San Francisco CA 94114,415-241-5601,GLMA,NULL,NULL,NULL,,Psychiatry
 
 Dave Cooperberg,MA,NULL,San Francisco CA 94117,415-431-3220,GLMA,NULL,NULL,NULL, Counseling; Hypnotherapy; Individual or Group Therapy/Counseling; Meditation; Psychodynamic/Eclectic ;Psychotherapy        
 
@@ -66,8 +62,7 @@ Rodney Karr,Ph.d,NULL,290 Divisadero St. San Francisco CA 94117,415-931-1934,GLM
 
 Kieron Leslie,NULL,UCSF,1701 Divisadero street San Francisco CA 94115,415 353 7800,GLMA,NULL,NULL,NULL,Dermatology            
 
-Rajani Levis,MFT,NULL,1246 Castro Street #2 San Francisco CA 94114,415-683-1008,GLMA,NULL,NULL,NULL,Counseling; Individual or Group Therapy/Counseling;
-Psychotherapy; Spiritual; Support Groups
+Rajani Levis,MFT,NULL,1246 Castro Street #2 San Francisco CA 94114,415-683-1008,GLMA,NULL,NULL,NULL,Counseling; Individual or Group Therapy/Counseling; Psychotherapy; Spiritual; Support Groups
 
 Mickey Lim,RPh,Los Portales Pharmacy,2480 Mission St STE 110 San Francisco CA 94110,415.826.3484,GLMA,NULL,NULL,NULL,HIV/AIDS            
 
@@ -93,8 +88,7 @@ Patricia Robertson,MD,NULL,505 Parnassus San Francisco CA 94143-132,NULL,GLMA,NU
 
 Rodman Rogers,MD,San Francisco Urology Medical Group,3838 California St. #803 San Francisco CA 94118,415-668-3600,GLMA,NULL,NULL,NULL,Urology
 
-Howard Rubin,MD,NULL,414 Gough Street Ste. 6 San Francisco CA,NULL,GLMA,NULL,NULL,NULL,
-Psychiatry; Psychopharmacology; Psychotherapy
+Howard Rubin,MD,NULL,414 Gough Street Ste. 6 San Francisco CA,NULL,GLMA,NULL,NULL,NULL,Psychiatry; Psychopharmacology; Psychotherapy
 
 Elizabeth Sekera,RN,Lyon-Martin Health Services,1748 market street Suite 201 San Francisco CA 94102,415-565-7667 ext. 320,GLMA,NULL,NULL,NULL,Primary Care; Women’s Health
 
@@ -110,8 +104,7 @@ Sarah Vensel,PA-C,One Medical,110 Sutter San Francisco CA 94114,NULL,GLMA,NULL,N
 
 Lee Wolfer,MD MS,Chiromedical Group Inc.,246 1st Street Suite 101 San Francisco CA 94105,415-495-2225, GLMA, NULL,NULL,NULL,Physical Medicine and Rehabilitation
 
-Andrea Zengion,ND LAc,Thousand Leaf Natural Health,919 Irving St Suite 104 San Francisco CA 94122,415-562-6958,GLMA,NULL,NULL,NULL,Accupuncture; Body Work; Endocrinology; Family Practice; Herbal Medicine; Holistic Medicine; Internal Medicine; Meditation; 
-Naturopathy; Nutritional Medicine; Obstetrics and Gynecology; Reflexology; Reproductive and Fertility Services; Traditional Chinese Medicine; Transgender - Other Transition Services; Urology; Women’s Health
+Andrea Zengion,ND LAc,Thousand Leaf Natural Health,919 Irving St Suite 104 San Francisco CA 94122,415-562-6958,GLMA,NULL,NULL,NULL,Accupuncture; Body Work; Endocrinology; Family Practice; Herbal Medicine; Holistic Medicine; Internal Medicine; Meditation; Naturopathy; Nutritional Medicine; Obstetrics and Gynecology; Reflexology; Reproductive and Fertility Services; Traditional Chinese Medicine; Transgender - Other Transition Services; Urology; Women's Health
 
 
 Shay Alderman,LMFT,Shay Alderman LMFT, 211 Gough St #114 San Francisco CA 94102,415.820.9670,GLMA,NULL,NULL,NULL,Psychotherapy           
@@ -126,12 +119,11 @@ Irene Barraza,MA,Lyon-Martin Health Services,1748 market street Suite 201 San Fr
    
 John Beebe,MD,NULL,337 Spruce San Francisco CA 94118-1830,415-221-2266,GLMA,NULL,NULL,NULL,Jungian Analysis; Psychiatry  
 
-Fritz Bredeek,MD PhD,Metropolis Medical Group,815 Hyde Street Suite 301 San Francisco CA 94109,415 292-5477,GLMA,NULL,NULL,NULL,
-HIV/AIDS; Infectious Diseases; Internal Medicine
+Fritz Bredeek,MD PhD,Metropolis Medical Group,815 Hyde Street Suite 301 San Francisco CA 94109,415 292-5477,GLMA,NULL,NULL,NULL,HIV/AIDS; Infectious Diseases; Internal Medicine
 
 Robert Bush,MD,NULL,45 Castro St. #212 San Francisco CA 94114,415-621-8175,GLMA,NULL,NULL,NULL,General Surgery; Proctology   
 
-Bradford Crowell,NULL,NULL,4141 Geary Blvd San Francisco CA,GLMA,NULL,NULL,NULL,Psychiatry 
+Bradford Crowell,NULL,NULL,4141 Geary Blvd San Francisco CA,NULL,GLMA,NULL,NULL,NULL,Psychiatry 
 
 Robert Daroff,MD,VA Medical Ctr.,4150 Clement St. Box 116 C San Francisco CA 94121,415-221-4810 ext. 4366,GLMA,NULL,NULL,NULL,Cognitive Behavioral Therapy (CBT); Counseling; Individual or Group Therapy/Counseling; Meditation; Psychiatry; Psychodynamic/Eclectic; Psychotherapy; Support Groups; Transgender - Hormones - FTM; Transgender - Hormones - MTF; Transgender - Other Transition Services; Transgender - Transition counseling; Transgender - Transition Services Referrals; Psychology   
 
@@ -145,15 +137,13 @@ Tri Do,MD MPH,Asian and Pacific Islander Wellness Center,730 Polk Street San Fra
 
 David Duong,MD PhD,NULL,909 Hyde Street Suite 222 San Francisco CA 94109,415-441-3155,GLMA,NULL,NULL,NULL,Urology
 
-Mihal Emberton,MD MPH,Kaiser Permanente Internal Medicine - Family Medicine Clinic,2200 O'Farrell Street San Francisco CA 94115,415-833-2200,GLMA,NULL,NULL,NULL,
-Family Practice  
+Mihal Emberton,MD MPH,Kaiser Permanente Internal Medicine - Family Medicine Clinic,2200 O'Farrell Street San Francisco CA 94115,415-833-2200,GLMA,NULL,NULL,NULL,Family Practice  
 
 Nanette Gartrell,MD,NULL,3570 Clay St. San Francisco CA 94118,415-346-2336,GLMA,NULL,NULL,NULL,Cognitive Behavioral Therapy (CBT); Psychiatry; Transgender - Case Management    
 
 Rebecca Goldfader,NP,Kaiser Permanente OB/GYN,2238 Geary Boulevard San Francisco CA 94115,415-833-2200,GLMA,NULL,NULL,NULL,Obstetrics and Gynecology; Transgender - Case Management   
 
-Nick Gorton,MD,Lyon-Martin Health Services,1748 Market Street Suite 201 San Francisco CA 94102,415 565 7667 ext. 308,GLMA,NULL,NULL,NULL,Primary Care; Transgender - Hormones - FTM;Transgender - Hormones - MTF; Transgender - Other Transition Services; 
-Transgender - Transition Services Referrals   
+Nick Gorton,MD,Lyon-Martin Health Services,1748 Market Street Suite 201 San Francisco CA 94102,415 565 7667 ext. 308,GLMA,NULL,NULL,NULL,Primary Care; Transgender - Hormones - FTM;Transgender - Hormones - MTF; Transgender - Other Transition Services; Transgender - Transition Services Referrals   
 
 Ellen Haller,MD,UCSF Dept. of Psychiatry,401 Parnassus Ave. Box F-0984 San Francisco CA 94143-0984,415-476-7799,GLMA,NULL,NULL,NULL,Psychiatry  
 
@@ -165,10 +155,10 @@ Shawn Hassler,M.D.,NULL,870 Market St. Ste 600 San Francisco CA 94102,415-397-07
 
 Alison Jacoby,MD,UCSF,2356 Sutter St San Francisco CA 94115-1648,415-885-7788,GLMA,NULL,NULL,NULL,Obstetrics and Gynecology    
 
-Lee Kao,MD PhD,Lane Fertility Institute,2100 Webster St Suite 332 San Francisco CA 94115,4158930391,GLMA,NULL,NULL,NULL Infertility; Obstetrics and Gynecology; Reproductive and Fertility Services
+Lee Kao,MD PhD,Lane Fertility Institute,2100 Webster St Suite 332 San Francisco CA 94115,4158930391,GLMA,NULL,NULL,NULL, Infertility; Obstetrics and Gynecology; Reproductive and Fertility Services
 
 Michelle Kay,FNP-BC,One Medical Group,595 Castro Street San Francisco CA 94114,415-529-4099,GLMA,NULL,NULL,NULL,Adolescent Medicine; Family Practice; Holistic Medicine; Primary Care; Sexual Health; Transgender - Case Management; Transgender - Hormones - FTM; Transgender - Hormones - MTF; Women’s Health  
 
 Robert Kertzner,MD,NULL,2154 Broderick Street San Francisco CA 94115,212-410-4700 415-441-6196,GLMA,NULL,NULL,NULL,Psychiatry; Psychodynamic/Eclectic; Psychotherapy
 
-Audrey Koh,M.D.,Associates in Obstetrics and Gynecology,2100 Webster Street Suite 427 San Francisco CA 94115,4159233128,GLMA,NULL,NULL,NULL,Obstetrics and Gynecology
+Audrey Koh,M.D.,Associates in Obstetrics and Gynecology,2100 Webster Street Suite 427 San Francisco CA 94115,4159233128,GLMA,NULL,NULL,NULL,Obstetrics and Gynecology 
