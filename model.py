@@ -37,7 +37,7 @@ class Doctor(Base):
     name = Column(Unicode(100), nullable=False)
     cert = Column(Unicode(50), nullable=True)
     business_name = Column(Unicode (100), nullable=True)
-    address = Column(Unicode(250), nullable=False)
+    address = Column(Unicode(500), nullable=False)
     phone_number = Column(Unicode(25), nullable=True)
     recommended_by = Column(Unicode(50), nullable=False)
     gender = Column(Unicode(15), nullable=True)
@@ -90,7 +90,7 @@ def addgeo():
 
 def getgeo(address):
     """ Return the latitude and longitude in a tuple"""
-    location = geolocator.geocode(address, timeout=5)
+    location = geolocator.geocode(address, timeout=5000)
 
     return (location.latitude, location.longitude)
 
