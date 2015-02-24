@@ -81,15 +81,11 @@ def addgeo():
     for doctor in all_doctors:
         address = doctor.address
         location = getgeo(str(address))
-        try:
-            print location
-        except AttributeError,err:
-            print err
-        # doctor.lat = location[0]
-        # doctor.lon = location[1]
-        # session.add(doctor)
+        doctor.lat = location[0]
+        doctor.lon = location[1]
+        session.add(doctor)
 
-    # session.commit()
+    session.commit()
     return
 
 def getgeo(address):
