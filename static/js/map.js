@@ -1,12 +1,13 @@
 coordinates = coordinates.obj;
 
 $(document).ready(function(){
-        $("#radiussubmit").click(function(evt){
-            evt.preventDefault();
-            mapSearch(coordinates);
-           });
-});
+    $("#radiussubmit").click(function(evt){
+        evt.preventDefault();
+        // mapSearch(coordinates);
+        getGeocode($("#address").val());
 
+    });
+});
 
 function mapSearch(coordinates){
 
@@ -47,6 +48,17 @@ function mapSearch(coordinates){
     });
 }
 
+function getGeocode(address){
+
+    address = address.replace(/ /g,"+");
+    var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
+    $.get(url, function (response) {
+        console.log(response);
+    }).fail(function(error){
+        console.log('ERROR: ',error);
+    });
+
+}
 
 // {
 //     // this feature is in the GeoJSON format: see geojson.org
