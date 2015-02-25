@@ -1,4 +1,8 @@
 coordinates = coordinates.obj;
+var points = coordinates;
+var layer = L.mapbox.featureLayer(points);
+
+
 
 //this is an event listener for clicks on the submit button
 $(document).ready(function(){
@@ -8,17 +12,30 @@ $(document).ready(function(){
         getGeocode($("#address").val());
 
     });
+
+    $("#reset").click(function(evt){
+        evt.preventDefault();
+        reset();
+
+    });
 });
+
+function reset(){
+    if (map.hasLayer(layer)){
+
+        map.removeLayer(layer);
+    }
+}
 
 function mapSearch(lat,lon){
 
     // creates a geojson object called points, containing objects about all the doctors
 
-    var points = coordinates;
-
     //creates a feature layer using our geojson points variable and adds it to map
 
-    var layer = L.mapbox.featureLayer(points).addTo(map);
+    layer.addTo(map);
+
+    // var layer = L.mapbox.featureLayer(points).addTo(map);
 
     // establishes a center variable in the latLng format
 
@@ -33,11 +50,13 @@ function mapSearch(lat,lon){
 
     // creates a circle which we don't really need, adds it as ab object to the map
 
-    var filterCircle = L.circle(center, RADIUS, {
-        opacity: 1,
-        weight: 1,
-        fillOpacity: 0.05
-    }).addTo(map);
+    // var filterCircle = L.circle(center, RADIUS, {
+    //     opacity: 1,
+    //     weight: 1,
+    //     fillOpacity: 0.05
+    // });
+
+    // filterCircle.addTo(map);
 
     // filters through our points evaluating them with a function that calls on a function calculating
     //distance and compares it to the radius
