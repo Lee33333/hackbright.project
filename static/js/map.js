@@ -9,7 +9,7 @@ $(document).ready(function(){
     });
 });
 
-function mapSearch(coordinates){
+function mapSearch(lat,lon){
 
     // creates a geojson object called points, in the future it needs to take it in from somewhere
 
@@ -21,14 +21,14 @@ function mapSearch(coordinates){
 
     // establishes a center variable in the latLng format
 
-    var lat = parseFloat($("#lattext").val());
-    var lon = parseFloat($("#lontext").val());
+    // var lat = parseFloat($("#lattext").val());
+    // var lon = parseFloat($("#lontext").val());
 
     var center = L.latLng(lat, lon);
 
     // grabs a radius from the form, but doesn't reset it for some reason.
 
-    var RADIUS = $("#radiustext").val();
+    var RADIUS = 6500;//$("#radiustext").val();
 
     // creates a circle which we don't really need, adds it as ab object to the map
 
@@ -53,7 +53,11 @@ function getGeocode(address){
     address = address.replace(/ /g,"+");
     var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
     $.get(url, function (response) {
-        console.log(response);
+        // console.log(response);
+        var lon = (response.features[0].center[0]);
+        var lat = (response.features[0].center[1]);
+        mapSearch(lat,lon);
+
     }).fail(function(error){
         console.log('ERROR: ',error);
     });
