@@ -1,9 +1,10 @@
 coordinates = coordinates.obj;
 
+//this is an event listener for clicks on the submit button
 $(document).ready(function(){
     $("#radiussubmit").click(function(evt){
         evt.preventDefault();
-        // mapSearch(coordinates);
+        //sends the address value of the addres field to the getGeocode function
         getGeocode($("#address").val());
 
     });
@@ -11,7 +12,7 @@ $(document).ready(function(){
 
 function mapSearch(lat,lon){
 
-    // creates a geojson object called points, in the future it needs to take it in from somewhere
+    // creates a geojson object called points, containing objects about all the doctors
 
     var points = coordinates;
 
@@ -26,9 +27,9 @@ function mapSearch(lat,lon){
 
     var center = L.latLng(lat, lon);
 
-    // grabs a radius from the form, but doesn't reset it for some reason.
+    // grabs a mile radius from the form and converts it meters, but doesn't reset it for some reason.
 
-    var RADIUS = 6500;//$("#radiustext").val();
+    var RADIUS = $("#radiustext").val() * 1609.34;
 
     // creates a circle which we don't really need, adds it as ab object to the map
 
@@ -49,15 +50,18 @@ function mapSearch(lat,lon){
 }
 
 function getGeocode(address){
-
+    //converts address to a url form replacing spaces with +
     address = address.replace(/ /g,"+");
+    //the specific url for the get request
     var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
+    //we send this url with a get request to the mapbox geocoder api
     $.get(url, function (response) {
-        // console.log(response);
+        // we get an object back and pull out lat/lon
         var lon = (response.features[0].center[0]);
         var lat = (response.features[0].center[1]);
+        //and feed these into the mapSearch function
         mapSearch(lat,lon);
-
+    //if we fail to get a response we'll print error, should do more here
     }).fail(function(error){
         console.log('ERROR: ',error);
     });
