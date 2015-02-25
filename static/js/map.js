@@ -14,8 +14,8 @@ $(document).ready(function(){
     });
 
     pinLayer.on('click', function(e) {
-    e.layer.unbindPopup();
-    window.open(e.layer.feature.properties.url);
+    var name = e.layer.feature.properties.title;
+    $(".info").append(name);
     });
 
     // $("#reset").click(function(evt){
@@ -54,7 +54,7 @@ function mapSearch(lat,lon){
     });
 
     filterCircle.addTo(map);
-    console.log(filterCircle);
+    // console.log(filterCircle);
 
     // filters through our points evaluating them with a function that calls on a function calculating
     //distance and compares it to the radius
