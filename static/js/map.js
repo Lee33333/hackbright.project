@@ -1,6 +1,6 @@
 coordinates = coordinates.obj;
 var points = coordinates;
-var layer = L.mapbox.featureLayer(points);
+var pinLayer = L.mapbox.featureLayer(points);
 
 
 
@@ -13,29 +13,26 @@ $(document).ready(function(){
 
     });
 
-    $("#reset").click(function(evt){
-        evt.preventDefault();
-        reset();
-
+    pinLayer.on('click', function(e) {
+    e.layer.unbindPopup();
+    window.open(e.layer.feature.properties.url);
     });
+
+    // $("#reset").click(function(evt){
+    //     evt.preventDefault();
+    //     reset();
+
+    // });
 });
-
-function reset(){
-    if (map.hasLayer(layer)){
-
-        map.removeLayer(layer);
-    }
-}
 
 function mapSearch(lat,lon){
 
-    // creates a geojson object called points, containing objects about all the doctors
+    if (map.hasLayer(pinLayer)){
 
-    //creates a feature layer using our geojson points variable and adds it to map
+    map.removeLayer(pinLayer);
+    }
 
-    layer.addTo(map);
-
-    // var layer = L.mapbox.featureLayer(points).addTo(map);
+    pinLayer.addTo(map);
 
     // establishes a center variable in the latLng format
 
@@ -50,18 +47,19 @@ function mapSearch(lat,lon){
 
     // creates a circle which we don't really need, adds it as ab object to the map
 
-    // var filterCircle = L.circle(center, RADIUS, {
-    //     opacity: 1,
-    //     weight: 1,
-    //     fillOpacity: 0.05
-    // });
+    var filterCircle = L.circle(center, RADIUS, {
+        opacity: 1,
+        weight: 1,
+        fillOpacity: 0.05
+    });
 
-    // filterCircle.addTo(map);
+    filterCircle.addTo(map);
+    console.log(filterCircle);
 
     // filters through our points evaluating them with a function that calls on a function calculating
     //distance and compares it to the radius
 
-    layer.setFilter(function showdrs(feature){
+    pinLayer.setFilter(function showdrs(feature){
         return center.distanceTo(L.latLng(
             feature.geometry.coordinates[1],
             feature.geometry.coordinates[0])) < RADIUS;
@@ -87,27 +85,3 @@ function getGeocode(address){
 
 }
 
-// {
-//     // this feature is in the GeoJSON format: see geojson.org
-//     // for the full specification
-//     type: 'Feature',
-//     geometry: {
-//         type: 'Point',
-//         // coordinates here are in longitude, latitude order because
-//         // x, y is the standard for GeoJSON and many formats
-//         coordinates: [
-//           coordinates.CAM.lon,
-//           coordinates.CAM.lat
-          
-//         ]
-//     },
-//     properties: {
-//         title: "name",
-//         description: '1718 14th St NW, Washington, DC',
-//         // one can customize markers by adding simplestyle properties
-//         // https://www.mapbox.com/guides/an-open-platform/#simplestyle
-//         'marker-size': 'large',
-//         'marker-color': '#BE9A6B',
-//         'marker-symbol': 'cafe'
-//     }
-//     };

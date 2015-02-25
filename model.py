@@ -109,7 +109,7 @@ def getlonlat():
         address = doctor.address
 
         #figure out how to structure with additional information
-        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "marker-color": "#0099CC"})
+        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "marker-color": "#0099CC", "url":'http://en.wikipedia.org/wiki/Baltimore'})
         coordinates.append(my_feature)
         print my_feature
         
