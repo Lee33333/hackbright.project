@@ -15,7 +15,9 @@ $(document).ready(function(){
 
     pinLayer.on('click', function(e) {
     var name = e.layer.feature.properties.title;
+    var address = e.layer.feature.properties.Address;
     $(".info").append(name);
+    $(".info").append(address);
     });
 
     // $("#reset").click(function(evt){
