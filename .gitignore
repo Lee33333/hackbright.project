@@ -3,3 +3,4 @@ env/
 /yelp_tokens.py
 /mapbox-studio/
 /mapbox-studio
+facebook_secret.py

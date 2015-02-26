@@ -52,7 +52,7 @@ function mapSearch(lat,lon){
         fillOpacity: 0.05
     });
 
-    filterCircle.addTo(map);
+    filterCircle.addTo(pinLayer);
     // console.log(filterCircle);
 
     // filters through our points evaluating them with a function that calls on a function calculating
