@@ -16,9 +16,10 @@ $(document).ready(function(){
     pinLayer.on('click', function(e) {
     var name = e.layer.feature.properties.title;
     var address = e.layer.feature.properties.Address;
-    $(".info").append(name);
-    $(".info").append(address);
+    $(".info").prepend("<p>"+name+" "+address+"</p>");
     });
+
+
 
     // $("#reset").click(function(evt){
     //     evt.preventDefault();
