@@ -16,10 +16,9 @@ $(document).ready(function(){
     pinLayer.on('click', function(e) {
     var name = e.layer.feature.properties.title;
     var address = e.layer.feature.properties.Address;
-    $(".info").prepend("<p>"+name+" "+address+"</p>");
+    var phone = e.layer.feature.properties.phone;
+    $(".info").prepend("<p>"+name+" "+address+" "+phone+"</p>");
     });
-
-
 
     // $("#reset").click(function(evt){
     //     evt.preventDefault();
@@ -38,9 +37,6 @@ function mapSearch(lat,lon){
     pinLayer.addTo(map);
 
     // establishes a center variable in the latLng format
-
-    // var lat = parseFloat($("#lattext").val());
-    // var lon = parseFloat($("#lontext").val());
 
     var center = L.latLng(lat, lon);
 
