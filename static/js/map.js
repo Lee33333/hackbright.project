@@ -20,12 +20,35 @@ $(document).ready(function(){
     $(".info").prepend("<p>"+name+" "+address+" "+phone+"</p>");
     });
 
-    // $("#reset").click(function(evt){
-    //     evt.preventDefault();
-    //     reset();
 
-    // });
+                       // "<p><a href='/provider-info/' + e.f.p.id">...</a></p>
+
+                       // $(".info a").on('click', function (evt) {
+                       //  evt.preventDefault();
+                       //  var url = $(this).attrib("href")
+                       //  $(....).load(url)
+                       // } )
+
+
+
+                       // docdetail.html
+                       //    <div class="provider-detail-block">
+                       //      Name : {{}}
+                       //    </div>
+
+
+
 });
+
+
+
+
+
+$("#provider-detail").load("/provider-detail/" + provider_id)
+    --> <div>Doctor: {{name}} Address: {{}}</div>
+
+
+
 
 function mapSearch(lat,lon){
 

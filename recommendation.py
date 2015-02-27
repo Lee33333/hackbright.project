@@ -51,11 +51,13 @@ def facebook_authorized(resp):
 
     me = facebook.get('/me')
 
-    # session['user'] = 
-
     flash("You are logged in %s." % (me.data['first_name']))
 
     user = add_new_user()
+
+    session['user'] = user.id
+
+    print session['user']
 
     return redirect('/')
 
