@@ -3,11 +3,11 @@ import model
 from flask_oauth import OAuth
 import os
 
+#This section is necessary to connect with facebook
 oauth = OAuth()
 
 consumer_keys = os.environ.get("app_id")
 consumer_secrets = os.environ.get("app_secret")
-
 
 facebook = oauth.remote_app('facebook',
     base_url='https://graph.facebook.com/',
@@ -19,20 +19,18 @@ facebook = oauth.remote_app('facebook',
     request_token_params={'scope': 'email'}
 )
 
-print consumer_keys
-print consumer_secrets
-
 app = Flask(__name__)
 app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2f\x03'
 
+#This route maps doctors
 @app.route("/")
 def index():
-
 
     coordinates = model.getlonlat()
     
     return render_template("input.html", coordinates = coordinates, consumer_secrets = consumer_secrets)
 
+#Takes you to the facebook authentication page, send you and response on to next route
 @app.route('/login')
 def login():
     return facebook.authorize(callback=url_for('facebook_authorized',
@@ -43,16 +41,42 @@ def login():
 @app.route('/login/authorized')
 @facebook.authorized_handler
 def facebook_authorized(resp):
+    #when would this ever happen?
     if resp is None:
-        return 'Access denied: reason=%s error=%s' % (
-            request.args['error_reason'],
-            request.args['error_description']
-        )
-    session['oauth_token'] = (resp['access_token'], '')
-    me = facebook.get('/me')
-    return 'Logged in as id=%s name=%s redirect=%s' % \
-        (me.data['id'], me.data['name'], request.args.get('next'))
+        flash("Facebook authentication error.")
+        return redirect('/')
 
+    session['logged_in'] = True
+    session['oauth_token'] = (resp['access_token'], '')
+
+    me = facebook.get('/me')
+
+    flash("You are logged in %s." % (me.data['first_name']))
+
+    # user = add_new_user()
+
+    return redirect('/')
+
+# def add_new_user():
+#     """ Uses FB id to check for exisiting user in db. If none, adds new user."""
+#     fb_user = facebook.get('/me').data
+#     existing_user = db.session.query(User).filter(User.facebook_id == fb_user['id']).first()
+#     if existing_user is None:
+#         new_user = model.User()
+#         new_user.facebook_id = fb_user['id']
+#         new_user.first_name = fb_user['first_name']
+#         new_user.last_name = fb_user['last_name']
+#         new_user.email = fb_user['email']
+#         new_user.facebook_url = fb_user['link']
+#         new_user.avatar = get_user_photo()
+#         # commit new user to database
+#         db.session.add(new_user)
+#         db.session.commit()
+#         # Go get that new user
+#         new_user = db.session.query(User).filter(User.facebook_id == fb_user['id']).first()
+#         return new_user
+#     else:
+#         return existing_user
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
