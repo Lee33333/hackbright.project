@@ -51,6 +51,8 @@ def facebook_authorized(resp):
 
     me = facebook.get('/me')
 
+    # session['user'] = 
+
     flash("You are logged in %s." % (me.data['first_name']))
 
     # user = add_new_user()
@@ -59,29 +61,50 @@ def facebook_authorized(resp):
 
 # def add_new_user():
 #     """ Uses FB id to check for exisiting user in db. If none, adds new user."""
+
+#     #names facebook me object as fb_user
 #     fb_user = facebook.get('/me').data
-#     existing_user = db.session.query(User).filter(User.facebook_id == fb_user['id']).first()
-#     if existing_user is None:
-#         new_user = model.User()
-#         new_user.facebook_id = fb_user['id']
-#         new_user.first_name = fb_user['first_name']
-#         new_user.last_name = fb_user['last_name']
-#         new_user.email = fb_user['email']
-#         new_user.facebook_url = fb_user['link']
-#         new_user.avatar = get_user_photo()
-#         # commit new user to database
-#         db.session.add(new_user)
-#         db.session.commit()
-#         # Go get that new user
-#         new_user = db.session.query(User).filter(User.facebook_id == fb_user['id']).first()
-#         return new_user
-#     else:
-#         return existing_user
+
+#     #queries database comparing user id with the ids in users table
+#     existing_user = session.query(User).filter(User.facebook_id == fb_user['id']).first()
+
+#     print existing_user
+
+#     # if existing_user is None:
+#     #     new_user = model.User()
+#     #     new_user.facebook_id = fb_user['id']
+#     #     new_user.first_name = fb_user['first_name']
+#     #     new_user.last_name = fb_user['last_name']
+#     #     new_user.email = fb_user['email']
+#     #     new_user.facebook_url = fb_user['link']
+#     #     new_user.avatar = get_user_photo()
+#     #     # commit new user to database
+#     #     db.session.add(new_user)
+#     #     db.session.commit()
+#     #     # Go get that new user
+#     #     new_user = db.session.query(User).filter(User.facebook_id == fb_user['id']).first()
+#     #     return new_user
+    
+#     # else:
+#     #     return existing_user
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
     return session.get('oauth_token')
 
+@app.route("/logout")
+def logout():
+    clear_session()
+    flash("Successfully logged out.")
+    return redirect('/')
+
+#but this doesn't log you out of facebook, how do you do that?
+@app.route('/clearsession')
+def clear_session():
+    session['logged_in'] = False
+    session['oauth_token'] = None
+    # session['user'] = None
+    return 
 
 
 if __name__== "__main__":

@@ -2,8 +2,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Float, Unicode
 from geopy.geocoders import Nominatim
 from geojson import Feature, Point, FeatureCollection
-from sqlalchemy.orm import sessionmaker, scoped_session
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
+
 
 #This part connects it to the database? Echo prints sqla calls, autocommit and autoflush will not occur
 engine = create_engine("sqlite:///doctors.db", echo=True)
