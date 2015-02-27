@@ -30,6 +30,7 @@ def index():
     
     return render_template("input.html", coordinates = coordinates, consumer_secrets = consumer_secrets)
 
+
 #Takes you to the facebook authentication page, send you and response on to next route
 @app.route('/login')
 def login():
@@ -37,6 +38,10 @@ def login():
         next=request.args.get('next') or request.referrer or None,
         _external=True))
 
+@app.route('/ratings')
+def show_ratings():
+    hi =  "Daria!!"
+    return hi
 
 @app.route('/login/authorized')
 @facebook.authorized_handler
