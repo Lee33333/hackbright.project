@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, flash
+from flask import Flask, render_template, redirect, request, session, flash, url_for
 import model
 from flask_oauth import OAuth
 import os
@@ -10,7 +10,7 @@ consumer_secrets = os.environ.get("app_secret")
 
 
 facebook = oauth.remote_app('facebook',
-    base_url='localhost:5000',
+    base_url='https://graph.facebook.com/',
     request_token_url=None,
     access_token_url='/oauth/access_token',
     authorize_url='https://www.facebook.com/dialog/oauth',
@@ -32,6 +32,32 @@ def index():
     coordinates = model.getlonlat()
     
     return render_template("input.html", coordinates = coordinates, consumer_secrets = consumer_secrets)
+
+@app.route('/login')
+def login():
+    return facebook.authorize(callback=url_for('facebook_authorized',
+        next=request.args.get('next') or request.referrer or None,
+        _external=True))
+
+
+@app.route('/login/authorized')
+@facebook.authorized_handler
+def facebook_authorized(resp):
+    if resp is None:
+        return 'Access denied: reason=%s error=%s' % (
+            request.args['error_reason'],
+            request.args['error_description']
+        )
+    session['oauth_token'] = (resp['access_token'], '')
+    me = facebook.get('/me')
+    return 'Logged in as id=%s name=%s redirect=%s' % \
+        (me.data['id'], me.data['name'], request.args.get('next'))
+
+
+@facebook.tokengetter
+def get_facebook_oauth_token():
+    return session.get('oauth_token')
+
 
 
 if __name__== "__main__":

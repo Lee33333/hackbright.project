@@ -1,8 +1,9 @@
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Float, Unicode
-from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 from geopy.geocoders import Nominatim
 from geojson import Feature, Point, FeatureCollection
+from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.orm import relationship, backref
 
 #This part connects it to the database? Echo prints sqla calls, autocommit and autoflush will not occur
 engine = create_engine("sqlite:///doctors.db", echo=True)
@@ -20,9 +21,10 @@ geolocator = Nominatim()
 class User(Base):
     __tablename__= "users"
 
-    id = Column(Integer, primary_key=True)   
+    id = Column(Integer, primary_key=True) 
+    facebook_id = Column(String(30), unique=True)  
+    first_name = Column(String(64))
     email = Column(String(64), nullable=False, unique=True)
-    password = Column(String(64), nullable=False)
     zipcode = Column(String(15), nullable=True)
 
     def __repr__(self):
@@ -45,6 +47,7 @@ class Doctor(Base):
     lat = Column(Float(50), nullable=True)
     lon = Column(Float(50), nullable=True)
     specialties = Column(Unicode(500), nullable=True)
+    pub_insurance = Column(String(25), nullable=True)
     
 
     def __repr__(self):
@@ -125,6 +128,7 @@ def getlonlat():
 #Main function because I think we need one here? 
 def main():
     pass
+
 
 if __name__ == "__main__":
     main()

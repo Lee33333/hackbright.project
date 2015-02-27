@@ -24,15 +24,15 @@ def load_doctors(session):
     with open('seed_data.csv', 'rb') as user_file:
         reader = unicode_csv_reader(user_file, delimiter=',')
         for row in reader:
-            if len(row) <11:
+            if len(row) <12:
                 print "{}".format(row)
                 continue
-            for i in range(0,11):
+            for i in range(0,12):
                 row[i]=row[i].strip()
                 if not row[i]:
                     row[i]= None
             doctor = model.Doctor(name=row[0],cert=row[1],business_name=row[2],address=row[3],suite=row[4],phone_number=row[5],
-                recommended_by=row[6],gender=row[7],lat=row[8],lon=row[9],specialties=row[10])
+                recommended_by=row[6],gender=row[7],lat=row[8],lon=row[9],specialties=row[10], pub_insurance=row[11])
             session.add(doctor)
         session.commit()
 def main(session):

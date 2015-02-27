@@ -4,3 +4,4 @@ env/
 /mapbox-studio/
 /mapbox-studio
 facebook_secret.py
+*.sh
