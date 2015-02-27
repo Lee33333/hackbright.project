@@ -55,38 +55,34 @@ def facebook_authorized(resp):
 
     flash("You are logged in %s." % (me.data['first_name']))
 
-    # user = add_new_user()
+    user = add_new_user()
 
     return redirect('/')
 
-# def add_new_user():
-#     """ Uses FB id to check for exisiting user in db. If none, adds new user."""
+def add_new_user():
+    """ Uses FB id to check for exisiting user in db. If none, adds new user."""
 
-#     #names facebook me object as fb_user
-#     fb_user = facebook.get('/me').data
+    #names facebook me object as fb_user
+    fb_user = facebook.get('/me').data
 
-#     #queries database comparing user id with the ids in users table
-#     existing_user = session.query(User).filter(User.facebook_id == fb_user['id']).first()
+    #queries database comparing user id with the ids in users table
+    existing_user = model.session.query(model.User).filter(model.User.facebook_id == fb_user['id']).first()
 
-#     print existing_user
+    if existing_user is None:
+        new_user = model.User()
+        new_user.facebook_id = fb_user['id']
+        new_user.first_name = fb_user['first_name']
+        new_user.email = fb_user['email']
 
-#     # if existing_user is None:
-#     #     new_user = model.User()
-#     #     new_user.facebook_id = fb_user['id']
-#     #     new_user.first_name = fb_user['first_name']
-#     #     new_user.last_name = fb_user['last_name']
-#     #     new_user.email = fb_user['email']
-#     #     new_user.facebook_url = fb_user['link']
-#     #     new_user.avatar = get_user_photo()
-#     #     # commit new user to database
-#     #     db.session.add(new_user)
-#     #     db.session.commit()
-#     #     # Go get that new user
-#     #     new_user = db.session.query(User).filter(User.facebook_id == fb_user['id']).first()
-#     #     return new_user
+        # commit new user to database
+        model.session.add(new_user)
+        model.session.commit()
+        # Go get that new user
+        new_user = model.session.query(model.User).filter(model.User.facebook_id == fb_user['id']).first()
+        return new_user
     
-#     # else:
-#     #     return existing_user
+    else:
+        return existing_user
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
