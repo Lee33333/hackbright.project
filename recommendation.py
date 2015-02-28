@@ -42,8 +42,8 @@ def login():
 @app.route('/ratings/<idd>')
 def show_ratings(idd):
 
-    # rating = model.session.query(model.Rating).filter(model.Doctor.name == name).first()
-    return render_template("name.html", idd=idd)
+    rating = model.session.query(model.Rating).filter(model.Doctor.id == idd).first()
+    return render_template("name.html", rating=rating)
 
 
 @app.route('/login/authorized')
