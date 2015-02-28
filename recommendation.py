@@ -38,10 +38,13 @@ def login():
         next=request.args.get('next') or request.referrer or None,
         _external=True))
 
-@app.route('/ratings')
-def show_ratings():
-    hi =  "Daria!!"
-    return hi
+
+@app.route('/ratings/<name>')
+def show_ratings(name):
+
+    # rating = model.session.query(model.Rating).filter(model.Doctor.name == name).first()
+    return render_template("name.html", name= name)
+
 
 @app.route('/login/authorized')
 @facebook.authorized_handler

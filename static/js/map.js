@@ -17,8 +17,20 @@ $(document).ready(function(){
     var name = e.layer.feature.properties.title;
     var address = e.layer.feature.properties.Address;
     var phone = e.layer.feature.properties.phone;
-    $(".info").prepend("<p><a href='/ratings'>"+name+" "+address+" "+phone+"</a></p>");
+    $(".info").prepend("<p><a href='/ratings/"+ name +"'>"+name+" "+address+" "+phone+"</a></p>");
+
+    $(".info a").on('click', function(evt) {
+        evt.preventDefault();
+        var url = encodeURI($(this).attr("href"));
+        console.log($("#provider-detail"));
+        $("#provider-detail").load(url);
     });
+
+    });
+
+
+
+
 
 
                        // "<p><a href='/provider-info/' + e.f.p.id">...</a></p>
@@ -35,9 +47,6 @@ $(document).ready(function(){
                        //    <div class="provider-detail-block">
                        //      Name : {{}}
                        //    </div>
-
-
-
 });
 
 

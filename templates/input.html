@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block body %}
 
+BLOCK <div id="provider-detail"></div> ENDBLOCK
+
 {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
 {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
 <form>
@@ -15,5 +17,6 @@
 <div>
 {% if session['logged_in'] == True %} hello!{% endif %}
 </div>
+
 
 {% endblock %}
