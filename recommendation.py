@@ -39,11 +39,11 @@ def login():
         _external=True))
 
 
-@app.route('/ratings/<name>')
-def show_ratings(name):
+@app.route('/ratings/<idd>')
+def show_ratings(idd):
 
     # rating = model.session.query(model.Rating).filter(model.Doctor.name == name).first()
-    return render_template("name.html", name= name)
+    return render_template("name.html", idd=idd)
 
 
 @app.route('/login/authorized')

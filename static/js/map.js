@@ -17,7 +17,9 @@ $(document).ready(function(){
     var name = e.layer.feature.properties.title;
     var address = e.layer.feature.properties.Address;
     var phone = e.layer.feature.properties.phone;
-    $(".info").prepend("<p><a href='/ratings/"+ name +"'>"+name+" "+address+" "+phone+"</a></p>");
+    var id = e.layer.feature.properties.idd;
+    console.log(id);
+    $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
 
     $(".info a").on('click', function(evt) {
         evt.preventDefault();
