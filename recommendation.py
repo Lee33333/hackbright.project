@@ -38,12 +38,15 @@ def login():
         next=request.args.get('next') or request.referrer or None,
         _external=True))
 
-
+#how do you get it to print the doctors name?
 @app.route('/ratings/<idd>')
 def show_ratings(idd):
 
-    rating = model.session.query(model.Rating).filter(model.Doctor.id == idd).first()
-    return render_template("name.html", rating=rating)
+    ratings = model.session.query(model.Rating).filter(model.Doctor.id == idd).first()
+    rating = ratings.rating
+    review = ratings.review
+    # print rating.Doctor.name
+    return render_template("name.html", rating=rating, review=review)
 
 
 @app.route('/login/authorized')

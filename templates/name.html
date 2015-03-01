@@ -1,2 +1,6 @@
+{% if 'logged_in' in session %}
+in session!
+{% endif %}
 
-<p>this is {{rating}}</p>
+
+<p>this is the doctors rating: {{rating}} and review: {{review}}</p>
