@@ -3,7 +3,8 @@
 <head>
 
     <meta charset=utf-8 />
-    <title>A simple map</title>
+    <title>WeCare</title>
+
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
@@ -41,9 +42,9 @@
         {% with messages = get_flashed_messages() %}
         {% if messages %}
         {% for message in messages %}
-        <ul class="flashes">
-            <li>{{message}}</li>
-        </ul>
+            <ul class="flashes">
+                <li>{{message}}</li>
+            </ul>
         {% endfor %}
         {% endif %}
         {% endwith %}
@@ -53,5 +54,6 @@
     <div>   
         {% block body %}{% endblock %}
     </div>
+    
 </body>
 </html>

@@ -1,22 +1,19 @@
 {% extends 'base.html' %}
 {% block body %}
 
-BLOCK <div id="provider-detail"></div> ENDBLOCK
-
 {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
 {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
+
 <form>
     <h2>Please enter an address and search radius in miles :) </h2>
-    <input id="radiustext" type="text" name="radius" placeholder="radius in miles" required autofocus/>
-    <br>
-    <input id="address" type="text" name="address" placeholder="address" required autofocus/>
-    <br>
-    <input id="radiussubmit" type="submit" name="submit" value="search" />
+	    <input id="radiustext" type="text" name="radius" placeholder="radius in miles" required autofocus/>
+	    <br>
+	    <input id="address" type="text" name="address" placeholder="address" required autofocus/>
+	    <br>
+	    <input id="radiussubmit" type="submit" name="submit" value="search" />
 </form><br>
-<div class="info"></div>
-<div>
-{% if session['logged_in'] == True %} hello!{% endif %}
-</div>
 
+<div id="provider-detail"></div> 
+<div class="info"></div>
 
 {% endblock %}

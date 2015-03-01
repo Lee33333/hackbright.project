@@ -30,6 +30,17 @@ $(document).ready(function(){
 
     });
 
+    $("#reviewsubmit").on('click', function(evt){
+        evt.preventDefault();
+        console.log("submit review!");
+
+    });
+    // $("#reviewsubmit").click(function(evt){
+    // evt.preventDefault();
+    // console.log("submit review");
+
+    // });
+
 });
 
 

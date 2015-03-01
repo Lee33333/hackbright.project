@@ -124,9 +124,6 @@ def getlonlat():
     return new_coords
 
 
-
-
-#Main function because I think we need one here? 
 def main():
     pass
 

@@ -46,7 +46,7 @@ def show_ratings(idd):
     rating = ratings.rating
     review = ratings.review
     # print rating.Doctor.name
-    return render_template("name.html", rating=rating, review=review)
+    return render_template("name.html", rating=rating, review=review, idd=id)
 
 
 @app.route('/login/authorized')
@@ -59,16 +59,11 @@ def facebook_authorized(resp):
 
     session['logged_in'] = True
     session['oauth_token'] = (resp['access_token'], '')
-
     me = facebook.get('/me')
-
-    flash("You are logged in %s." % (me.data['first_name']))
-
     user = add_new_user()
-
     session['user'] = user.id
 
-    print session['user']
+    flash("You are logged in %s." % (me.data['first_name']))
 
     return redirect('/')
 
@@ -112,9 +107,22 @@ def logout():
 def clear_session():
     session['logged_in'] = False
     session['oauth_token'] = None
-    # session['user'] = None
+    session['user'] = None
     return 
 
+@app.route('/addreview')
+def add_review():
+    new_rating = model.Rating()
+
+    new_rating.doctor_id = 60
+    new_rating.user_id = 1
+    new_rating.review = "Even Greater!"
+    new_rating.rating = 4
+
+    # commit new user to database
+    model.session.add(new_rating)
+    model.session.commit()
+    return redirect("/")
 
 if __name__== "__main__":
     app.run(debug = True)
