@@ -6,11 +6,11 @@ var pinLayer = L.mapbox.featureLayer(points);
 
 //this is an event listener for clicks on the submit button
 $(document).ready(function(){
+
     $("#radiussubmit").click(function(evt){
         evt.preventDefault();
         //sends the address value of the addres field to the getGeocode function
         getGeocode($("#address").val());
-
     });
 
     pinLayer.on('click', function(e) {
@@ -18,30 +18,32 @@ $(document).ready(function(){
     var address = e.layer.feature.properties.Address;
     var phone = e.layer.feature.properties.phone;
     var id = e.layer.feature.properties.idd;
-    console.log(id);
     $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
 
     $(".info a").on('click', function(evt) {
         evt.preventDefault();
         var url = encodeURI($(this).attr("href"));
-        console.log($("#provider-detail"));
-        $("#provider-detail").load(url);
-    });
+        $("#provider-detail").load(url, function(){
+            reviewEvent();
+        });
+        
 
     });
 
-    // $("#reviewsubmit").on('click', function(evt){
-    //     evt.preventDefault();
-    //     console.log("submit review!");
-
-    // });
-    $("#reviewsubmit").click(function(evt){
-    evt.preventDefault();
-    console.log("submit review");
 
     });
 
 });
+
+function reviewEvent(){
+        debugger;
+        $("#reviewform").on('submit', function(evt){
+            evt.preventDefault();
+            console.log("submit review!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            //use form.serialize to get the values of the form
+            //then $post url, form serialize stuff to send it
+        });
+}
 
 
 function mapSearch(lat,lon){

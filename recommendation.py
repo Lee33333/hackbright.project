@@ -38,7 +38,7 @@ def login():
     return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
         _external=True))
-    print "end of login!!!"
+    
 
 #how do you get it to print the doctors name?
 @app.route('/ratings/<idd>')
@@ -54,6 +54,7 @@ def show_ratings(idd):
 @app.route('/login/authorized')
 @facebook.authorized_handler
 def facebook_authorized(resp):
+    print "in authorized"
     #when would this ever happen?
     if resp is None:
         flash("Facebook authentication error.")
@@ -126,6 +127,32 @@ def add_review():
     model.session.add(new_rating)
     model.session.commit()
     return redirect("/")
+
+# @app.route('/adddoc')
+# def add_doc():
+#     new_doc = model.Doctor()
+
+#     new_doc.name = ?
+#     new_doc.cert = ?
+#     new_doc.business_name = ?
+#     new_doc.address = ?
+#     new_doc.suite = ?
+#     new_doc
+
+#     id = Column(Integer, primary_key=True)
+#     name = Column(Unicode(100), nullable=False)
+#     cert = Column(Unicode(50), nullable=True)
+#     business_name = Column(Unicode (100), nullable=True)
+#     address = Column(Unicode(500), nullable=False)
+#     suite = Column(Unicode(500), nullable=True)
+#     phone_number = Column(Unicode(25), nullable=True)
+#     recommended_by = Column(Unicode(50), nullable=False)
+#     gender = Column(Unicode(15), nullable=True)
+#     lat = Column(Float(50), nullable=True)
+#     lon = Column(Float(50), nullable=True)
+#     specialties = Column(Unicode(500), nullable=True)
+#     pub_insurance = Column(String(25), nullable=True)
+
 
 if __name__== "__main__":
     app.run(debug = True)
