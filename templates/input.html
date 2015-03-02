@@ -3,17 +3,17 @@
 
 {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
 {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
-
-<form>
-    <h2>Please enter an address and search radius in miles :) </h2>
+<br>
+<form style="display: inline-block;">
+    <h3>enter an address and search radius </h3>
 	    <input id="radiustext" type="text" name="radius" placeholder="radius in miles" required autofocus/>
 	    <br>
 	    <input id="address" type="text" name="address" placeholder="address" required autofocus/>
 	    <br>
 	    <input id="radiussubmit" type="submit" name="submit" value="search" />
-</form><br>
+</form>
 
-<div id="provider-detail"></div> 
+<div id="provider-detail"; style="display: inline-block;"></div> 
 <div class="info"></div>
 
 {% endblock %}

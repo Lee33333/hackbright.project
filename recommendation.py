@@ -34,9 +34,11 @@ def index():
 #Takes you to the facebook authentication page, send you and response on to next route
 @app.route('/login')
 def login():
+    print "in login!!!"
     return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
         _external=True))
+    print "end of login!!!"
 
 #how do you get it to print the doctors name?
 @app.route('/ratings/<idd>')
@@ -55,6 +57,7 @@ def facebook_authorized(resp):
     #when would this ever happen?
     if resp is None:
         flash("Facebook authentication error.")
+        print "no data!"
         return redirect('/')
 
     session['logged_in'] = True
