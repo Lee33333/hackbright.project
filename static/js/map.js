@@ -7,11 +7,12 @@ var pinLayer = L.mapbox.featureLayer(points);
 //this is an event listener for clicks on the submit button
 $(document).ready(function(){
 
-    //could load add_doc form like this
-    // $('a[href$="/add_doc"]').on('click', function(evt){
+    // $("#doc_form").on('submit', function(evt){
     //     evt.preventDefault();
     //     console.log("you got there!");
-    //     $(".info").append()
+    //     var contents = $(this).serializeArray();
+    //     console.log(getGeocode(contents[3].value));
+     
     // });
 
     $("#radiussubmit").click(function(evt){
@@ -109,4 +110,23 @@ function getGeocode(address){
     });
 
 }
+
+// function getGeocode2(address){
+//     //converts address to a url form replacing spaces with +
+//     address = address.replace(/ /g,"+");
+//     //the specific url for the get request
+//     var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
+//     //we send this url with a get request to the mapbox geocoder api
+//     $.get(url, function (response) {
+//         // we get an object back and pull out lat/lon
+//         var lon = (response.features[0].center[0]);
+//         var lat = (response.features[0].center[1]);
+//         //and feed these into the mapSearch function
+//         mapSearch(lat,lon);
+//     //if we fail to get a response we'll print error, should do more here
+//     }).fail(function(error){
+//         console.log('ERROR: ',error);
+//     });
+
+// }
 
