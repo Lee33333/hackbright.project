@@ -21,7 +21,8 @@
 </head>
 
 <body> 
-
+{% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
+{% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
 
     <div id='map'></div>
     <meta id="data" data-obj="{{coordinates}}">
@@ -37,6 +38,7 @@
 
     <script src="../static/js/map.js"></script>
 
+    {% if session['logged_in'] == True %}<a href="/todocform">Add a doctor!</a>{% endif %}
 
     <div>
         {% with messages = get_flashed_messages() %}

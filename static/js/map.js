@@ -7,6 +7,12 @@ var pinLayer = L.mapbox.featureLayer(points);
 //this is an event listener for clicks on the submit button
 $(document).ready(function(){
 
+    // $('a[href$="/add_doc"]').on('click', function(evt){
+    //     evt.preventDefault();
+    //     console.log("you got there!");
+    //     $(".info").append()
+    // });
+
     $("#radiussubmit").click(function(evt){
         evt.preventDefault();
         //sends the address value of the addres field to the getGeocode function
@@ -36,9 +42,7 @@ function reviewEvent(id){
             evt.preventDefault();
             var contents = $(this).serializeArray();
             contents.push({"name": "doctor_id", "value": id});
-            console.log(contents);
             var url = "/addreview";
-            console.log(id);
             $.post(url, contents);
             //use form.serialize to get the values of the form
             //then $post url, form serialize stuff to send it

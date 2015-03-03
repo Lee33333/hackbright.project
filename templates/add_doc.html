@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<form style="display: inline-block;">
+    <h4>add doctor to the database</h4>
+        <input id="doc_name" type="text" name="doc_name" placeholder="doctor name" required autofocus/>
+        <select name="cert">
+              <option value="MD">MD (Medical Doctor)</option><option value="NP">NP (Nurse Practitioner)</option>
+              <option value="RN">RN (Registered Nurse)</option><option value="DDS">DDS (Dentist)</option>
+              <option value="OD">OD (Doctor of Optometry</option><option value="DC">DC (Chiropractor)</option>
+              <option value="MFT">MFT (Masters of Family Therapy)</option><option value="LCSW">LCSW (Licensed Social Worker)</option>
+              <option value="DO">DO (Doctor of Osteopathy)</option><option value="PA">PA (Physicians Assistant)</option>
+              <option value="PSYD">Psy.D (Dr. of Psychology)</option><option value="PHD">PhD (Doctor of Philosophy)</option>
+              <option value="CM">CM (Certified Midwife)</option>
+        </select>
+        <input id="biz_name" type="text" name="biz_name" placeholder="business name" required autofocus/>
+        <input id="address" type="text" name="address" placeholder="address w/out suite" required autofocus/>
+        <input id="suite" type="text" name="suite_number" placeholder="suite number" />
+        <input id="phone" type="text" name="phone" placeholder="Phone number" required autofocus/>
+        Would you like your recommendaiton to be anonymous?<select name="anon"><option value="anon_yes">Yes</option><option value="anon_no">No</option></select>
+        Gender: <select name="gender"><option value="Female">Female</option><option value="Trans">Transgender</option><option value="Male">Male</option><option name="other">Other Gender</option></select>
+        Transgender Health Specialty:<select name="trans_health"><option value="trans_yes">Yes</option><option value="trans_no">No</option></select>
+        Women's Health Specialty:<select name="womens_health"><option value="womens_yes">Yes</option><option value="womens_no">No</option></select>
+        Public Insurance:<select name="pub_ins"><option value="pub_yes">Yes</option><option value="pub_no">No</option></select>
+      
+        <input id="docsubmit" type="submit" name="submit" value="add">
+</form>
+
+{% endblock %}

@@ -150,6 +150,11 @@ def add_review():
     flash("Rating submitted!")
     return redirect("/")
 
+@app.route('/todocform')
+def todocform():
+
+    return render_template("add_doc.html")
+
 # @app.route('/adddoc')
 # def add_doc():
 #     new_doc = model.Doctor()
