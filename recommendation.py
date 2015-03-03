@@ -44,26 +44,32 @@ def login():
 @app.route('/ratings/<idd>')
 def show_ratings(idd):
 
-    all_ratings = model.session.query(model.Rating).filter(model.Doctor.id == idd).all()
+    this_doc = model.session.query(model.Doctor).filter(model.Doctor.id == idd).one()
+    all_ratings = this_doc.ratings
     print all_ratings
-    total = 0
-    i = 0
-    all_reviews = []
 
-    for item in all_ratings:
-        total = int(item.rating) + total
-        i = i + 1
-        all_reviews.append(item.review)
+    if all_ratings != []:
 
-    avg_rating = float(total)/i
+        total = 0
+        i = 0
+        all_reviews = []
 
-    print avg_rating
-    print all_reviews
+        for item in all_ratings:
+            total = int(item.rating) + total
+            i = i + 1
+            all_reviews.append(item.review)
 
-    rating = avg_rating
-    review = all_reviews
-    # print rating.Doctor.name
-    return render_template("name.html", rating=rating, review=review, idd=id)
+        avg_rating = float(total)/i
+
+        rating = avg_rating
+        review = all_reviews
+    
+        return render_template("name.html", rating=rating, review=review, idd=idd)
+
+    else:
+        rating = "There are no ratings yet!"
+        no_review = "There are no reviews yet!"
+        return render_template("name.html",rating=rating, no_review=no_review, idd=idd)
 
 
 @app.route('/login/authorized')
