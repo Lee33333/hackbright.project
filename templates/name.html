@@ -7,7 +7,7 @@
 {% endfor %}
 
 
-{% if session['user'] in session %}
+{% if 'user' in session %}
 	<form id="reviewform" action="/addreview">
 	    <h4>Leave a review for this doctor</h4>
 		    <input id="review" type="text" name="review" placeholder="leave review" required autofocus/>
