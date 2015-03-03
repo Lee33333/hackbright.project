@@ -128,15 +128,6 @@ def logout():
     flash("Successfully logged out.")
     return redirect('/')
 
-#but this doesn't log you out of facebook, how do you do that?
-# @app.route('/clearsession')
-# def clear_session():
-
-    # session['logged_in'] = False
-    # session['oauth_token'] = None
-    # session['user'] = None
-    # return 
-
 @app.route('/addreview', methods=["POST"])
 def add_review():
     new_rating = model.Rating()
