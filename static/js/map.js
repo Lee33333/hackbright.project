@@ -7,6 +7,7 @@ var pinLayer = L.mapbox.featureLayer(points);
 //this is an event listener for clicks on the submit button
 $(document).ready(function(){
 
+    //could load add_doc form like this
     // $('a[href$="/add_doc"]').on('click', function(evt){
     //     evt.preventDefault();
     //     console.log("you got there!");
@@ -44,6 +45,7 @@ function reviewEvent(id){
             contents.push({"name": "doctor_id", "value": id});
             var url = "/addreview";
             $.post(url, contents);
+
             //use form.serialize to get the values of the form
             //then $post url, form serialize stuff to send it
         });

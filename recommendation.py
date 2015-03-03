@@ -81,6 +81,7 @@ def facebook_authorized(resp):
     me = facebook.get('/me')
     user = add_new_user()
     session['user'] = user.id
+    session['user_name'] = me.data['first_name']
 
     flash("You are logged in %s." % (me.data['first_name']))
 
@@ -147,6 +148,7 @@ def add_review():
     model.session.add(new_rating)
     model.session.commit()
 
+    #flash not working!
     flash("Rating submitted!")
     return redirect("/")
 
@@ -155,30 +157,65 @@ def todocform():
 
     return render_template("add_doc.html")
 
-# @app.route('/adddoc')
-# def add_doc():
-#     new_doc = model.Doctor()
+@app.route('/adddoc', methods=["POST"])
+def add_doc():
+    new_doc = model.Doctor()
 
-#     new_doc.name = ?
-#     new_doc.cert = ?
-#     new_doc.business_name = ?
-#     new_doc.address = ?
-#     new_doc.suite = ?
-#     new_doc
+    doc_name = request.form.get("doc_name")
+    cert = request.form.get("cert")
+    biz_name = request.form.get("biz_name")
+    address = request.form.get("address")
+    suite = request.form.get("suite")
+    phone = request.form.get("phone")
+    anon = request.form.get("anon")
+    gender = request.form.get("gender")
+    trans_health = request.form.get("trans_health")
+    womens_health = request.form.get("womens_health")
+    pub_ins= request.form.get("pub_ins")
 
-#     id = Column(Integer, primary_key=True)
-#     name = Column(Unicode(100), nullable=False)
-#     cert = Column(Unicode(50), nullable=True)
-#     business_name = Column(Unicode (100), nullable=True)
-#     address = Column(Unicode(500), nullable=False)
-#     suite = Column(Unicode(500), nullable=True)
-#     phone_number = Column(Unicode(25), nullable=True)
-#     recommended_by = Column(Unicode(50), nullable=False)
-#     gender = Column(Unicode(15), nullable=True)
-#     lat = Column(Float(50), nullable=True)
-#     lon = Column(Float(50), nullable=True)
-#     specialties = Column(Unicode(500), nullable=True)
-#     pub_insurance = Column(String(25), nullable=True)
+    new_doc.name = doc_name
+    new_doc.cert = cert
+    new_doc.business_name = biz_name
+    new_doc.address = address
+    new_doc.suite = suite
+    new_doc.phone_number = phone
+    new_doc.gender = gender
+    new_doc.pub_insurance = pub_ins
+    new_doc.lon = -122.464824
+    new_doc.lat = 37.785972
+
+    if anon == "yes":
+        new_doc.recommended_by = "Anonymous"
+    if anon == "no":
+        new_doc.recommended_by = session['user_name']
+
+    new_doc.specialties = ""
+
+    if trans_health == "yes":
+        new_doc.specialties = "Transgender Health " + new_doc.specialties
+    if womens_health == "yes":
+        new_doc.specialties = "Women's Health " + new_doc.specialties
+
+
+    ##FIGURE OUT SPECIALTIES!!
+
+    print new_doc.name
+    print new_doc.cert
+    print new_doc.business_name
+    print new_doc.address
+    print new_doc.suite
+    print new_doc.phone_number
+    print new_doc.gender
+    print new_doc.pub_insurance
+    print new_doc.recommended_by
+    print new_doc.specialties
+
+    model.session.add(new_doc)
+    model.session.commit()
+
+    #flash not working!
+    flash("Doctor submitted!")
+    return redirect("/")
 
 
 if __name__== "__main__":

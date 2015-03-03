@@ -21,8 +21,8 @@
 </head>
 
 <body> 
-{% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
-{% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
+    {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
+    {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
 
     <div id='map'></div>
     <meta id="data" data-obj="{{coordinates}}">
