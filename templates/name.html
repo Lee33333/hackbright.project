@@ -1,6 +1,10 @@
 
 
-<p>this is the doctors rating: {{rating}} and review: {{review}}  </p>
+<p>this is the doctors avg rating: {{rating}} and reviews:   </p>
+{%for item in review %}
+{{item}},
+{% endfor %}
+
 
 {% if session['user'] != None %}
 	<form id="reviewform" action="/addreview">
