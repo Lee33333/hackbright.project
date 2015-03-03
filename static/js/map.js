@@ -24,22 +24,22 @@ $(document).ready(function(){
         evt.preventDefault();
         var url = encodeURI($(this).attr("href"));
         $("#provider-detail").load(url, function(){
-            reviewEvent();
+            reviewEvent(id);
         });
-        
-
     });
-
-
     });
-
 });
 
-function reviewEvent(){
-        debugger;
+function reviewEvent(id){
+
         $("#reviewform").on('submit', function(evt){
             evt.preventDefault();
-            console.log("submit review!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            var contents = $(this).serializeArray();
+            contents.push({"name": "doctor_id", "value": id});
+            console.log(contents);
+            var url = "/addreview";
+            console.log(id);
+            $.post(url, contents);
             //use form.serialize to get the values of the form
             //then $post url, form serialize stuff to send it
         });

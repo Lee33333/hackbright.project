@@ -114,19 +114,28 @@ def clear_session():
     session['user'] = None
     return 
 
-@app.route('/addreview')
+@app.route('/addreview', methods=["POST"])
 def add_review():
     new_rating = model.Rating()
 
-    new_rating.doctor_id = 60
-    new_rating.user_id = 1
-    new_rating.review = "Even Greater!"
-    new_rating.rating = 4
+    review = request.form.get("review")
+    rating = request.form.get("rating")
+    doctor_id = request.form.get("doctor_id")
 
-    # commit new user to database
-    model.session.add(new_rating)
-    model.session.commit()
-    return redirect("/")
+    print review
+    print rating
+    print doctor_id
+
+    return review
+    # new_rating.doctor_id = 60
+    # new_rating.user_id = 1
+    # new_rating.review = "Even Greater!"
+    # new_rating.rating = 4
+
+    # # commit new user to database
+    # model.session.add(new_rating)
+    # model.session.commit()
+    # return redirect("/")
 
 # @app.route('/adddoc')
 # def add_doc():
