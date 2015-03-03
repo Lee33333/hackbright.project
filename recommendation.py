@@ -44,9 +44,24 @@ def login():
 @app.route('/ratings/<idd>')
 def show_ratings(idd):
 
-    ratings = model.session.query(model.Rating).filter(model.Doctor.id == idd).first()
-    rating = ratings.rating
-    review = ratings.review
+    all_ratings = model.session.query(model.Rating).filter(model.Doctor.id == idd).all()
+    print all_ratings
+    total = 0
+    i = 0
+    all_reviews = []
+
+    for item in all_ratings:
+        total = int(item.rating) + total
+        i = i + 1
+        all_reviews.append(item.review)
+
+    avg_rating = float(total)/i
+
+    print avg_rating
+    print all_reviews
+
+    rating = avg_rating
+    review = all_reviews
     # print rating.Doctor.name
     return render_template("name.html", rating=rating, review=review, idd=id)
 
@@ -122,20 +137,18 @@ def add_review():
     rating = request.form.get("rating")
     doctor_id = request.form.get("doctor_id")
 
-    print review
-    print rating
-    print doctor_id
+    new_rating.doctor_id = doctor_id
+    new_rating.user_id = session['user']
+    new_rating.review = review
+    new_rating.rating = rating
 
-    return review
-    # new_rating.doctor_id = 60
-    # new_rating.user_id = 1
-    # new_rating.review = "Even Greater!"
-    # new_rating.rating = 4
 
-    # # commit new user to database
-    # model.session.add(new_rating)
-    # model.session.commit()
-    # return redirect("/")
+    # commit new user to database
+    model.session.add(new_rating)
+    model.session.commit()
+
+    flash("Rating submitted!")
+    return redirect("/")
 
 # @app.route('/adddoc')
 # def add_doc():
