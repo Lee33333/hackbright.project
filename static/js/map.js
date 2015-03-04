@@ -9,9 +9,10 @@ $(document).ready(function(){
 
     $("#doc_form").on('submit', function(evt){
         evt.preventDefault();
-        var contents = $(this).serializeArray();
-        console.log(getGeocode2(contents[3].value));
-     
+        var doc_info = $(this).serializeArray();
+        console.log(doc_info);
+        // var doc_coordinates = getGeocode2(doc_info[3].value);
+        $.post("/adddoc",doc_info);
     });
 
     $("#radiussubmit").click(function(evt){
@@ -47,8 +48,6 @@ function reviewEvent(id){
             var url = "/addreview";
             $.post(url, contents);
 
-            //use form.serialize to get the values of the form
-            //then $post url, form serialize stuff to send it
         });
 }
 
@@ -112,18 +111,25 @@ function getGeocode2(address){
     //the specific url for the get request
     var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
     //we send this url with a get request to the mapbox geocoder api
-    $.get(url, function (response) {
+
+    var new_coordinates = $.get(url, function (response) {
         // we get an object back and pull out lat/lon
         var lon = (response.features[0].center[0]);
         var lat = (response.features[0].center[1]);
-        console.log(lon);
-        console.log(lat);
-        //and feed these into the mapSearch function
+        var new_coordinates = [lon, lat];
+        console.log(new_coordinates);
+        
+ 
         
     //if we fail to get a response we'll print error, should do more here
     }).fail(function(error){
         console.log('ERROR: ',error);
     });
 
+
+    
+    console.log(new_coordinates);
+    console.log(new_coordinates[responseJSON]);
+    return new_coordinates;
 }
 

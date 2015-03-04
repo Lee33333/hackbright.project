@@ -179,8 +179,8 @@ def add_doc():
     new_doc.phone_number = phone
     new_doc.gender = gender
     new_doc.pub_insurance = pub_ins
-    new_doc.lon = -122.464824
-    new_doc.lat = 37.785972
+    new_doc.lon = -122.490632
+    new_doc.lat = 37.772597
 
     if anon == "yes":
         new_doc.recommended_by = "Anonymous"
