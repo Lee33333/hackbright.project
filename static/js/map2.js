@@ -1,34 +1,30 @@
 coordinates = coordinates.obj;
-var points = coordinates;
-var pinLayer = L.mapbox.featureLayer(points);
+var pinLayer = L.mapbox.featureLayer(coordinates);
 
 pinLayer.addTo(map);
 
 
-var food = document.getElementById('filter-food');
+var ins = document.getElementById('filter-ins');
 var all = document.getElementById('filter-all');
+
+var CENTER;
+var RADIUS;
 
 $(document).ready(function(){
 
-
-        food.onclick = function(e) {
+    ins.onclick = function(e) {
         all.className = '';
         this.className = 'active';
         // The setFilter function takes a GeoJSON feature object
         // and returns true to show it or false to hide it.
-        pinLayer.setFilter(function(f) {
-            return f.properties['ins'] === "yes";
-        });
+        mapSearch();
         return false;
     };
 
     all.onclick = function() {
-        food.className = '';
+        ins.className = '';
         this.className = 'active';
-        pinLayer.setFilter(function(f) {
-            // Returning true for all markers shows everything.
-            return true;
-        });
+        mapSearch();
         return false;
     };
 
@@ -57,50 +53,30 @@ $(document).ready(function(){
     });
 });
 
-function reviewEvent(id){
-
-        $("#reviewform").on('submit', function(evt){
-            evt.preventDefault();
-            var contents = $(this).serializeArray();
-            contents.push({"name": "doctor_id", "value": id});
-            var url = "/addreview";
-            $.post(url, contents);
-
-        });
-}
 
 
-function mapSearch(lat,lon){
+function mapSearch(){
 
     if (map.hasLayer(pinLayer)){
-
-    map.removeLayer(pinLayer);
+        map.removeLayer(pinLayer);
     }
 
     pinLayer.addTo(map);
 
-    // establishes a center variable in the latLng format
-    var center = L.latLng(lat, lon);
-
-    // grabs a mile radius from the form and converts it meters, but doesn't reset it for some reason.
-    var RADIUS = $("#radiustext").val() * 1609.34;
-
-    // creates a circle which we don't really need, adds it as ab object to the map
-    var filterCircle = L.circle(center, RADIUS, {
-        opacity: 1,
-        weight: 1,
-        fillOpacity: 0.05
-    });
-
-    filterCircle.addTo(pinLayer);
-    // console.log(filterCircle);
 
     // filters through our points evaluating them with a function that calls on a function calculating
     //distance and compares it to the radius
     pinLayer.setFilter(function showdrs(feature){
-        return center.distanceTo(L.latLng(
-            feature.geometry.coordinates[1],
-            feature.geometry.coordinates[0])) < RADIUS;
+        if (ins.className === 'active') {
+            return (CENTER.distanceTo(L.latLng(
+                feature.geometry.coordinates[1],
+                feature.geometry.coordinates[0])) < RADIUS) &&
+                (feature.properties['ins'] === "yes");
+        } else {
+            return (CENTER.distanceTo(L.latLng(
+                feature.geometry.coordinates[1],
+                feature.geometry.coordinates[0])) < RADIUS);
+        }
     });
 }
 
@@ -115,10 +91,25 @@ function getGeocode(address){
         var lon = (response.features[0].center[0]);
         var lat = (response.features[0].center[1]);
         //and feed these into the mapSearch function
-        mapSearch(lat,lon);
+        CENTER = L.latLng(lat, lon);
+        RADIUS = $("#radiustext").val() * 1609.34;
+
+        mapSearch();
     //if we fail to get a response we'll print error, should do more here
     }).fail(function(error){
         console.log('ERROR: ',error);
     });
 
+}
+
+function reviewEvent(id){
+
+        $("#reviewform").on('submit', function(evt){
+            evt.preventDefault();
+            var contents = $(this).serializeArray();
+            contents.push({"name": "doctor_id", "value": id});
+            var url = "/addreview";
+            $.post(url, contents);
+
+        });
 }
