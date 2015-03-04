@@ -112,10 +112,15 @@ def getlonlat():
         address = doctor.address
         phone = doctor.phone_number
         idd = doctor.id
+        
+        if doctor.pub_insurance == "yes":
+            ins = True
+        else:
+            ins = False
 
 
         #figure out how to structure with additional information
-        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "marker-color": "#0099CC"})
+        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#0099CC"})
         coordinates.append(my_feature)
         print my_feature
         

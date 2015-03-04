@@ -5,11 +5,12 @@ var pinLayer = L.mapbox.featureLayer(points);
 
 $(document).ready(function(){
 
-
     $("#radiussubmit").click(function(evt){
         evt.preventDefault();
         //sends the address value of the addres field to the getGeocode function
-        getGeocode($("#address").val());
+        address = $("#address").val();
+        pub_ins = $("#insurance").val();
+        getGeocode(address, pub_ins);
     });
 
     pinLayer.on('click', function(e) {
@@ -43,8 +44,9 @@ function reviewEvent(id){
 }
 
 
-function mapSearch(lat,lon){
+function mapSearch(lat,lon, pub_ins){
 
+    console.log(pub_ins);
     if (map.hasLayer(pinLayer)){
 
     map.removeLayer(pinLayer);
@@ -58,26 +60,26 @@ function mapSearch(lat,lon){
     // grabs a mile radius from the form and converts it meters, but doesn't reset it for some reason.
     var RADIUS = $("#radiustext").val() * 1609.34;
 
-    // creates a circle which we don't really need, adds it as ab object to the map
-    var filterCircle = L.circle(center, RADIUS, {
-        opacity: 1,
-        weight: 1,
-        fillOpacity: 0.05
-    });
-
-    filterCircle.addTo(pinLayer);
-    // console.log(filterCircle);
-
-    // filters through our points evaluating them with a function that calls on a function calculating
-    //distance and compares it to the radius
     pinLayer.setFilter(function showdrs(feature){
         return center.distanceTo(L.latLng(
             feature.geometry.coordinates[1],
             feature.geometry.coordinates[0])) < RADIUS;
     });
+
+    // var filter = $(this).data('filter');
+    
+    // $(this).addClass('active').siblings().removeClass('active');
+    // pinLayer.setFilter(function(f) {
+    //     // If the data-filter attribute is set to "all", return
+    //     // all (true). Otherwise, filter on markers that have
+    //     // a value set to true based on the filter name.
+    //     return (filter === 'all') ? true : f.properties[filter] === true;
+    // });
+    // return false;
+
 }
 
-function getGeocode(address){
+function getGeocode(address, pub_ins){
     //converts address to a url form replacing spaces with +
     address = address.replace(/ /g,"+");
     //the specific url for the get request
@@ -88,7 +90,7 @@ function getGeocode(address){
         var lon = (response.features[0].center[0]);
         var lat = (response.features[0].center[1]);
         //and feed these into the mapSearch function
-        mapSearch(lat,lon);
+        mapSearch(lat,lon, pub_ins);
     //if we fail to get a response we'll print error, should do more here
     }).fail(function(error){
         console.log('ERROR: ',error);
