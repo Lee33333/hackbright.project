@@ -10,10 +10,20 @@
     <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
     <style>
       body { margin:10px; padding:0; }
-      #map { position: absolute;  top:400px; bottom:0;  width:100%; }
+      #map { position: absolute;  top:350px; bottom:0;  width:100%; }
 
     </style>
-
+    <style>
+        .filter-ui {
+          background:#fff;
+          position:absolute;
+          top:10px;
+          right:10px;
+          z-index:100;
+          padding:10px;
+          border-radius:3px;
+          }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    
 </head>
@@ -24,6 +34,7 @@
 
     <div id='map'></div>
     <meta id="data" data-obj="{{coordinates}}">
+    <nav id='filters' class='filter-ui'></nav>
     
     <script>
         L.mapbox.accessToken = 'pk.eyJ1IjoiZGFyaWEzMyIsImEiOiJWbW94aHJBIn0.X1zLt9sD6VtHx5wPwjj9Xg';
