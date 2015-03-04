@@ -170,17 +170,8 @@ def add_doc():
     trans_health = request.form.get("trans_health")
     womens_health = request.form.get("womens_health")
     pub_ins= request.form.get("pub_ins")
-    # lon = request.form.get("lon")
-
-
-    # lat= request.form.get("lat")
-    # print lon
-    # print lat
 
     coords = model.getgeo(address)
-
-    print coords[0]
-    print coords[1]
 
     new_doc.name = doc_name
     new_doc.cert = cert
@@ -206,8 +197,6 @@ def add_doc():
         new_doc.specialties = "Women's Health " + new_doc.specialties
 
 
-    ##FIGURE OUT SPECIALTIES!!
-
     print new_doc.name
     print new_doc.cert
     print new_doc.business_name
@@ -222,7 +211,6 @@ def add_doc():
     model.session.add(new_doc)
     model.session.commit()
 
-    #flash not working!
     flash("Doctor submitted!")
 
     return redirect("/")

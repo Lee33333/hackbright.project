@@ -3,42 +3,8 @@ var points = coordinates;
 var pinLayer = L.mapbox.featureLayer(points);
 
 
-
-//this is an event listener for clicks on the submit button
 $(document).ready(function(){
 
-    // $("#docsubmit").on('click', function(evt){
-    //     evt.preventDefault();
-    //     var doc_info = $("#doc_form").serializeArray();
-    //     var doc_address = doc_info[3].value;
-
-    //     //converts address to a url form replacing spaces with +
-    //     address = doc_address.replace(/ /g,"+");
-    //     //the specific url for the get request
-    //     var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
-    //     //we send this url with a get request to the mapbox geocoder api
-
-    //    $.get(url, function (response) {
-    //         // we get an object back and pull out lat/lon
-    //         var lon = (response.features[0].center[0]);
-    //         var lat = (response.features[0].center[1]);
-    //         // doc_info.push({"name": "lat", "value": lat});
-    //         // doc_info.push({"name": "lon", "value": lon});
-    //         // $.post("/adddoc", doc_info);
-    //         var lattitude = $('<input>').attr("name","lat").attr("value", lat);
-    //         var longitude = $('<input>').attr("name","lon").attr("value", lon);
-
-
-           
-    //         $("#doc_form").prepend(lattitude).prepend(longitude);
-    //         $("#doc_form").submit();
-        
-    //     //if we fail to get a response we'll print error, should do more here
-    //     }).fail(function(error){
-    //         console.log('ERROR: ',error);
-    //     });
-        
-    // });
 
     $("#radiussubmit").click(function(evt){
         evt.preventDefault();
@@ -51,7 +17,6 @@ $(document).ready(function(){
     var address = e.layer.feature.properties.Address;
     var phone = e.layer.feature.properties.phone;
     var id = e.layer.feature.properties.idd;
-    console.log(id);
     $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
 
     $(".info a").on('click', function(evt) {
@@ -61,6 +26,7 @@ $(document).ready(function(){
             reviewEvent(id);
         });
     });
+
     });
 });
 
