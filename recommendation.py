@@ -170,6 +170,10 @@ def add_doc():
     trans_health = request.form.get("trans_health")
     womens_health = request.form.get("womens_health")
     pub_ins= request.form.get("pub_ins")
+    lon = request.form.get("lon")
+    lat= request.form.get("lat")
+    print lon
+    print lat
 
     new_doc.name = doc_name
     new_doc.cert = cert
@@ -179,8 +183,8 @@ def add_doc():
     new_doc.phone_number = phone
     new_doc.gender = gender
     new_doc.pub_insurance = pub_ins
-    new_doc.lon = -122.490632
-    new_doc.lat = 37.772597
+    new_doc.lon = lon
+    new_doc.lat = lat
 
     if anon == "yes":
         new_doc.recommended_by = "Anonymous"
@@ -213,7 +217,8 @@ def add_doc():
 
     #flash not working!
     flash("Doctor submitted!")
-    return redirect("/")
+
+    return render_template("/input.html")
 
 
 if __name__== "__main__":
