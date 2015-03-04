@@ -15,6 +15,7 @@ Base.query = session.query_property()
 
 geolocator = Nominatim()
 
+#Class declarations 
 
 
 class User(Base):
@@ -113,9 +114,9 @@ def getlonlat():
         idd = doctor.id
         
         if doctor.pub_insurance == "yes":
-            ins = True
+            ins = "yes"
         else:
-            ins = False
+            ins = "no"
 
 
         #figure out how to structure with additional information

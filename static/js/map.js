@@ -10,7 +10,7 @@ var filters = document.getElementById('filters');
 // Wait until the marker layer is loaded in order to build a list of possible
 // types. If you are doing this with another featureLayer, you should change
 // map.featureLayer to the variable you have assigned to your featureLayer.
-pinLayer.on('mouseover', function() {
+pinLayer.once('layeradd', function() {
   // Collect the types of symbols in this layer. you can also just
   // hardcode an array of types if you know what you want to filter on,
   // like var types = ['foo', 'bar'];
@@ -60,6 +60,9 @@ pinLayer.on('mouseover', function() {
     });
   }
 });
+
+
+
 
 
 

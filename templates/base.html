@@ -13,28 +13,62 @@
       #map { position: absolute;  top:350px; bottom:0;  width:100%; }
 
     </style>
-    <style>
-        .filter-ui {
-          background:#fff;
-          position:absolute;
-          top:10px;
-          right:10px;
-          z-index:100;
-          padding:10px;
-          border-radius:3px;
-          }
-    </style>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    
 </head>
 
 <body> 
+
+    <style>
+.menu-ui {
+  background:#fff;
+  position:absolute;
+  top:10px;right:10px;
+  z-index:1;
+  border-radius:3px;
+  width:120px;
+  border:1px solid rgba(0,0,0,0.4);
+  }
+  .menu-ui a {
+    font-size:13px;
+    color:#404040;
+    display:block;
+    margin:0;padding:0;
+    padding:10px;
+    text-decoration:none;
+    border-bottom:1px solid rgba(0,0,0,0.25);
+    text-align:center;
+    }
+    .menu-ui a:first-child {
+      border-radius:3px 3px 0 0;
+      }
+    .menu-ui a:last-child {
+      border:none;
+      border-radius:0 0 3px 3px;
+      }
+    .menu-ui a:hover {
+      background:#f8f8f8;
+      color:#404040;
+      }
+    .menu-ui a.active,
+    .menu-ui a.active:hover {
+      background:#3887BE;
+      color:#FFF;
+      }
+</style>
+
+<nav id='menu-ui' class='menu-ui'>
+  <a href='#' class='active' id='filter-all'>All Doctors</a>
+  <a href='#' id='filter-food'>Accept Public Insurance</a>
+</nav>
+
     {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
     {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
 
     <div id='map'></div>
     <meta id="data" data-obj="{{coordinates}}">
-    <nav id='filters' class='filter-ui'></nav>
+
     
     <script>
         L.mapbox.accessToken = 'pk.eyJ1IjoiZGFyaWEzMyIsImEiOiJWbW94aHJBIn0.X1zLt9sD6VtHx5wPwjj9Xg';
@@ -44,7 +78,7 @@
 
     </script>
 
-    <script src="../static/js/map.js"></script>
+    <script src="../static/js/map2.js"></script>
 
     <script>
     </script>
