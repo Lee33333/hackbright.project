@@ -15,7 +15,6 @@ Base.query = session.query_property()
 
 geolocator = Nominatim()
 
-#Class declarations 
 
 
 class User(Base):

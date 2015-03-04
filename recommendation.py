@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, session, flash, url
 import model
 from flask_oauth import OAuth
 import os
+from sqlalchemy import and_
 
 #This section is necessary to connect with facebook
 oauth = OAuth()
@@ -39,38 +40,6 @@ def login():
         next=request.args.get('next') or request.referrer or None,
         _external=True))
     
-
-#how do you get it to print the doctors name?
-@app.route('/ratings/<idd>')
-def show_ratings(idd):
-
-    this_doc = model.session.query(model.Doctor).filter(model.Doctor.id == idd).one()
-    all_ratings = this_doc.ratings
-    print all_ratings
-
-    if all_ratings != []:
-
-        total = 0
-        i = 0
-        all_reviews = []
-
-        for item in all_ratings:
-            total = int(item.rating) + total
-            i = i + 1
-            all_reviews.append(item.review)
-
-        avg_rating = float(total)/i
-
-        rating = avg_rating
-        review = all_reviews
-    
-        return render_template("name.html", rating=rating, review=review, idd=idd)
-
-    else:
-        rating = "There are no ratings yet!"
-        no_review = "There are no reviews yet!"
-        return render_template("name.html",rating=rating, no_review=no_review, idd=idd)
-
 
 @app.route('/login/authorized')
 @facebook.authorized_handler
@@ -157,63 +126,106 @@ def todocform():
 
 @app.route('/adddoc', methods=["POST"])
 def add_doc():
-    new_doc = model.Doctor()
 
     doc_name = request.form.get("doc_name")
-    cert = request.form.get("cert")
-    biz_name = request.form.get("biz_name")
     address = request.form.get("address")
-    suite = request.form.get("suite")
-    phone = request.form.get("phone")
-    anon = request.form.get("anon")
-    gender = request.form.get("gender")
-    trans_health = request.form.get("trans_health")
-    womens_health = request.form.get("womens_health")
-    pub_ins= request.form.get("pub_ins")
 
-    coords = model.getgeo(address)
+    this_doc = model.session.query(model.Doctor).filter(and_(model.Doctor.name == doc_name, model.Doctor.address == address)).first()
 
-    new_doc.name = doc_name
-    new_doc.cert = cert
-    new_doc.business_name = biz_name
-    new_doc.address = address
-    new_doc.suite = suite
-    new_doc.phone_number = phone
-    new_doc.gender = gender
-    new_doc.pub_insurance = pub_ins
-    new_doc.lat = coords[0]
-    new_doc.lon = coords[1]
+    if this_doc == None:
 
-    if anon == "yes":
-        new_doc.recommended_by = "Anonymous"
-    if anon == "no":
-        new_doc.recommended_by = session['user_name']
+        cert = request.form.get("cert")
+        biz_name = request.form.get("biz_name")
+        suite = request.form.get("suite")
+        phone = request.form.get("phone")
+        anon = request.form.get("anon")
+        gender = request.form.get("gender")
+        trans_health = request.form.get("trans_health")
+        womens_health = request.form.get("womens_health")
+        pub_ins= request.form.get("pub_ins")
 
-    new_doc.specialties = ""
+        coords = model.getgeo(address)
 
-    if trans_health == "yes":
-        new_doc.specialties = "Transgender Health " + new_doc.specialties
-    if womens_health == "yes":
-        new_doc.specialties = "Women's Health " + new_doc.specialties
+        new_doc = model.Doctor()
+
+        new_doc.name = doc_name
+        new_doc.cert = cert
+        new_doc.business_name = biz_name
+        new_doc.address = address
+        new_doc.suite = suite
+        new_doc.phone_number = phone
+        new_doc.gender = gender
+        new_doc.pub_insurance = pub_ins
+        new_doc.lat = coords[0]
+        new_doc.lon = coords[1]
+
+        if anon == "yes":
+            new_doc.recommended_by = "Anonymous"
+        if anon == "no":
+            new_doc.recommended_by = session['user_name']
+
+        new_doc.specialties = ""
+
+        if trans_health == "yes":
+            new_doc.specialties = "Transgender Health " + new_doc.specialties
+        if womens_health == "yes":
+            new_doc.specialties = "Women's Health " + new_doc.specialties
 
 
-    print new_doc.name
-    print new_doc.cert
-    print new_doc.business_name
-    print new_doc.address
-    print new_doc.suite
-    print new_doc.phone_number
-    print new_doc.gender
-    print new_doc.pub_insurance
-    print new_doc.recommended_by
-    print new_doc.specialties
+        print new_doc.name
+        print new_doc.cert
+        print new_doc.business_name
+        print new_doc.address
+        print new_doc.suite
+        print new_doc.phone_number
+        print new_doc.gender
+        print new_doc.pub_insurance
+        print new_doc.recommended_by
+        print new_doc.specialties
 
-    model.session.add(new_doc)
-    model.session.commit()
+        model.session.add(new_doc)
+        model.session.commit()
 
-    flash("Doctor submitted!")
+        flash("Doctor submitted!")
 
-    return redirect("/")
+        return redirect("/")
+    else:
+        flash("Doctor already exists!")
+        print "exists!"
+
+        return redirect("/")
+
+
+@app.route('/ratings/<idd>')
+def show_ratings(idd):
+
+    this_doc = model.session.query(model.Doctor).filter(model.Doctor.id == idd).one()
+    all_ratings = this_doc.ratings
+    print all_ratings
+
+    if all_ratings != []:
+
+        total = 0
+        i = 0
+        all_reviews = []
+
+        for item in all_ratings:
+            total = int(item.rating) + total
+            i = i + 1
+            all_reviews.append(item.review)
+
+        avg_rating = float(total)/i
+
+        rating = avg_rating
+        review = all_reviews
+    
+        return render_template("name.html", rating=rating, review=review, idd=idd)
+
+    else:
+        rating = "There are no ratings yet!"
+        no_review = "There are no reviews yet!"
+        return render_template("name.html",rating=rating, no_review=no_review, idd=idd)
+
 
 
 if __name__== "__main__":
