@@ -50,7 +50,9 @@ $(document).ready(function(){
         });
     });
 
-    });
+});
+
+    // function updateProviderReviews(prov_id) {}
 });
 
 
@@ -102,14 +104,19 @@ function getGeocode(address){
 
 }
 
-function reviewEvent(id){
+function reviewEvent(id) {
 
         $("#reviewform").on('submit', function(evt){
             evt.preventDefault();
             var contents = $(this).serializeArray();
             contents.push({"name": "doctor_id", "value": id});
             var url = "/addreview";
-            $.post(url, contents);
+            $.post(url, contents, function (result) {
+               // Your Flask has addded that review
+               // return the list of comments for the doctor
+            var url2 = encodeURI($(".info a").attr("href"));
+            $("#provider-detail").load(url2);
+            });
 
         });
 }
