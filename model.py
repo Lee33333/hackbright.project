@@ -46,8 +46,13 @@ class Doctor(Base):
     gender = Column(Unicode(15), nullable=True)
     lat = Column(Float(50), nullable=True)
     lon = Column(Float(50), nullable=True)
+    medical = Column(Unicode(5), nullable=True)
+    therapy = Column(Unicode(5), nullable=True)
+    repro = Column(Unicode(5), nullable=True)
+    trans = Column(Unicode(5), nullable=True)
+    pub_insurance = Column(String(5), nullable=True)
     specialties = Column(Unicode(500), nullable=True)
-    pub_insurance = Column(String(25), nullable=True)
+
     
 
     def __repr__(self):
