@@ -5,19 +5,20 @@ from geojson import Feature, Point, FeatureCollection
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
 
-#This part connects it to the database? Echo prints sqla calls, autocommit and autoflush will not occur
+#Creates engine,session, echo prints sqla calls, commits are not auto
 engine = create_engine("sqlite:///doctors.db", echo=True)
 session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
-#Base allows you to model your classes, not totally sure what the rest does here
+#Base is a class in sqla that my tables are instantiated from
 Base = declarative_base()
 Base.query = session.query_property()
 
+#Renaming a function inmported from geopy library
 geolocator = Nominatim()
 
 #Class declarations 
 
-
+#The User class
 class User(Base):
     __tablename__= "users"
 
@@ -30,7 +31,7 @@ class User(Base):
     def __repr__(self):
         return "<user id = %r, email = %s>" % (self.id, self.email)
 
-# Do I need to define how big a Float or an Integer is?
+# The Doctor class
 
 class Doctor(Base):
     __tablename__ = 'doctors'
@@ -58,7 +59,7 @@ class Doctor(Base):
     def __repr__(self):
         return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)
 
-#What is the best way to structure the review portion or the rating? How big to make it?
+#The Rating class. User and Doctor have a two way relationship through Ratings.
 
 class Rating(Base):
     __tablename__ = "ratings"
@@ -69,9 +70,11 @@ class Rating(Base):
     rating = Column(Integer, nullable=False)
     review = Column(String(500), nullable=True)
 
+#User has many ratings, and a rating has one user, rating references user id
     user = relationship("User",
             backref=backref("ratings", order_by=id))
 
+#Doctor has many ratings and a rating has one doctor, rating references doctor id
     doctor = relationship("Doctor",
             backref=backref("ratings", order_by=id))
 
@@ -81,8 +84,9 @@ class Rating(Base):
 
 # End class declarations
 
+
 def addgeo():
-    """ Queries all doctors, gets lat/long for their address, adds them to the db entry"""
+    """ Queries all doctors, gets lat/long for their address through getgeo(), adds them to the db entry"""
 
     all_doctors = session.query(Doctor).all()
 
@@ -103,7 +107,7 @@ def getgeo(address):
     return (location.latitude, location.longitude)
 
 def getlonlat():
-    """ creates a list of doctors name and their lat/long"""
+    """ Queries all doctors in db and creates GeoJson about them """
 
     all_doctors = session.query(Doctor).all()
 
@@ -124,12 +128,12 @@ def getlonlat():
             ins = "no"
 
 
-        #figure out how to structure with additional information
+        #Functions from the geojson library create geoson objects with the details specified
         my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#0099CC"})
         coordinates.append(my_feature)
         print my_feature
         
-
+    #We return all this geojson as a feature collection
     new_coords = FeatureCollection(coordinates)
     return new_coords
 

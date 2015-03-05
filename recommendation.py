@@ -4,12 +4,13 @@ from flask_oauth import OAuth
 import os
 from sqlalchemy import and_
 
-#This section is necessary to connect with facebook
 oauth = OAuth()
 
+#Retrieve secret keys from secrets file
 consumer_keys = os.environ.get("app_id")
 consumer_secrets = os.environ.get("app_secret")
 
+#COnnect with facebook oauth using the secret keys
 facebook = oauth.remote_app('facebook',
     base_url='https://graph.facebook.com/',
     request_token_url=None,
@@ -23,18 +24,21 @@ facebook = oauth.remote_app('facebook',
 app = Flask(__name__)
 app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2f\x03'
 
-#This route maps doctors
+
 @app.route("/")
 def index():
+    ''' generates geojson data from the db and passes keys to facebook Oauth '''
 
     coordinates = model.getlonlat()
     
     return render_template("input.html", coordinates = coordinates, consumer_secrets = consumer_secrets)
 
 
-#Takes you to the facebook authentication page, send you and response on to next route
+
 @app.route('/login')
 def login():
+    ''' connects to facebook Oauth with our secret keys'''
+
     print "in login!!!"
     return facebook.authorize(callback=url_for('facebook_authorized',
         next=request.args.get('next') or request.referrer or None,
@@ -44,7 +48,10 @@ def login():
 @app.route('/login/authorized')
 @facebook.authorized_handler
 def facebook_authorized(resp):
+    '''Processed facebook oauth response, gets "me" object from facebook, adds to user to session, '''
+
     print "in authorized"
+
     #when would this ever happen?
     if resp is None:
         flash("Facebook authentication error.")
@@ -54,6 +61,7 @@ def facebook_authorized(resp):
     session['logged_in'] = True
     session['oauth_token'] = (resp['access_token'], '')
     me = facebook.get('/me')
+
     user = add_new_user()
     session['user'] = user.id
     session['user_name'] = me.data['first_name']
@@ -61,6 +69,7 @@ def facebook_authorized(resp):
     flash("You are logged in %s." % (me.data['first_name']))
 
     return redirect('/')
+
 
 def add_new_user():
     """ Uses FB id to check for exisiting user in db. If none, adds new user."""
@@ -71,6 +80,7 @@ def add_new_user():
     #queries database comparing user id with the ids in users table
     existing_user = model.session.query(model.User).filter(model.User.facebook_id == fb_user['id']).first()
 
+    #if user not present, instantiates new user objecy
     if existing_user is None:
         new_user = model.User()
         new_user.facebook_id = fb_user['id']
@@ -80,6 +90,7 @@ def add_new_user():
         # commit new user to database
         model.session.add(new_user)
         model.session.commit()
+
         # Go get that new user
         new_user = model.session.query(model.User).filter(model.User.facebook_id == fb_user['id']).first()
         return new_user
@@ -89,16 +100,23 @@ def add_new_user():
 
 @facebook.tokengetter
 def get_facebook_oauth_token():
+
     return session.get('oauth_token')
+
 
 @app.route("/logout")
 def logout():
+    '''Clears out the session'''
     session.clear()
     flash("Successfully logged out.")
     return redirect('/')
 
+
 @app.route('/addreview', methods=["POST"])
 def add_review():
+    '''Recieves data @ new review through post, adds to db'''
+    
+    # FIXME create functionality for anonymous ratings? or no?
     new_rating = model.Rating()
 
     review = request.form.get("review")
@@ -110,28 +128,36 @@ def add_review():
     new_rating.review = review
     new_rating.rating = rating
 
-
-    # commit new user to database
+    # commit new rating to database
     model.session.add(new_rating)
     model.session.commit()
 
-    #flash not working!
+    # FIXME flash not working!
     flash("Rating submitted!")
     return redirect("/")
 
+
 @app.route('/todocform')
 def todocform():
+    '''Routes to add doctor form.'''
 
-    return render_template("add_doc.html")
+    # FIXME toggling does not work on this page, need to create additional js logic de-coupled from search
+    coordinates = model.getlonlat()
+
+    return render_template("add_doc.html", coordinates = coordinates,)
+
 
 @app.route('/adddoc', methods=["POST"])
 def add_doc():
+    '''Recieves post data @ new dr submission and adds to db '''
 
     doc_name = request.form.get("doc_name")
     address = request.form.get("address")
 
+    #First we check to see if dr name AND address match already exists
     this_doc = model.session.query(model.Doctor).filter(and_(model.Doctor.name == doc_name, model.Doctor.address == address)).first()
 
+    #If name and address match doesn't already exist, we add it
     if this_doc == None:
 
         cert = request.form.get("cert")
@@ -140,10 +166,16 @@ def add_doc():
         phone = request.form.get("phone")
         anon = request.form.get("anon")
         gender = request.form.get("gender")
-        trans_health = request.form.get("trans_health")
-        womens_health = request.form.get("womens_health")
+        trans_health = request.form.get("trans")
+        repro_health = request.form.get("repro")
         pub_ins= request.form.get("pub_ins")
 
+        print pub_ins
+        print trans_health
+        print repro_health
+
+        #We have to geocode the address
+        # FIXME what will we do if the address is improperly formatted?
         coords = model.getgeo(address)
 
         new_doc = model.Doctor()
@@ -159,37 +191,33 @@ def add_doc():
         new_doc.lat = coords[0]
         new_doc.lon = coords[1]
 
+        #processes anonymous entries
         if anon == "yes":
             new_doc.recommended_by = "Anonymous"
         if anon == "no":
             new_doc.recommended_by = session['user_name']
 
+        #processes specialties
         new_doc.specialties = ""
 
         if trans_health == "yes":
             new_doc.specialties = "Transgender Health " + new_doc.specialties
-        if womens_health == "yes":
-            new_doc.specialties = "Women's Health " + new_doc.specialties
+            new_doc.trans = "yes"
+        if repro_health == "yes":
+            new_doc.specialties = "Reproductive Health " + new_doc.specialties
+            new_doc.repro = "yes"
 
 
-        print new_doc.name
-        print new_doc.cert
-        print new_doc.business_name
-        print new_doc.address
-        print new_doc.suite
-        print new_doc.phone_number
-        print new_doc.gender
-        print new_doc.pub_insurance
-        print new_doc.recommended_by
-        print new_doc.specialties
-
+        #adds and commits to database
         model.session.add(new_doc)
         model.session.commit()
 
         flash("Doctor submitted!")
 
         return redirect("/")
+    
     else:
+
         flash("Doctor already exists!")
         print "exists!"
 
@@ -199,10 +227,15 @@ def add_doc():
 @app.route('/ratings/<idd>')
 def show_ratings(idd):
 
-    this_doc = model.session.query(model.Doctor).filter(model.Doctor.id == idd).one()
-    all_ratings = this_doc.ratings
-    print all_ratings
+    '''Generates reviews, rating average to display on page'''
 
+    #gets doctor by unique id
+    this_doc = model.session.query(model.Doctor).filter(model.Doctor.id == idd).one()
+    
+    #gets the ratings objects attached to this doctor object
+    all_ratings = this_doc.ratings
+
+    #generates rating average and creates a list of reviews
     if all_ratings != []:
 
         total = 0

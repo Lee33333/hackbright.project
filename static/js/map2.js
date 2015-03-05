@@ -1,47 +1,57 @@
+//GeoJson of all the doctors passed from / route
 coordinates = coordinates.obj;
+
+//creates a featureLayer from out GeoJson
 var pinLayer = L.mapbox.featureLayer(coordinates);
 
+//populates map with out featureLayer
 pinLayer.addTo(map);
 
+//gets toggle elements from the html
+var showIns = document.getElementById('filter-ins');
+var showAll = document.getElementById('filter-all');
 
-var ins = document.getElementById('filter-ins');
-var all = document.getElementById('filter-all');
+//establishes variables for the search center and radius
+var CENTER = 0;
+var RADIUS = 0;
 
-var CENTER;
-var RADIUS;
 
+//waits for all DOM elements to load
 $(document).ready(function(){
 
-    ins.onclick = function(e) {
-        all.className = '';
+    //events listener on "show all" changes the value of it's class name and calls mapSearch
+    showIns.onclick = function(e) {
+        showAll.className = '';
         this.className = 'active';
-        // The setFilter function takes a GeoJSON feature object
-        // and returns true to show it or false to hide it.
+        mapSearch();
+        //why is this this way?
+        return false;
+    };
+
+    //events listener on "show all" changes the value of it's class name and calls mapSearch
+    showAll.onclick = function() {
+        showIns.className = '';
+        this.className = 'active';
         mapSearch();
         return false;
     };
 
-    all.onclick = function() {
-        ins.className = '';
-        this.className = 'active';
-        mapSearch();
-        return false;
-    };
-
-
+    //when submit is clicked, grab value in address field and send to be geocoded
     $("#radiussubmit").click(function(evt){
         evt.preventDefault();
-        //sends the address value of the addres field to the getGeocode function
         getGeocode($("#address").val());
     });
 
+    //when pin is clicked, grab values from its GeoJSON object, show them, and link them to /ratings
     pinLayer.on('click', function(e) {
     var name = e.layer.feature.properties.title;
     var address = e.layer.feature.properties.Address;
     var phone = e.layer.feature.properties.phone;
     var id = e.layer.feature.properties.idd;
+
     $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
 
+    // FIXME what is this doing?
     $(".info a").on('click', function(evt) {
         evt.preventDefault();
         var url = encodeURI($(this).attr("href"));
@@ -56,24 +66,25 @@ $(document).ready(function(){
 });
 
 
-
+//updates the pins displayed on map
 function mapSearch(){
 
+    //remove current pinLayer from map
     if (map.hasLayer(pinLayer)){
         map.removeLayer(pinLayer);
     }
 
+    //add the pin layer to map
     pinLayer.addTo(map);
 
-
-    // filters through our points evaluating them with a function that calls on a function calculating
-    //distance and compares it to the radius
-    pinLayer.setFilter(function showdrs(feature){
-        if (ins.className === 'active') {
+    //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
+    pinLayer.setFilter(function showDrs(feature){
+        //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
+        if (showIns.className === 'active') {
             return (CENTER.distanceTo(L.latLng(
                 feature.geometry.coordinates[1],
                 feature.geometry.coordinates[0])) < RADIUS) &&
-                (feature.properties['ins'] === "yes");
+                (feature.properties['show_ins'] === "yes");
         } else {
             return (CENTER.distanceTo(L.latLng(
                 feature.geometry.coordinates[1],
@@ -82,20 +93,23 @@ function mapSearch(){
     });
 }
 
+
+//gets geocoded information for address with MapBox API
 function getGeocode(address){
     //converts address to a url form replacing spaces with +
     address = address.replace(/ /g,"+");
-    //the specific url for the get request
-    var url = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
-    //we send this url with a get request to the mapbox geocoder api
-    $.get(url, function (response) {
-        // we get an object back and pull out lat/lon
+    //the url for the get request
+    var mapBoxUrl = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
+    // send this url with a get request to the mapbox geocoder api
+    $.get(mapBoxUrl, function (response) {
+        //  get an object back and pull out lat/lon
         var lon = (response.features[0].center[0]);
         var lat = (response.features[0].center[1]);
-        //and feed these into the mapSearch function
+        // create a latLng object with the coordinates we got
         CENTER = L.latLng(lat, lon);
+        //get radius value from form and convert it to miles
         RADIUS = $("#radiustext").val() * 1609.34;
-
+        //call the mapSearch function
         mapSearch();
     //if we fail to get a response we'll print error, should do more here
     }).fail(function(error){
@@ -104,16 +118,22 @@ function getGeocode(address){
 
 }
 
+//grabs, serializes contents of review form and posts it to /addreview route
 function reviewEvent(id) {
 
         $("#reviewform").on('submit', function(evt){
             evt.preventDefault();
+            //gets contents of submit review form
             var contents = $(this).serializeArray();
+            //appends doctor id
             contents.push({"name": "doctor_id", "value": id});
             var url = "/addreview";
+            //sends this info in post to the add review route
             $.post(url, contents, function (result) {
                // Your Flask has addded that review
                // return the list of comments for the doctor
+
+               // FIXME here we're loading another url in an attempt to refresh review but only works once
             var url2 = encodeURI($(".info a").attr("href"));
             $("#provider-detail").load(url2);
             });
