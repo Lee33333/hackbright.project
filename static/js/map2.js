@@ -10,6 +10,7 @@ pinLayer.addTo(map);
 //gets toggle elements from the html
 var showIns = document.getElementById('filter-ins');
 var showAll = document.getElementById('filter-all');
+var showTrans = document.getElementById('filter-trans');
 
 //establishes variables for the search center and radius
 var CENTER = L.latLng(37.8, -122.4);
@@ -31,6 +32,14 @@ $(document).ready(function(){
     //events listener on "show all" changes the value of it's class name and calls mapSearch
     showAll.onclick = function() {
         showIns.className = '';
+        this.className = 'active';
+        showTrans.className='';
+        mapSearch();
+        return false;
+    };
+
+    showTrans.onclick = function() {
+        showAll.className = '';
         this.className = 'active';
         mapSearch();
         return false;
@@ -87,7 +96,6 @@ function reviewEvent(id) {
         });
 }
 
-    // function updateProviderReviews(prov_id) {}
 });
 
 
@@ -105,12 +113,31 @@ function mapSearch(){
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
     pinLayer.setFilter(function showDrs(feature){
         //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
-        if (showIns.className === 'active') {
+        if (showIns.className === 'active' && showTrans.className === 'active') {
             return (CENTER.distanceTo(L.latLng(
                 feature.geometry.coordinates[1],
                 feature.geometry.coordinates[0])) < RADIUS) &&
-                (feature.properties['ins'] === "yes");
-        } else {
+                (feature.properties['ins'] === "yes") &&
+                (feature.properties['trans'] === "yes");
+        }
+        
+        else if (showIns.className === '' && showTrans.className === 'active') {
+        return (CENTER.distanceTo(L.latLng(
+            feature.geometry.coordinates[1],
+            feature.geometry.coordinates[0])) < RADIUS) &&
+            (feature.properties['trans'] === "yes");
+
+
+        }
+        else if (showIns.className === 'active' && showTrans.className === '') {
+        return (CENTER.distanceTo(L.latLng(
+            feature.geometry.coordinates[1],
+            feature.geometry.coordinates[0])) < RADIUS) &&
+            (feature.properties['ins'] === "yes");
+
+        }
+
+        else {
             return (CENTER.distanceTo(L.latLng(
                 feature.geometry.coordinates[1],
                 feature.geometry.coordinates[0])) < RADIUS);
