@@ -2,107 +2,79 @@
 <html>
 <head>
 
-    <meta charset=utf-8 />
+    <meta charset="utf-8" />
+    
     <title>WeCare</title>
 
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
-    <style>
-      body { margin:10px; padding:0; }
-      #map { position: absolute;  top:350px; bottom:0;  width:100%; }
+    <link rel='stylesheet' href='/static/bootstrap/css/bootstrap.min.css'>
 
-    </style>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+    
+    <link rel="stylesheet" type="text/css" href="/static/maptoggle.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
    
+   <style>
+   #map { height:500px; width:500px; }
+   </style>
 </head>
 
 <body> 
+<div class="container-fluid">
 
-    <style>
-.menu-ui {
-  background:#fff;
-  position:absolute;
-  top:10px;right:10px;
-  z-index:1;
-  border-radius:3px;
-  width:120px;
-  border:1px solid rgba(0,0,0,0.4);
-  }
-  .menu-ui a {
-    font-size:13px;
-    color:#404040;
-    display:block;
-    margin:0;padding:0;
-    padding:10px;
-    text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,0.25);
-    text-align:center;
-    }
-    .menu-ui a:first-child {
-      border-radius:3px 3px 0 0;
-      }
-    .menu-ui a:last-child {
-      border:none;
-      border-radius:0 0 3px 3px;
-      }
-    .menu-ui a:hover {
-      background:#f8f8f8;
-      color:#404040;
-      }
-    .menu-ui a.active,
-    .menu-ui a.active:hover {
-      background:#3887BE;
-      color:#FFF;
-      }
-</style>
+    <div class="row">
+        {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
+        {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
+        {% if session['logged_in'] == True %}<a href="/todocform">Add a doctor!</a>{% endif %}
+    </div>
 
-<nav id='menu-ui' class='menu-ui'>
-  <a href='#' class='active' id='filter-all'>All Providers</a>
-  <a href='#' id='filter-ins'>Accept Public Insurance</a>
-  <a href='#' id='filter-trans'>Trans Friendly Services</a>
+    <div class="row">
+        <div class="col-xs-12 col-md-7">
 
-</nav>
+            <div id='map'></div>
 
-    {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
-    {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
+            <meta id="data" data-obj="{{coordinates}}">
+                <script>
+                    L.mapbox.accessToken = 'pk.eyJ1IjoiZGFyaWEzMyIsImEiOiJWbW94aHJBIn0.X1zLt9sD6VtHx5wPwjj9Xg';
+                    var map = L.mapbox.map('map', 'daria33.e436207f').setView([37.785972, -122.464824], 13);
+                    var coordinates = $('#data').data();
+                </script>
 
-    <div id='map'></div>
-    <meta id="data" data-obj="{{coordinates}}">
+                <script src="../static/js/map2.js"></script>
 
-    
-    <script>
-        L.mapbox.accessToken = 'pk.eyJ1IjoiZGFyaWEzMyIsImEiOiJWbW94aHJBIn0.X1zLt9sD6VtHx5wPwjj9Xg';
-        var map = L.mapbox.map('map', 'daria33.e436207f').setView([37.785972, -122.464824], 13);
-        var coordinates = $('#data').data();
+        </div>
 
+        <div class="col-xs-6 col-md-5">
+            <div id='menu-ui' class='menu-ui'>
+              <a href='#' class='active' id='filter-all'>All Providers</a>
+              <a href='#' id='filter-ins'>Accept Public Insurance</a>
+              <a href='#' id='filter-trans'>Trans Friendly Services</a>
+            </div>
 
-    </script>
+                <div>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                        <ul class="flashes">
+                            <li>{{message}}</li>
+                        </ul>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
 
-    <script src="../static/js/map2.js"></script>
-
-    <script>
-    </script>
-
-    {% if session['logged_in'] == True %}<a href="/todocform">Add a doctor!</a>{% endif %}
-
-    <div>
-        {% with messages = get_flashed_messages() %}
-        {% if messages %}
-        {% for message in messages %}
-            <ul class="flashes">
-                <li>{{message}}</li>
-            </ul>
-        {% endfor %}
-        {% endif %}
-        {% endwith %}
+                <div>   
+                    {% block body %}{% endblock %}
+                </div>
+        </div>
     </div>
 
 
-    <div>   
-        {% block body %}{% endblock %}
-    </div>
-    
+</div>
+
 </body>
 </html>

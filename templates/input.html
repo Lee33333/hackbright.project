@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 {% block body %}
+<div>
+    <br>
+    <form style="display: inline-block;" action="/addoc" method="post">
+        <h4>enter an address and search radius </h4>
+    	    <input id="radiustext" type="text" name="radius" placeholder="radius in miles" required autofocus/>
+    	    <input id="address" type="text" name="address" placeholder="address" required autofocus/>
+    	    <input id="radiussubmit" type="submit" name="submit" value="search" />
+    </form>
 
-<br>
-<form style="display: inline-block;" action="/addoc" method="post">
-    <h4>enter an address and search radius </h4>
-	    <input id="radiustext" type="text" name="radius" placeholder="radius in miles" required autofocus/>
-	    <input id="address" type="text" name="address" placeholder="address" required autofocus/>
-	    <input id="radiussubmit" type="submit" name="submit" value="search" />
-</form>
+    <div id="provider-detail"; style="display: inline-block;"></div> 
+    <div class="info"></div>
 
-<div id="provider-detail"; style="display: inline-block;"></div> 
-<div class="info"></div>
+</div>
 
 {% endblock %}
