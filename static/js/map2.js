@@ -12,8 +12,8 @@ var showIns = document.getElementById('filter-ins');
 var showAll = document.getElementById('filter-all');
 
 //establishes variables for the search center and radius
-var CENTER = 0;
-var RADIUS = 0;
+var CENTER = L.latLng(37.8, -122.4);
+var RADIUS = 20 * 1609.34;
 
 
 //waits for all DOM elements to load
@@ -55,15 +55,20 @@ $(document).ready(function(){
     $(".info a").on('click', function(evt) {
         evt.preventDefault();
         var url = encodeURI($(this).attr("href"));
-        $("#provider-detail").load(url, function(){
-            reviewEvent(id);
-        });
+        reloadProvDetail(url);
     });
 
 });
 
     // function updateProviderReviews(prov_id) {}
 });
+
+function reloadProvDetail(url) {
+
+        $("#provider-detail").load(url, function(){
+            reviewEvent(id);
+        });
+}
 
 
 //updates the pins displayed on map
@@ -134,9 +139,8 @@ function reviewEvent(id) {
                // return the list of comments for the doctor
 
                // FIXME here we're loading another url in an attempt to refresh review but only works once
-            var url2 = encodeURI($(".info a").attr("href"));
-            $("#provider-detail").load(url2);
-            });
+                var url2 = encodeURI($(".info a").attr("href"));
+                reloadProvDetail(url2);});
 
         });
 }
