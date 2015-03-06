@@ -84,7 +84,7 @@ function mapSearch(){
             return (CENTER.distanceTo(L.latLng(
                 feature.geometry.coordinates[1],
                 feature.geometry.coordinates[0])) < RADIUS) &&
-                (feature.properties['show_ins'] === "yes");
+                (feature.properties['ins'] === "yes");
         } else {
             return (CENTER.distanceTo(L.latLng(
                 feature.geometry.coordinates[1],
