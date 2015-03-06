@@ -55,20 +55,40 @@ $(document).ready(function(){
     $(".info a").on('click', function(evt) {
         evt.preventDefault();
         var url = encodeURI($(this).attr("href"));
-        reloadProvDetail(url);
+        $("#provider-detail").load(url, function(){
+            reviewEvent(id);
+        });
     });
 
 });
 
-    // function updateProviderReviews(prov_id) {}
-});
+//grabs, serializes contents of review form and posts it to /addreview route
+function reviewEvent(id) {
 
-function reloadProvDetail(url) {
+        $("#reviewform").on('submit', function(evt){
+            evt.preventDefault();
+            //gets contents of submit review form
+            var contents = $(this).serializeArray();
+            //appends doctor id
+            contents.push({"name": "doctor_id", "value": id});
+            var url = "/addreview";
+            //sends this info in post to the add review route
+            $.post(url, contents, function (result) {
+               // Your Flask has addded that review
+               // return the list of comments for the doctor
 
-        $("#provider-detail").load(url, function(){
-            reviewEvent(id);
+               // FIXME here we're loading another url in an attempt to refresh review but only works once
+            var url2 = encodeURI($(".info a").attr("href"));
+            $("#provider-detail").load(url2, function(){
+                $("#reviewform").hide();
+            });
+            });
+
         });
 }
+
+    // function updateProviderReviews(prov_id) {}
+});
 
 
 //updates the pins displayed on map
@@ -123,24 +143,4 @@ function getGeocode(address){
 
 }
 
-//grabs, serializes contents of review form and posts it to /addreview route
-function reviewEvent(id) {
 
-        $("#reviewform").on('submit', function(evt){
-            evt.preventDefault();
-            //gets contents of submit review form
-            var contents = $(this).serializeArray();
-            //appends doctor id
-            contents.push({"name": "doctor_id", "value": id});
-            var url = "/addreview";
-            //sends this info in post to the add review route
-            $.post(url, contents, function (result) {
-               // Your Flask has addded that review
-               // return the list of comments for the doctor
-
-               // FIXME here we're loading another url in an attempt to refresh review but only works once
-                var url2 = encodeURI($(".info a").attr("href"));
-                reloadProvDetail(url2);});
-
-        });
-}

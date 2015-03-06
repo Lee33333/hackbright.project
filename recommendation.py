@@ -132,8 +132,6 @@ def add_review():
     model.session.add(new_rating)
     model.session.commit()
 
-    # FIXME flash not working!
-    flash("Rating submitted!")
     return redirect("/")
 
 
