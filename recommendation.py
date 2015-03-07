@@ -3,6 +3,8 @@ import model
 from flask_oauth import OAuth
 import os
 from sqlalchemy import and_
+import twilio.twiml
+
 
 oauth = OAuth()
 
@@ -257,7 +259,13 @@ def show_ratings(idd):
         no_review = "There are no reviews yet!"
         return render_template("name.html",rating=rating, no_review=no_review, idd=idd)
 
-
+@app.route("/twil", methods=['GET', 'POST'])
+def hello_monkey():
+    """Respond to incoming calls with a simple text message."""
+ 
+    resp = twilio.twiml.Response()
+    resp.message("Hello, Mobile Monkey")
+    return str(resp)
 
 if __name__== "__main__":
     app.run(debug = True)
