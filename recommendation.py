@@ -267,13 +267,25 @@ def hello_monkey():
 @app.route("/sendinfo", methods=['POST'])
 def sendinfo():
     phone = request.form.get("phone")
-    idd = request.form.get("id")
-    print phone
-    print idd
-    #send the dr, message, and phone, then check to see if it returns true or false
-    if twilioapi.send_message(phone, idd ):
+    idd = request.form.get("doctor_id")
 
-        return "yes it works!"
+    this_doc = model.session.query(model.Doctor).filter(model.Doctor.id == idd).one()
+
+    doc_name = this_doc.name
+    doc_address = this_doc.address
+    doc_phone = this_doc.phone_number
+    doc_cert = this_doc.cert
+
+    data = " " + doc_name + " " + doc_cert + " " + doc_phone + " " + doc_address
+
+    print data
+
+    #send the dr, message, and phone, then check to see if it returns true or false
+    if twilioapi.send_message(phone,data):
+
+        return "something else"
+
+    return "something"
 
 if __name__== "__main__":
     app.run(debug = True)

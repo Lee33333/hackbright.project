@@ -87,7 +87,7 @@ function sendInfo(id, phone){
     data.push({"name": "phone", "value": phone})
     console.log(data);
     $.post(url, data, function (result) {
-        console.log("It worked!");
+        console.log(result);
     } );
 
 }

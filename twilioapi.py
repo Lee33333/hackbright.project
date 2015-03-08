@@ -4,6 +4,8 @@ import os
 
 def send_message(phone, info):
 
+	print info
+
 	try:
 		consumer_key = os.environ.get("ACCOUNT_SID")
 		consumer_token = os.environ.get("AUTH_TOKEN")
@@ -13,7 +15,7 @@ def send_message(phone, info):
 		client = TwilioRestClient(account_sid, auth_token)
 
 		message = client.messages.create(to=phone, from_="+14159916333",
-		                                 body="whats up")
+		                                 body=info)
 
 	except twilio.TwilioRestException as e:
 		print e
