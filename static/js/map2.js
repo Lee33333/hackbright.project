@@ -78,26 +78,32 @@ $(document).ready(function(){
 });
 
 function sendInfo(id, phone){
+    console.log("in send info");
+    console.log(id);
+    console.log(phone);
     var url = "/sendinfo";
     var data = $(this).serializeArray();
     data.push({"name": "doctor_id", "value": id})
     data.push({"name": "phone", "value": phone})
+    console.log(data);
     $.post(url, data, function (result) {
         console.log("It worked!");
     } );
 
 }
 
-//grabs, serializes contents of review form and posts it to /addreview route
+// FIXME rename!!! grabs, serializes contents of review form and posts it to /addreview route
 function reviewEvent(id) {
+        
         $("#textmess").on('submit', function(evt) {
-        console.log("in listener");
-        evt.preventDefault();
-        $("submitphone").attr("disabled",true);
-        var phone = $("#phone").val();
-        console.log("calling send info with id, phone" + id + " " + phone);
-        sendInfo(id, phone);
+            console.log("in listener");
+            evt.preventDefault();
+            $("submitphone").attr("disabled",true);
+            var phone = $("#phone").val();
+            sendInfo(id, phone);
         });
+
+
 
         $("#reviewform").on('submit', function(evt){
             evt.preventDefault();

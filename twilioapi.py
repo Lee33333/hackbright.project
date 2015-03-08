@@ -13,10 +13,10 @@ def send_message(phone, info):
 		client = TwilioRestClient(account_sid, auth_token)
 
 		message = client.messages.create(to=phone, from_="+14159916333",
-		                                 body="info")
+		                                 body="whats up")
 
 	except twilio.TwilioRestException as e:
-    	print e
+		print e
     	return False
 
 	return True

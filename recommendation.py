@@ -4,7 +4,7 @@ from flask_oauth import OAuth
 import os
 from sqlalchemy import and_
 import twilio.twiml
-# import twilioapi
+import twilioapi
 
 
 oauth = OAuth()
@@ -266,13 +266,14 @@ def hello_monkey():
 
 @app.route("/sendinfo", methods=['POST'])
 def sendinfo():
-    # phone = request.form.get("phone")
-    # id = request.form.get("id")
-    # #send the dr, message, and phone, then check to see if it returns true or false
-    # if twilioapi.send_message(phone, ):
+    phone = request.form.get("phone")
+    idd = request.form.get("id")
+    print phone
+    print idd
+    #send the dr, message, and phone, then check to see if it returns true or false
+    if twilioapi.send_message(phone, idd ):
 
-    #     return "yes it works!"
-    return
+        return "yes it works!"
 
 if __name__== "__main__":
     app.run(debug = True)
