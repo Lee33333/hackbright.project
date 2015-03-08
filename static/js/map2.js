@@ -141,41 +141,39 @@ function mapSearch(){
     //add the pin layer to map
     pinLayer.addTo(map);
 
+    //FIXME pull out a function here this is getting crazy
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
     pinLayer.setFilter(function showDrs(feature){
         //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
         if (showIns.className === 'active' && showTrans.className === 'active') {
-            return (CENTER.distanceTo(L.latLng(
-                feature.geometry.coordinates[1],
-                feature.geometry.coordinates[0])) < RADIUS) &&
+            return createLatLng(feature) &&
                 (feature.properties['ins'] === "yes") &&
                 (feature.properties['trans'] === "yes");
         }
         
         else if (showIns.className === '' && showTrans.className === 'active') {
-        return (CENTER.distanceTo(L.latLng(
-            feature.geometry.coordinates[1],
-            feature.geometry.coordinates[0])) < RADIUS) &&
+        return createLatLng(feature) &&
             (feature.properties['trans'] === "yes");
-
 
         }
         else if (showIns.className === 'active' && showTrans.className === '') {
-        return (CENTER.distanceTo(L.latLng(
-            feature.geometry.coordinates[1],
-            feature.geometry.coordinates[0])) < RADIUS) &&
+        return createLatLng(feature) &&
             (feature.properties['ins'] === "yes");
 
         }
 
         else {
-            return (CENTER.distanceTo(L.latLng(
-                feature.geometry.coordinates[1],
-                feature.geometry.coordinates[0])) < RADIUS);
+            return createLatLng(feature);
         }
     });
 }
 
+function createLatLng(feature){
+    return(CENTER.distanceTo(L.latLng(
+    feature.geometry.coordinates[1],
+    feature.geometry.coordinates[0])) < RADIUS);
+
+}
 
 //gets geocoded information for address with MapBox API
 function getGeocode(address){
