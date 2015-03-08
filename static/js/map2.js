@@ -11,6 +11,7 @@ pinLayer.addTo(map);
 var showIns = document.getElementById('filter-ins');
 var showAll = document.getElementById('filter-all');
 var showTrans = document.getElementById('filter-trans');
+var showMedical = document.getElementById('filter-medical');
 
 //establishes variables for the search center and radius
 var CENTER = L.latLng(37.8, -122.4);
@@ -34,6 +35,7 @@ $(document).ready(function(){
         showIns.className = '';
         this.className = 'active';
         showTrans.className='';
+        showMedical.className='';
         mapSearch();
         return false;
     };
@@ -44,6 +46,16 @@ $(document).ready(function(){
         mapSearch();
         return false;
     };
+
+    showMedical.onclick = function(e) {
+        showAll.className = '';
+        this.className = 'active';
+        mapSearch();
+        //why is this this way?
+        return false;
+    };
+
+
 
     //when submit is clicked, grab value in address field and send to be geocoded
     $("#radiussubmit").click(function(evt){
@@ -76,6 +88,9 @@ $(document).ready(function(){
 
 
 });
+
+
+
 
 function sendInfo(id, phone){
     console.log("in send info");
@@ -141,27 +156,42 @@ function mapSearch(){
     //add the pin layer to map
     pinLayer.addTo(map);
 
-    //FIXME pull out a function here this is getting crazy
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
     pinLayer.setFilter(function showDrs(feature){
         //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
-        if (showIns.className === 'active' && showTrans.className === 'active') {
+        if (showIns.className === 'active' && showTrans.className === 'active' && showMedical.className === '') {
             return createLatLng(feature) &&
                 (feature.properties['ins'] === "yes") &&
                 (feature.properties['trans'] === "yes");
         }
-        
-        else if (showIns.className === '' && showTrans.className === 'active') {
-        return createLatLng(feature) &&
-            (feature.properties['trans'] === "yes");
-
+        else if (showIns.className === '' && showTrans.className === 'active' && showMedical.className === '') {
+            return createLatLng(feature) &&
+                (feature.properties['trans'] === "yes");
         }
-        else if (showIns.className === 'active' && showTrans.className === '') {
-        return createLatLng(feature) &&
-            (feature.properties['ins'] === "yes");
-
+        else if (showIns.className === 'active' && showTrans.className === '' && showMedical.className === '') {
+            return createLatLng(feature) &&
+                (feature.properties['ins'] === "yes");
         }
-
+        else if (showIns.className === '' && showTrans.className === '' && showMedical.className === 'active') {
+            return createLatLng(feature) &&
+                (feature.properties['medical'] === "yes");
+        }
+        else if (showIns.className === 'active' && showTrans.className === '' && showMedical.className === 'active') {
+            return createLatLng(feature) &&
+                (feature.properties['medical'] === "yes")&&
+                (feature.properties['ins'] === "yes");
+        }
+        else if (showIns.className === '' && showTrans.className === 'active' && showMedical.className === 'active') {
+            return createLatLng(feature) &&
+                (feature.properties['medical'] === "yes")&&
+                (feature.properties['trans'] === "yes");
+        }
+        else if (showIns.className === 'active' && showTrans.className === 'active' && showMedical.className === 'active') {
+            return createLatLng(feature) &&
+                (feature.properties['medical'] === "yes")&&
+                (feature.properties['trans'] === "yes")&&
+                (feature.properties['ins'] === "yes");
+        }
         else {
             return createLatLng(feature);
         }

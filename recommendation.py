@@ -280,8 +280,7 @@ def sendinfo():
 
     print data
 
-    #FIXME this logic seems to be failing
-    #send the dr, message, and phone, then check to see if it returns true or false
+    #FIXME this logic seems to be failingsend the dr, message, and phone, then check to see if it returns true or false
     if twilioapi.send_message(phone,data) == True:
 
         return "something else"

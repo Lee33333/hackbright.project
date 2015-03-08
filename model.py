@@ -122,6 +122,8 @@ def getlonlat():
         phone = doctor.phone_number
         idd = doctor.id
         trans = doctor.trans
+        medical = doctor.medical
+        therapy = doctor.therapy
         
         if doctor.pub_insurance == "yes":
             ins = "yes"
@@ -130,7 +132,7 @@ def getlonlat():
 
 
         #Functions from the geojson library create geoson objects with the details specified
-        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#0099CC", "trans" : trans})
+        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#0099CC", "trans" : trans, "therapy" :therapy, "medical" : medical})
         coordinates.append(my_feature)
         
         
