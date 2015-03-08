@@ -4,6 +4,7 @@ from flask_oauth import OAuth
 import os
 from sqlalchemy import and_
 import twilio.twiml
+# import twilioapi
 
 
 oauth = OAuth()
@@ -141,7 +142,7 @@ def add_review():
 def todocform():
     '''Routes to add doctor form.'''
 
-    # FIXME toggling does not work on this page, need to create additional js logic de-coupled from search
+    
     coordinates = model.getlonlat()
 
     return render_template("add_doc.html", coordinates = coordinates,)
@@ -169,10 +170,6 @@ def add_doc():
         trans_health = request.form.get("trans")
         repro_health = request.form.get("repro")
         pub_ins= request.form.get("pub_ins")
-
-        print pub_ins
-        print trans_health
-        print repro_health
 
         #We have to geocode the address
         # FIXME what will we do if the address is improperly formatted?
@@ -266,6 +263,16 @@ def hello_monkey():
     resp = twilio.twiml.Response()
     resp.message("Hello, Mobile Monkey")
     return str(resp)
+
+@app.route("/sendinfo", methods=['POST'])
+def sendinfo():
+    # phone = request.form.get("phone")
+    # id = request.form.get("id")
+    # #send the dr, message, and phone, then check to see if it returns true or false
+    # if twilioapi.send_message(phone, ):
+
+    #     return "yes it works!"
+    return
 
 if __name__== "__main__":
     app.run(debug = True)

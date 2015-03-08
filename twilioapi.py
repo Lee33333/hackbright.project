@@ -2,12 +2,21 @@ import twilio
 from twilio.rest import TwilioRestClient
 import os
 
-consumer_key = os.environ.get("ACCOUNT_SID")
-consumer_token = os.environ.get("AUTH_TOKEN")
+def send_message(phone, info):
 
-account_sid = consumer_key
-auth_token = consumer_token
-client = TwilioRestClient(account_sid, auth_token)
+	try:
+		consumer_key = os.environ.get("ACCOUNT_SID")
+		consumer_token = os.environ.get("AUTH_TOKEN")
 
-message = client.messages.create(to="+15104157519", from_="+14159916333",
-                                     body="Hello there!")
+		account_sid = consumer_key
+		auth_token = consumer_token
+		client = TwilioRestClient(account_sid, auth_token)
+
+		message = client.messages.create(to=phone, from_="+14159916333",
+		                                 body="info")
+
+	except twilio.TwilioRestException as e:
+    	print e
+    	return False
+
+	return True

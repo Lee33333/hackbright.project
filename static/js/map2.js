@@ -53,26 +53,51 @@ $(document).ready(function(){
 
     //when pin is clicked, grab values from its GeoJSON object, show them, and link them to /ratings
     pinLayer.on('click', function(e) {
-    var name = e.layer.feature.properties.title;
-    var address = e.layer.feature.properties.Address;
-    var phone = e.layer.feature.properties.phone;
-    var id = e.layer.feature.properties.idd;
+        var name = e.layer.feature.properties.title;
+        var address = e.layer.feature.properties.Address;
+        var phone = e.layer.feature.properties.phone;
+        var id = e.layer.feature.properties.idd;
 
-    $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
+        $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
 
-    // FIXME what is this doing?
-    $(".info a").on('click', function(evt) {
-        evt.preventDefault();
-        var url = encodeURI($(this).attr("href"));
-        $("#provider-detail").load(url, function(){
-            reviewEvent(id);
+        // FIXME what is this doing?
+        $(".info a").on('click', function(evt) {
+                evt.preventDefault();
+                var url = encodeURI($(this).attr("href"));
+                $("#provider-detail").load(url, function(){
+                    reviewEvent(id);
+
+
         });
+
+
     });
+
+
 
 });
 
+function sendInfo(id, phone){
+    var url = "/sendinfo";
+    var data = $(this).serializeArray();
+    data.push({"name": "doctor_id", "value": id})
+    data.push({"name": "phone", "value": phone})
+    $.post(url, data, function (result) {
+        console.log("It worked!");
+    } );
+
+}
+
 //grabs, serializes contents of review form and posts it to /addreview route
 function reviewEvent(id) {
+        $("#textmess").on('submit', function(evt) {
+        console.log("in listener");
+        evt.preventDefault();
+        $("submitphone").attr("disabled",true);
+        var phone = $("#phone").val();
+        console.log("calling send info with id, phone" + id + " " + phone);
+        sendInfo(id, phone);
+        });
 
         $("#reviewform").on('submit', function(evt){
             evt.preventDefault();
