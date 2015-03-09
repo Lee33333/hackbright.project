@@ -22,28 +22,28 @@
 
 <body> 
 
-<style>
 
-</style>
+<div class="container-fluid">
 
-<div class="container-fluid" color="#F29F05">
+  <div class="row" id="navbar">
+      <h4>{% if session['logged_in'] != True %}<a href="/login"> Login with Facebook</a>{% endif %}
+      {% if session['logged_in'] == True %} Welcome {{session['user_name']}} !{% endif %}
+      {% if session['logged_in'] == True %}<a href="/logout"> Logout </a>{% endif %}
+      {% if session['logged_in'] == True %}<a href="/todocform">Add a doctor</a>{% endif %}
+      </h4>
+      <h3 style="display: inline-block;"><a href="/">Friendly Docs</a></h3>
 
-  <div class="row">
-      {% if session['logged_in'] != True %}<a href="/login"> Login with Facebook!</a>{% endif %}
-      {% if session['logged_in'] == True %}<a href="/logout"> Logout! </a>{% endif %}
-      {% if session['logged_in'] == True %}<a href="/todocform">Add a doctor!</a>{% endif %}
-
-            <div style="display: inline-block;">
-          {% with messages = get_flashed_messages() %}
-          {% if messages %}
-          {% for message in messages %}
-              <ul class="flashes">
-                  <li>{{message}}</li>
-              </ul>
-          {% endfor %}
-          {% endif %}
-          {% endwith %}
-      </div>
+    <div style="display: inline-block;" >
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+          <ul class="flashes">
+              <li>{{message}}</li>
+          </ul>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+    </div>
   </div>
 
   <div class="row">
@@ -51,7 +51,7 @@
     <div id='map'></div>
     <meta id="data" data-obj="{{coordinates}}">
 
-      <nav id='menu-ui' class='menu-ui'>
+  <nav id='menu-ui' class='menu-ui'>
     <a href='#' class='active' id='filter-all'>All Providers</a>
     <a href='#' id='filter-medical'>Medical </a>
     <a href='#' id='filter-therapy'>Therapy </a>
@@ -61,7 +61,7 @@
   </nav>
   </div>
 
-  <div class="col-xs-6 col-md-5">
+  <div class="col-xs-6 col-md-5" id="right">
 
       <div>   
           {% block body %}{% endblock %}
