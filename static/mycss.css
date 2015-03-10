@@ -35,7 +35,7 @@
   }
 .navbar-default {
     background-color: #0D8C7F;
-    color:white;
+    color: white;
     font-size:14px;
     padding:5px; 
     
@@ -47,13 +47,12 @@
     padding:0;
 
 }
-#title{
+.navbar-brand{
   text-align: center;
-  color: Black;
-  font-size:18px
-  ;
+  color: black;
 }
-body {
-  padding:0px;
+
+body{
+  padding:0;
   margin:0;
 }
