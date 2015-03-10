@@ -33,21 +33,20 @@
   background:#F2D13E;
   color:#063559;
   }
-.navbar-default {
+.navbar-inverse {
     background-color: #0D8C7F;
     color: white;
     font-size:14px;
-    padding:5px; 
+    padding:0; 
     
 }
 #right {
     color: #063559;
     background-color: white;
-    border-radius: 5px;
     padding:0;
 
 }
-.navbar-brand{
+div.navbar-header a {
   text-align: center;
   color: black;
 }
@@ -55,4 +54,22 @@
 body{
   padding:0;
   margin:0;
+}
+
+.navbar-inverse .navbar-brand{
+  color:white;
+  font-size:22px;
+  text-align: center;
+  padding-left: 15px;
+
+}
+
+.navbar-inverse .navbar-nav>li>a{
+  color:white;
+  font-size:16px;
+}
+
+.navbar-brand{
+  height:30px;
+  padding:0;
 }
