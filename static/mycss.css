@@ -9,7 +9,7 @@
   }
 .menu-ui a {
   font-size:14px;
-  color:#404040;
+  color:#063559;
   display:block;
   margin:0;padding:0;
   padding:3px;
@@ -26,30 +26,29 @@
   }
 .menu-ui a:hover {
   background:#F2D13E;
-  color:#404040;
+  color:#063559;
   }
 .menu-ui a.active,
 .menu-ui a.active:hover {
   background:#F2D13E;
-  color:#black;
+  color:#063559;
   }
 #navbar {
     background-color: #F2D13E;
-    color:black;
+    color:#063559;
     font-size:1px;
     padding:5px; 
     
 }
 #right {
-    color: #0D8C7F;
+    color: #063559;
     background-color: white;
-    border:3px solid #0D8C7F;
     border-radius: 5px;
 
 }
 #title{
   text-align: center;
-  color:black;
+  color: #063559;
   font-size:18px
   ;
 }
