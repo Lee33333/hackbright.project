@@ -70,17 +70,21 @@ $(document).ready(function(){
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
 
-        $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
+        var url = "/ratings/" + id;
+        $("#provider-detail").load(url, function(){
+            reviewEvent(id);
 
-        // FIXME what is this doing?
-        $(".info a").on('click', function(evt) {
-                evt.preventDefault();
-                var url = encodeURI($(this).attr("href"));
-                $("#provider-detail").load(url, function(){
-                    reviewEvent(id);
+        // $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
+
+        // // FIXME what is this doing?
+        // $(".info a").on('click', function(evt) {
+        //         evt.preventDefault();
+        //         var url = encodeURI($(this).attr("href"));
+        //         $("#provider-detail").load(url, function(){
+        //             reviewEvent(id);
 
 
-        });
+        // });
 
     });
 
@@ -93,8 +97,8 @@ function sendInfo(id, phone){
     console.log(phone);
     var url = "/sendinfo";
     var data = $(this).serializeArray();
-    data.push({"name": "doctor_id", "value": id})
-    data.push({"name": "phone", "value": phone})
+    data.push({"name": "doctor_id", "value": id});
+    data.push({"name": "phone", "value": phone});
     console.log(data);
     $.post(url, data, function (result) {
         console.log(result);
