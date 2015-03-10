@@ -33,7 +33,7 @@
   background:#F2D13E;
   color:#063559;
   }
-#navbar {
+.navbar-default {
     background-color: #0D8C7F;
     color:white;
     font-size:14px;
@@ -44,11 +44,16 @@
     color: #063559;
     background-color: white;
     border-radius: 5px;
+    padding:0;
 
 }
 #title{
   text-align: center;
-  color: white;
+  color: Black;
   font-size:18px
   ;
+}
+body {
+  padding:0px;
+  margin:0;
 }

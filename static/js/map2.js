@@ -132,7 +132,7 @@ function reviewEvent(id) {
                // return the list of comments for the doctor
 
                // FIXME here we're loading another url in an attempt to refresh review but only works once
-            var url2 = encodeURI($(".info a").attr("href"));
+            var url2 = "/ratings/" + id;
             $("#provider-detail").load(url2, function(){
                 $("#reviewform").hide();
             });
