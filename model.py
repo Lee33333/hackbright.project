@@ -132,7 +132,7 @@ def getlonlat():
 
 
         #Functions from the geojson library create geoson objects with the details specified
-        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#0099CC", "trans" : trans, "therapy" :therapy, "medical" : medical})
+        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#D95929", "trans" : trans, "therapy" :therapy, "medical" : medical})
         coordinates.append(my_feature)
         
         

@@ -5,16 +5,16 @@
   z-index:1;
   border-radius:3px;
   width:120px;
-  border:1px solid rgba(0,0,0,0.4);
+  border:2px solid #0D8C7F;
   }
 .menu-ui a {
-  font-size:13px;
+  font-size:14px;
   color:#404040;
   display:block;
   margin:0;padding:0;
-  padding:10px;
+  padding:3px;
   text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,0.25);
+  border-bottom:2px solid #0D8C7F;
   text-align:center;
   }
 .menu-ui a:first-child {
@@ -25,15 +25,30 @@
   border-radius:0 0 3px 3px;
   }
 .menu-ui a:hover {
-  background:#f8f8f8;
+  background:#F2D13E;
   color:#404040;
   }
 .menu-ui a.active,
 .menu-ui a.active:hover {
-  background:#3887BE;
-  color:#FFF;
+  background:#F2D13E;
+  color:#black;
   }
 #navbar {
-    text-align: left;
-    color: blue;
+    background-color: #F2D13E;
+    color:black;
+    font-size:1px;
+    padding:15px; 
+    
+}
+#right {
+    color: #0D8C7F;
+    background-color: #F2EAE0;
+    border:3px solid #0D8C7F;
+    border-radius: 5px;
+}
+#title{
+  text-align: center;
+  color:black;
+  font-size:18px
+  ;
 }
