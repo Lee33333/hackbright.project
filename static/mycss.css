@@ -46,15 +46,7 @@
     padding:0;
 
 }
-div.navbar-header a {
-  text-align: center;
-  color: black;
-}
 
-body{
-  padding:0;
-  margin:0;
-}
 
 .navbar-inverse .navbar-brand{
   color:white;
