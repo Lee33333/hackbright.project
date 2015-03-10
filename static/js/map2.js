@@ -11,7 +11,7 @@ pinLayer.addTo(map);
 var showIns = document.getElementById('filter-ins');
 var showAll = document.getElementById('filter-all');
 var showTrans = document.getElementById('filter-trans');
-var showMedical = document.getElementById('filter-medical');
+var showTherapy = document.getElementById('filter-therapy');
 
 //establishes variables for the search center and radius
 var CENTER = L.latLng(37.8, -122.4);
@@ -35,7 +35,7 @@ $(document).ready(function(){
         showIns.className = '';
         this.className = 'active';
         showTrans.className='';
-        showMedical.className='';
+        showTherapy.className='';
         mapSearch();
         return false;
     };
@@ -47,7 +47,7 @@ $(document).ready(function(){
         return false;
     };
 
-    showMedical.onclick = function(e) {
+    showTherapy.onclick = function(e) {
         showAll.className = '';
         this.className = 'active';
         mapSearch();
@@ -82,14 +82,9 @@ $(document).ready(function(){
 
         });
 
-
     });
 
-
-
 });
-
-
 
 
 function sendInfo(id, phone){
@@ -159,36 +154,36 @@ function mapSearch(){
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
     pinLayer.setFilter(function showDrs(feature){
         //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
-        if (showIns.className === 'active' && showTrans.className === 'active' && showMedical.className === '') {
+        if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === '') {
             return createLatLng(feature) &&
                 (feature.properties['ins'] === "yes") &&
                 (feature.properties['trans'] === "yes");
         }
-        else if (showIns.className === '' && showTrans.className === 'active' && showMedical.className === '') {
+        else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === '') {
             return createLatLng(feature) &&
                 (feature.properties['trans'] === "yes");
         }
-        else if (showIns.className === 'active' && showTrans.className === '' && showMedical.className === '') {
+        else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === '') {
             return createLatLng(feature) &&
                 (feature.properties['ins'] === "yes");
         }
-        else if (showIns.className === '' && showTrans.className === '' && showMedical.className === 'active') {
+        else if (showIns.className === '' && showTrans.className === '' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['medical'] === "yes");
+                (feature.properties['therapy'] === "yes");
         }
-        else if (showIns.className === 'active' && showTrans.className === '' && showMedical.className === 'active') {
+        else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['medical'] === "yes")&&
+                (feature.properties['therapy'] === "yes")&&
                 (feature.properties['ins'] === "yes");
         }
-        else if (showIns.className === '' && showTrans.className === 'active' && showMedical.className === 'active') {
+        else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['medical'] === "yes")&&
+                (feature.properties['therapy'] === "yes")&&
                 (feature.properties['trans'] === "yes");
         }
-        else if (showIns.className === 'active' && showTrans.className === 'active' && showMedical.className === 'active') {
+        else if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['medical'] === "yes")&&
+                (feature.properties['therapy'] === "yes")&&
                 (feature.properties['trans'] === "yes")&&
                 (feature.properties['ins'] === "yes");
         }
@@ -197,6 +192,7 @@ function mapSearch(){
         }
     });
 }
+
 
 function createLatLng(feature){
     return(CENTER.distanceTo(L.latLng(
