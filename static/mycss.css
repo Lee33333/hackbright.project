@@ -42,9 +42,10 @@
 }
 #right {
     color: #0D8C7F;
-    background-color: #F2E8E8;
+    background-color: white;
     border:3px solid #0D8C7F;
     border-radius: 5px;
+
 }
 #title{
   text-align: center;
