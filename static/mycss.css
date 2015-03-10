@@ -34,9 +34,9 @@
   color:#063559;
   }
 #navbar {
-    background-color: #F2D13E;
-    color:#063559;
-    font-size:1px;
+    background-color: #0D8C7F;
+    color:white;
+    font-size:14px;
     padding:5px; 
     
 }
@@ -48,7 +48,7 @@
 }
 #title{
   text-align: center;
-  color: #063559;
+  color: white;
   font-size:18px
   ;
 }
