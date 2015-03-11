@@ -22,7 +22,6 @@ var RADIUS = 20 * 1609.34;
 $(document).ready(function(){
 
 
-
     pinLayer.on('mouseover', function(e) {
     e.layer.openPopup();
     });
@@ -79,7 +78,7 @@ $(document).ready(function(){
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
         var cert= e.layer.feature.properties.cert;
-        $("#basic-info").prepend('<br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div>');
+        $("#basic-info").html('<br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div>');
 
 
 

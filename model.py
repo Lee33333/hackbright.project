@@ -130,7 +130,7 @@ def getlonlat():
         else:
             ins = "no"
 
-        if doctor.phone_number == " ":
+        if doctor.phone_number is None:
             phone = "Not Available"
         else:
             phone = doctor.phone_number
