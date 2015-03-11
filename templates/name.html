@@ -1,11 +1,21 @@
 
 
-<p>this is the doctors avg rating: {{rating}} and reviews:   </p>
+<!-- <p>this is the doctors avg rating: {{rating}} and reviews:   </p>
 {{no_review}}
 {%for item in review %}
 {{item}}<br>
-{% endfor %}
+{% endfor %} -->
 
+
+<div class="list-group">
+  <a href="#" class="list-group-item active">
+    Ratings and Reviews
+  </a>
+  <a href="#" class="list-group-item">Rating: {{rating}}</a>
+  {%for item in review %}
+  <a href="#" class="list-group-item">{{item}}</a>
+{% endfor %}
+</div>
 
 {% if 'user' in session %}
 	<form id="reviewform" action="/addreview">

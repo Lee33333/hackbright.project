@@ -119,7 +119,6 @@ def getlonlat():
         latitude = doctor.lat
         name = doctor.name
         address = doctor.address
-        phone = doctor.phone_number
         idd = doctor.id
         trans = doctor.trans
         medical = doctor.medical
@@ -130,6 +129,11 @@ def getlonlat():
             ins = "yes"
         else:
             ins = "no"
+
+        if doctor.phone_number == " ":
+            phone = "Not Available"
+        else:
+            phone = doctor.phone_number
 
 
         #Functions from the geojson library create geoson objects with the details specified
