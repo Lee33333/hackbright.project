@@ -21,6 +21,13 @@ var RADIUS = 20 * 1609.34;
 //waits for all DOM elements to load
 $(document).ready(function(){
 
+    pinLayer.on('mouseover', function(e) {
+    e.layer.openPopup();
+    });
+    pinLayer.on('mouseout', function(e) {
+    e.layer.closePopup();
+    });
+
     //events listener on "show all" changes the value of it's class name and calls mapSearch
     showIns.onclick = function(e) {
         showAll.className = '';
