@@ -114,6 +114,7 @@ function reviewEvent(id) {
             console.log("in event listender");
             console.log(phone);
             sendInfo(id, phone);
+            $("#reviewform").hide();
         });
 
 
@@ -153,6 +154,7 @@ function sendInfo(id, phone){
     console.log(data);
     $.post(url, data, function (result) {
         console.log(result);
+        
     } );
 
 }

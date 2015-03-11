@@ -18,7 +18,7 @@
 
     <style>
       body { margin:10px; padding:0; }
-      #map {height:900px; width:100%;}
+      #map {height:900px; width:100%; margin:0;}
 
     </style>
 
@@ -50,6 +50,7 @@
 
 
       <ul class="nav navbar-nav navbar-right">
+        <li>{% if session['logged_in'] == True %} <a href="#">Welcome, {{session['user_name']}}</a>{% endif %}</li>
         <li>{% if session['logged_in'] == True %}<a href="#" data-toggle="modal" data-target="#myModal">Add a doctor</a>{% endif %}</li>
         <li>{% if session['logged_in'] != True %}<a href="/login"> Login with Facebook</a>{% endif %}
       
@@ -76,7 +77,7 @@
   </div>
 
   <div class="col-xs-6 col-md-5" >
-    {% if session['logged_in'] == True %} Welcome {{session['user_name']}}{% endif %}<br>
+    
           {% with messages = get_flashed_messages() %}
       {% if messages %}
       {% for message in messages %}
@@ -115,10 +116,16 @@
               <h4 class="modal-title" id="myModalLabel">Add a doctor to Friendly Docs</h4>
             </div>
             <div class="modal-body">
-              
-                <form style="display: inline-block;" action="/adddoc" id="doc_form" method="POST">
-                        <input id="doc_name" type="text" name="doc_name" placeholder="doctor name" required autofocus/>
-                        <select name="cert">
+
+              <form class="form-horizontal" action="/adddoc" id="doc_form" method="POST">
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="doc_name" name="doc_name" placeholder="Doctor Name" required autofocus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        <select id="cert" name="cert">
                               <option value="MD">MD (Medical Doctor)</option>
                               <option value="NP">NP (Nurse Practitioner)</option>
                               <option value="RN">RN (Registered Nurse)</option>
@@ -132,41 +139,82 @@
                               <option value="PSYD">Psy.D (Dr. of Psychology)</option>
                               <option value="PHD">PhD (Doctor of Philosophy)</option>
                               <option value="CM">CM (Certified Midwife)</option>
-                        </select><br>
-                        <input id="biz_name" type="text" name="biz_name" placeholder="business name" required autofocus/><br>
-                        <input id="address" type="text" name="address" placeholder="address w/out suite" required autofocus/>
-                        <input id="suite" type="text" name="suite_number" placeholder="suite number" /><br>
-                        <input id="phone2" type="text" name="phone2" placeholder="Phone number" required autofocus/><br>
-                        Would you like your recommendaiton to be anonymous?
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="biz_name" id="biz_name" placeholder="Business Name" autofocus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" name="address" id="address" placeholder="Address" required autofocus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        <input type="number" class="form-control" name="suite_number" id="suite" placeholder="Suite (optional)" autofocus>
+                      </div>
+                    </div>
+                      <div class="form-group">
+                        <div class="col-sm-10">
+                        <input type="number" class="form-control" name="phone2" id="phone2" placeholder="Phone Number" autofocus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        Would you like your submission to be anonymous?
                           <select name="anon">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
-                          </select><br>
+                          </select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
                         Gender: 
                           <select name="gender">
                             <option value="F">Female</option>
                             <option value="T">Transgender</option>
                             <option value="M">Male</option>
-                            <option name="ODELT">Other Gender</option>
-                          </select><br>
-                        Transgender Health Specialty:
+                            <option name="O">Other Gender</option>
+                          </select>
+                         </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        Transgender Health Specialty?
                         <select name="trans">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
-                        </select><br>
-                        Reproductive Health Specialty:
+                        </select>
+                         </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        Reproductive Health Specialty?
                         <select name="repro">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
-                        </select><br>
-                        Public Insurance:
+                        </select>
+                       </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-10">
+                        Accepts ublic Insurance?
                         <select name="pub_ins">
                             <option value="yes">Yes</option>
                             <option value="no">No</option>
-                        </select><br>
-                      
-                        <input id="docsubmit" class="btn btn-primary" type="submit" name="submit" value="add">
-                </form>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" id="docsubmit" class="btn btn-primary" name="submit"class="btn btn-default">Add Doctor</button>
+                      </div>
+                    </div>
+                  </form>
 
             </div>
           </div>

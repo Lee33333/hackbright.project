@@ -12,8 +12,9 @@
 </div>
 
 {% if 'user' in session %}
-<h4>Leave a review for this doctor</h4>
+
 <form class="form-inline" id="reviewform" action="/addreview">
+	<h4>Leave a review for this doctor</h4>
   <div class="form-group">
     <input id="review" type="text" name="review" class="form-control" placeholder="leave review" required autofocus/>
   </div>

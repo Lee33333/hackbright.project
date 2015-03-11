@@ -1,11 +1,12 @@
 .menu-ui {
   background:#fff;
   position:absolute;
-  top:10px;right:10px;
+  top:20px;right:10px;
   z-index:1;
   border-radius:3px;
   width:120px;
-  border:2px solid #0D8C7F;
+  border:3px solid #0D8C7F;
+  margin-right:25px;
   }
 .menu-ui a {
   font-size:14px;
@@ -14,7 +15,7 @@
   margin:0;padding:0;
   padding:3px;
   text-decoration:none;
-  border-bottom:2px solid #0D8C7F;
+  border-bottom:3px solid #0D8C7F;
   text-align:center;
   }
 .menu-ui a:first-child {
@@ -69,5 +70,11 @@
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
   background-color: #0D8C7F;
+}
+
+.btn-primary{
+background-color: #0D8C7F;
+border-color: #0D8C7F;
+
 }
 
