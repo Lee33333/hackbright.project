@@ -21,12 +21,21 @@ var RADIUS = 20 * 1609.34;
 //waits for all DOM elements to load
 $(document).ready(function(){
 
+
+
     pinLayer.on('mouseover', function(e) {
     e.layer.openPopup();
     });
     pinLayer.on('mouseout', function(e) {
     e.layer.closePopup();
     });
+    // pinLayer.on('click', function(e) {
+    
+    // });
+    // pinLayer.on('click', function(e) {
+    // e.layer.closePopup();
+    // });
+
 
     //events listener on "show all" changes the value of it's class name and calls mapSearch
     showIns.onclick = function(e) {
@@ -72,6 +81,8 @@ $(document).ready(function(){
 
     //when pin is clicked, grab values from its GeoJSON object, show them, and link them to /ratings
     pinLayer.on('click', function(e) {
+        map.panTo(e.layer.getLatLng());
+        e.layer.openPopup();
         var name = e.layer.feature.properties.title;
         var address = e.layer.feature.properties.Address;
         var phone = e.layer.feature.properties.phone;
@@ -162,6 +173,8 @@ function mapSearch(){
 
     //add the pin layer to map
     pinLayer.addTo(map);
+
+
 
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
     pinLayer.setFilter(function showDrs(feature){
