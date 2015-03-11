@@ -101,7 +101,6 @@ function sendInfo(id, phone){
     console.log(data);
     $.post(url, data, function (result) {
         console.log(result);
-        evt.preventDefault();
     } );
 
 }
