@@ -78,11 +78,13 @@ $(document).ready(function(){
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
         var cert= e.layer.feature.properties.cert;
+        $("#sendtext").html('<h5>Get this doctors information: </h5><form id="textmess"><input id="phone" type="text" placeholder="Your phone number" required/><input id="submitphone" type="submit" name="reviewsubmit" value=" get info!" /></form>');
         $("#basic-info").html('<br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div>');
 
 
 
         var url = "/ratings/" + id;
+
         $("#provider-detail").load(url, function(){
             reviewEvent(id);
 
@@ -101,21 +103,6 @@ $(document).ready(function(){
     });
 
 });
-
-
-function sendInfo(id, phone){
-    console.log("in send info");
-    console.log(phone);
-    var url = "/sendinfo";
-    var data = $(this).serializeArray();
-    data.push({"name": "doctor_id", "value": id});
-    data.push({"name": "phone", "value": phone});
-    console.log(data);
-    $.post(url, data, function (result) {
-        console.log(result);
-    } );
-
-}
 
 // FIXME rename!!! grabs, serializes contents of review form and posts it to /addreview route
 function reviewEvent(id) {
@@ -145,6 +132,7 @@ function reviewEvent(id) {
 
                // FIXME here we're loading another url in an attempt to refresh review but only works once
             var url2 = "/ratings/" + id;
+
             $("#provider-detail").load(url2, function(){
                 $("#reviewform").hide();
             });
@@ -154,6 +142,20 @@ function reviewEvent(id) {
 }
 
 });
+
+function sendInfo(id, phone){
+    console.log("in send info");
+    console.log(phone);
+    var url = "/sendinfo";
+    var data = $(this).serializeArray();
+    data.push({"name": "doctor_id", "value": id});
+    data.push({"name": "phone", "value": phone});
+    console.log(data);
+    $.post(url, data, function (result) {
+        console.log(result);
+    } );
+
+}
 
 
 //updates the pins displayed on map
