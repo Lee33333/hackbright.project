@@ -87,7 +87,10 @@ $(document).ready(function(){
         var address = e.layer.feature.properties.Address;
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
-        $("#basic-info").replaceWith(name+ " " + address + " " + phone);
+        var cert= e.layer.feature.properties.cert;
+        $("#basic-info").prepend('<br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div>');
+
+
 
         var url = "/ratings/" + id;
         $("#provider-detail").load(url, function(){
