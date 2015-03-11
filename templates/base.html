@@ -89,11 +89,19 @@
 
       <h4>Everyone deserves a trustworthy doctor.</h4>
 
-      <form action="/addoc" method="post">
-          <input id="radiustext" type="text" name="radius" placeholder="radius in miles" required autofocus/>
-          <input id="address" type="text" name="address" placeholder="address" required autofocus/>
-          <input id="radiussubmit" type="submit" name="submit" value="search" />
-      </form><br>
+      <form>
+  <div class="form-group" action="/addoc" method="post">
+    <label for="radiustext">Radius for Search</label>
+    <input id="radiustext" class="form-control" type="text" name="radius" placeholder="radius in miles" required autofocus/>
+  </div>
+  <div class="form-group">
+    <label for="address">Address for Search</label>
+    <input id="address" class="form-control" type="text" name="address" placeholder="address" required autofocus/>
+  </div>
+  <input id="radiussubmit" class="btn btn-default" type="submit" name="submit" value="search" />
+
+</form>
+
           
     <!-- Button trigger modal -->
 
@@ -157,13 +165,9 @@
                             <option value="no">No</option>
                         </select><br>
                       
-                        <input id="docsubmit" type="submit" name="submit" value="add">
+                        <input id="docsubmit" class="btn btn-primary" type="submit" name="submit" value="add">
                 </form>
 
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" id="docsubmit">Save changes</button>
             </div>
           </div>
         </div>
