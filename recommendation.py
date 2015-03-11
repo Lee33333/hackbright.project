@@ -154,9 +154,11 @@ def add_doc():
 
     doc_name = request.form.get("doc_name")
     address = request.form.get("address")
+    latlon = model.getgeo(address)
+    lat = latlon[0]
 
     #First we check to see if dr name AND address match already exists
-    this_doc = model.session.query(model.Doctor).filter(and_(model.Doctor.name == doc_name, model.Doctor.address == address)).first()
+    this_doc = model.session.query(model.Doctor).filter(and_(model.Doctor.name == doc_name, model.Doctor.lat == lat)).first()
 
     #If name and address match doesn't already exist, we add it
     if this_doc == None:
