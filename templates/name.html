@@ -12,20 +12,26 @@
 </div>
 
 {% if 'user' in session %}
-	<form id="reviewform" action="/addreview">
-	    <h4>Leave a review for this doctor</h4>
-		    <input id="review" type="text" name="review" placeholder="leave review" required autofocus/>
-
-		    <select name="rating">
+<h4>Leave a review for this doctor</h4>
+<form class="form-inline" id="reviewform" action="/addreview">
+  <div class="form-group">
+    <input id="review" type="text" name="review" class="form-control" placeholder="leave review" required autofocus/>
+  </div>
+  <div class="form-group">
+    		  <select name="rating">
 			  <option value="5">5</option>
 			  <option value="4">4</option>
 			  <option value="3">3</option>
 			  <option value="2">2</option>
 			  <option value="1">1</option>
 			</select>
+  </div>
 
-			<input id="reviewsubmit" type="submit" name="reviewsubmit" value="submit" />
-	</form>
+
+
+  <button type="submit" id="reviewsubmit" name="reviewsubmit" class="btn btn-default">Add Review</button>
+</form>
+
 
 
 <!-- 	<h5>Get this doctors information: </h5>
