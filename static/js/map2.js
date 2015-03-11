@@ -69,6 +69,7 @@ $(document).ready(function(){
         var address = e.layer.feature.properties.Address;
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
+        $("#basic-info").replaceWith(name+ " " + address + " " + phone);
 
         var url = "/ratings/" + id;
         $("#provider-detail").load(url, function(){
