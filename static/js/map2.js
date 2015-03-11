@@ -93,7 +93,6 @@ $(document).ready(function(){
 
 function sendInfo(id, phone){
     console.log("in send info");
-    console.log(id);
     console.log(phone);
     var url = "/sendinfo";
     var data = $(this).serializeArray();
@@ -102,6 +101,7 @@ function sendInfo(id, phone){
     console.log(data);
     $.post(url, data, function (result) {
         console.log(result);
+        evt.preventDefault();
     } );
 
 }
@@ -110,10 +110,11 @@ function sendInfo(id, phone){
 function reviewEvent(id) {
         
         $("#textmess").on('submit', function(evt) {
-            console.log("in listener");
             evt.preventDefault();
             $("submitphone").attr("disabled",true);
             var phone = $("#phone").val();
+            console.log("in event listender");
+            console.log(phone);
             sendInfo(id, phone);
         });
 

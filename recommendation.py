@@ -164,7 +164,7 @@ def add_doc():
         cert = request.form.get("cert")
         biz_name = request.form.get("biz_name")
         suite = request.form.get("suite")
-        phone = request.form.get("phone")
+        phone = request.form.get("phone2")
         anon = request.form.get("anon")
         gender = request.form.get("gender")
         trans_health = request.form.get("trans")
