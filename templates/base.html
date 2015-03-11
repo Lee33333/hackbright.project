@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="/static/mycss.css">
 
     <style>
-      body { margin:10px; padding:0; }
       #map {height:900px; width:100%; margin:0;}
 
     </style>
@@ -78,7 +77,11 @@
 
   <div class="col-xs-6 col-md-5" >
     
-          {% with messages = get_flashed_messages() %}
+     
+
+      <h3 class="center">Everyone deserves a trustworthy doctor. Find yours.</h3><br>
+      <h4 id="why" class="center italic"> Why LGBT MD?</h4><br>
+       {% with messages = get_flashed_messages() %}
       {% if messages %}
       {% for message in messages %}
           <ul class="flashes">
@@ -88,9 +91,7 @@
       {% endif %}
       {% endwith %}
 
-      <h4>Everyone deserves a trustworthy doctor.</h4>
-
-      <form class="form-inline"> 
+<form class="form-inline"> 
   <div class="form-group" action="/addoc" method="post">
     <label for="radiustext">Radius: </label>
     <input id="radiustext" class="form-control" type="number" name="radius" placeholder="radius in miles" required autofocus/>
@@ -120,10 +121,10 @@
               <form class="form-horizontal" action="/adddoc" id="doc_form" method="POST">
                     <div class="form-group">
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" id="doc_name" name="doc_name" placeholder="Doctor Name" required autofocus>
+                        <input type="text" class="form-control field" id="doc_name" name="doc_name" placeholder="Doctor Name" required autofocus>
                       </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group ">
                       <div class="col-sm-10">
                         <select id="cert" name="cert">
                               <option value="MD">MD (Medical Doctor)</option>
@@ -144,22 +145,22 @@
                     </div>
                     <div class="form-group">
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="biz_name" id="biz_name" placeholder="Business Name" autofocus>
+                        <input type="text" class="form-control field" name="biz_name" id="biz_name" placeholder="Business Name" autofocus>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-sm-10">
-                        <input type="text" class="form-control" name="address" id="address" placeholder="Address" required autofocus>
+                        <input type="text" class="form-control field" name="address" id="address" placeholder="Address" required autofocus>
                       </div>
                     </div>
                     <div class="form-group">
                       <div class="col-sm-10">
-                        <input type="number" class="form-control" name="suite_number" id="suite" placeholder="Suite (optional)" autofocus>
+                        <input type="number" class="form-control field" name="suite_number" id="suite" placeholder="Suite (optional)" autofocus>
                       </div>
                     </div>
                       <div class="form-group">
                         <div class="col-sm-10">
-                        <input type="number" class="form-control" name="phone2" id="phone2" placeholder="Phone Number" autofocus>
+                        <input type="number" class="form-control field" name="phone2" id="phone2" placeholder="Phone Number" autofocus>
                       </div>
                     </div>
                     <div class="form-group">
