@@ -66,3 +66,7 @@
   height:30px;
   padding:0;
 }
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+  background-color: #0D8C7F;
+}

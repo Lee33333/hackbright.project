@@ -26,15 +26,6 @@ $(document).ready(function(){
     pinLayer.on('mouseover', function(e) {
     e.layer.openPopup();
     });
-    pinLayer.on('mouseout', function(e) {
-    e.layer.closePopup();
-    });
-    // pinLayer.on('click', function(e) {
-    
-    // });
-    // pinLayer.on('click', function(e) {
-    // e.layer.closePopup();
-    // });
 
 
     //events listener on "show all" changes the value of it's class name and calls mapSearch
