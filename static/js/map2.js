@@ -79,26 +79,22 @@ $(document).ready(function(){
         var id = e.layer.feature.properties.idd;
         var cert= e.layer.feature.properties.cert;
         $("#sendtext").html('<form class="form-inline" id="textmess"><h4>Get a text with this doctors information </h4><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br>');
-        $("#basic-info").html('<br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div><br>');
+        $("#basic-info").html('<br><button id="faves" name="faves" class="btn btn-default">Add to my Favorites</button><br><br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div><br>');
 
 
 
         var url = "/ratings/" + id;
 
+            $("#faves").on('click', function(evt){
+            evt.preventDefault();
+            console.log("in faves");
+            $.post("/addfave", {"data": id}, function(result){
+                console.log("yes, it worked");
+            });
+        });
+
         $("#provider-detail").load(url, function(){
             reviewEvent(id);
-
-        // $(".info").prepend("<p><a href='/ratings/"+ id +"'>"+id+" "+name+" "+address+" "+phone+"</a></p>");
-
-        // // FIXME what is this doing?
-        // $(".info a").on('click', function(evt) {
-        //         evt.preventDefault();
-        //         var url = encodeURI($(this).attr("href"));
-        //         $("#provider-detail").load(url, function(){
-        //             reviewEvent(id);
-
-
-        // });
 
     });
 
@@ -117,6 +113,8 @@ function reviewEvent(id) {
             $("#textmess").hide();
             
         });
+
+
 
 
 

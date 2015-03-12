@@ -27,6 +27,7 @@ class User(Base):
     first_name = Column(String(64))
     email = Column(String(64), nullable=False, unique=True)
     zipcode = Column(String(15), nullable=True)
+    faves = Column(String(300), nullable=True)
 
     def __repr__(self):
         return "<user id = %r, email = %s>" % (self.id, self.email)

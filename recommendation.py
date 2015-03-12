@@ -289,5 +289,16 @@ def sendinfo():
 
     return "something"
 
+@app.route("/addfave", methods=['POST'])
+def addfave():
+    fave = request.form.get("data")
+    print fave
+
+    user = session['user']
+    print user
+
+    return "yes"
+
+
 if __name__== "__main__":
     app.run(debug = True)

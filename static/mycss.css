@@ -105,3 +105,6 @@ body{
 .list-group-item{
   margin-right:20px;
 }
+
+a:hover {
+    color: black;
