@@ -78,7 +78,7 @@ $(document).ready(function(){
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
         var cert= e.layer.feature.properties.cert;
-        $("#sendtext").html('<h4>Get a text with this doctors information </h4><form class="form-inline" id="textmess"><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br>');
+        $("#sendtext").html('<form class="form-inline" id="textmess"><h4>Get a text with this doctors information </h4><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br>');
         $("#basic-info").html('<br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div><br>');
 
 
@@ -114,7 +114,8 @@ function reviewEvent(id) {
             console.log("in event listender");
             console.log(phone);
             sendInfo(id, phone);
-            $("#reviewform").hide();
+            $("#textmess").hide();
+            
         });
 
 
@@ -154,7 +155,7 @@ function sendInfo(id, phone){
     console.log(data);
     $.post(url, data, function (result) {
         console.log(result);
-        
+
     } );
 
 }
