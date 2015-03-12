@@ -74,6 +74,7 @@
 
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
   background-color: #0D8C7F;
+  
 }
 
 .btn-primary{
@@ -98,5 +99,9 @@ body{
 }
 
 .well{
-  margin:right;
+  margin-right:20px;
+}
+
+.list-group-item{
+  margin-right:20px;
 }
