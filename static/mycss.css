@@ -54,7 +54,7 @@
 
 .navbar-inverse .navbar-brand{
   color:white;
-  font-size:26px;
+  font-size:28px;
   text-align: center;
   padding-left: 15px;
 
@@ -95,7 +95,4 @@ body{
 
 .center{
   text-align:center;
-}
-.italic{
-  font-style: italic;
 }
