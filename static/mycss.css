@@ -54,7 +54,7 @@
 
 .navbar-inverse .navbar-brand{
   color:white;
-  font-size:28px;
+  font-size:30px;
   text-align: center;
   padding-left: 15px;
 
@@ -63,7 +63,7 @@
 
 .navbar-inverse .navbar-nav>li>a{
   color:white;
-  font-size:16px;
+  font-size:20px;
   border-color:white;
 }
 
@@ -82,7 +82,7 @@ border-color: #0D8C7F;
 
 }
 #radiustext{
-  width:135px;
+  width:80px;
 }
 
 .field{

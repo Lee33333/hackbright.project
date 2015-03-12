@@ -77,7 +77,6 @@
         <div class="col-xs-6 col-md-5" >
 
           <h3 class="center">Everyone deserves a trustworthy doctor. Find yours.</h3><br>
-          <h4 id="why" class="center"> Why LGBT MD?</h4><br>
           {% with messages = get_flashed_messages() %}
           {% if messages %}
           {% for message in messages %}
@@ -90,13 +89,13 @@
 
 
 
-          <form class="form-inline"> 
+          <form class="form-inline center"> 
             <div class="form-group" action="/addoc" method="post">
               <label for="radiustext">Radius: </label>
-              <input id="radiustext" class="form-control" type="number" name="radius" placeholder="radius in miles" required autofocus/>
+              <input id="radiustext" class="form-control" type="number" name="radius" placeholder="miles" required autofocus/>
             </div>
             <div class="form-group">
-              <label for="address">Address: </label>
+              <label for="address">  Address: </label>
               <input id="address" class="form-control" type="text" name="address" placeholder="address" required autofocus/>
             </div>
             <input id="radiussubmit" class="btn btn-default" type="submit" name="submit" value="search" />
