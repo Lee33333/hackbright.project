@@ -135,9 +135,10 @@ body{
   color:white;
 }
 
-.background {
-  margin:25px;
-  background:#F2EECD;
-  height: 900px;
-  border-radius: 3px;
+.background{
+  background: #EBFCF3;
+}
+
+.row{
+ margin-right:0;
 }

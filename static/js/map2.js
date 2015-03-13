@@ -92,8 +92,8 @@ $(document).ready(function(){
                 console.log("yes, it worked");
             });
             $.post("/returnfaves", function(result){
-                console.log(result);
-                $("#modal2text").text(result);
+                console.log(result.result);
+                $("#modal2text").text(result.result);
             });
         });
 

@@ -293,18 +293,22 @@ def sendinfo():
 
 @app.route("/addfave", methods=['POST'])
 def addfave():
-    new_favorite = model.Favorites()
 
     favorite = request.form.get("data")
-    print favorite
     user_id = session['user']
-    print user_id
 
-    new_favorite.user_id = user_id
-    new_favorite.doctor_id = favorite
+    this_favorite = model.session.query(model.Favorites).filter(and_(model.Favorites.user_id == user_id, model.Favorites.doctor_id == favorite)).first()
 
-    model.session.add(new_favorite)
-    model.session.commit()
+    if this_favorite == None :
+
+        new_favorite = model.Favorites()
+       
+
+        new_favorite.user_id = user_id
+        new_favorite.doctor_id = favorite
+
+        model.session.add(new_favorite)
+        model.session.commit()
 
     return "yes"
 
@@ -315,9 +319,10 @@ def getfaces():
 
     all_faves = model.session.query(model.Favorites).filter(model.Favorites.user_id == user_id).all()
 
-    fave_docs = []
+    fave_docs = {}
+    
     for item in all_faves:
-        fave_docs.append(item.doctor.name)
+        fav_docs[item.doctor.name] = {address: item.doctor.address, phone: item.doctor.phone}
 
     return jsonify(result=fave_docs)
 
