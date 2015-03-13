@@ -88,7 +88,7 @@ $(document).ready(function(){
             $("#faves").on('click', function(evt){
             evt.preventDefault();
             console.log("in faves");
-            $.post("/addfave", {"data": id}, function(result){
+            $.post("/addfave", {"data" : id}, function(result){
                 console.log("yes, it worked");
             });
         });
