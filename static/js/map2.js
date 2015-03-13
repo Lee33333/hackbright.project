@@ -91,6 +91,9 @@ $(document).ready(function(){
             $.post("/addfave", {"data" : id}, function(result){
                 console.log("yes, it worked");
             });
+            $.post("/returnfaves", function(result){
+                console.log("second route works too");
+            });
         });
 
         $("#provider-detail").load(url, function(){

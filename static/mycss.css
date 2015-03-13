@@ -135,3 +135,9 @@ body{
   color:white;
 }
 
+.background {
+  margin:25px;
+  background:#F2EBAB;
+  height: 900px;
+  border-radius: 3px;
+}

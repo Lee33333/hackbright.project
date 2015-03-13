@@ -68,6 +68,7 @@ def facebook_authorized(resp):
     user = add_new_user()
     session['user'] = user.id
     session['user_name'] = me.data['first_name']
+    session['favorites'] = [""]
 
     flash("You are logged in %s." % (me.data['first_name']))
 
@@ -304,6 +305,13 @@ def addfave():
 
     model.session.add(new_favorite)
     model.session.commit()
+
+    return "yes"
+
+@app.route("/returnfaves", methods=['Post'])
+def getfaces():
+
+    print "gonna get faves now"
 
     return "yes"
 
