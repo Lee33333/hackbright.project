@@ -320,9 +320,13 @@ def getfaces():
     all_faves = model.session.query(model.Favorites).filter(model.Favorites.user_id == user_id).all()
 
     fave_docs = {}
-    
+
     for item in all_faves:
-        fav_docs[item.doctor.name] = {address: item.doctor.address, phone: item.doctor.phone}
+        name= item.doctor.name
+        phone= item.doctor.phone_number
+        address = item.doctor.address
+        cert = item.doctor.cert
+        fave_docs[name] = [cert, phone, address]
 
     return jsonify(result=fave_docs)
 

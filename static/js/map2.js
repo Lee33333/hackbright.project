@@ -93,7 +93,15 @@ $(document).ready(function(){
             });
             $.post("/returnfaves", function(result){
                 console.log(result.result);
-                $("#modal2text").text(result.result);
+
+                for (var key in result.result) {
+                if (result.result.hasOwnProperty(key)) {
+                console.log(key + " -> " + result.result[key]);
+                $("#modal2text").text(key + " -> " + result.result[key]);
+                }
+                }
+
+
             });
         });
 
