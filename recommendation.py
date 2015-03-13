@@ -323,7 +323,10 @@ def getfaces():
 
     for item in all_faves:
         name= item.doctor.name
-        phone= item.doctor.phone_number
+        if item.doctor.phone_number is None:
+            phone = "Not Available"
+        else:
+            phone = item.doctor.phone_number
         address = item.doctor.address
         cert = item.doctor.cert
         fave_docs[name] = [cert, phone, address]

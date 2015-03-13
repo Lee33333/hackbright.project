@@ -94,10 +94,18 @@ $(document).ready(function(){
             $.post("/returnfaves", function(result){
                 console.log(result.result);
 
+                // $.each(result.result, function(key, value){
+                //     console.log(key + value);
+                //     $("modal2text").text(key + value);
+
+                // });
+                // $("modal2text").append(($.each(result.result), function(key, value) {
+
+                // }));
                 for (var key in result.result) {
                 if (result.result.hasOwnProperty(key)) {
                 console.log(key + " -> " + result.result[key]);
-                $("#modal2text").text(key + " -> " + result.result[key]);
+                $("#modal2text").append(key + " -> " + result.result[key][0] +" "+ result.result[key][1] +" "+  result.result[key][2]+" ");
                 }
                 }
 
