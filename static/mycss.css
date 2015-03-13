@@ -7,7 +7,8 @@
   width:120px;
   border:3px solid #0D8C7F;
   margin-right:25px;
-  }
+  font-weight: bold;
+}
 .menu-ui a {
   font-size:14px;
   color:#063559;
@@ -17,37 +18,38 @@
   text-decoration:none;
   border-bottom:3px solid #0D8C7F;
   text-align:center;
-  }
+  font-weight: bold;
+}
 .menu-ui a:first-child {
   border-radius:3px 3px 0 0;
-  }
+}
 .menu-ui a:last-child {
   border:none;
   border-radius:0 0 3px 3px;
-  }
+}
 .menu-ui a:hover {
   background:#F2D13E;
   color:#063559;
-  }
+}
 .menu-ui a.active,
 .menu-ui a.active:hover {
   background:#F2D13E;
   color:#063559;
-  }
+}
 .navbar-inverse {
-    background-color: #0D8C7F;
-    color: white;
-    font-size:14px;
-    padding:0; 
-    border-color:#0D8C7F;
-    margin:0;
-    border-radius:0;
-    
+  background-color: #0D8C7F;
+  color: white;
+  font-size:14px;
+  padding:0; 
+  border-color:#0D8C7F;
+  margin:0;
+  border-radius:0;
+
 }
 #right {
-    color: #063559;
-    background-color: white;
-    padding:0
+  color: #063559;
+  background-color: white;
+  padding:0
 
 }
 
@@ -78,8 +80,8 @@
 }
 
 .btn-primary{
-background-color: #0D8C7F;
-border-color: #0D8C7F;
+  background-color: #0D8C7F;
+  border-color: #0D8C7F;
 
 }
 #radiustext{
@@ -106,5 +108,20 @@ body{
   margin-right:20px;
 }
 
-a:hover {
-    color: black;
+.btn-primary:hover {
+  background-color: #0B756A;
+  border-color: #0B756A; 
+}
+
+.btn-default{
+  background-color: #0D8C7F;
+  border-color: #0D8C7F;
+  color:white;
+}
+
+.btn-default:hover {
+  background-color: #0B756A;
+  border-color: #0B756A;
+  color:white;
+}
+
