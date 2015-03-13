@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, session, flash, url_for
+from flask import Flask, render_template, redirect, request, session, flash, url_for, jsonify
 import model
 from flask_oauth import OAuth
 import os
@@ -311,9 +311,15 @@ def addfave():
 @app.route("/returnfaves", methods=['Post'])
 def getfaces():
 
-    print "gonna get faves now"
+    user_id = session['user']
 
-    return "yes"
+    all_faves = model.session.query(model.Favorites).filter(model.Favorites.user_id == user_id).all()
+
+    fave_docs = []
+    for item in all_faves:
+        fave_docs.append(item.doctor.name)
+
+    return jsonify(result=fave_docs)
 
 
 if __name__== "__main__":

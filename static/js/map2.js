@@ -92,7 +92,8 @@ $(document).ready(function(){
                 console.log("yes, it worked");
             });
             $.post("/returnfaves", function(result){
-                console.log("second route works too");
+                console.log(result);
+                $("#modal2text").text(result);
             });
         });
 
@@ -116,9 +117,6 @@ function reviewEvent(id) {
             $("#textmess").hide();
             
         });
-
-
-
 
 
         $("#reviewform").on('submit', function(evt){
@@ -155,7 +153,7 @@ function sendInfo(id, phone){
     data.push({"name": "phone", "value": phone});
     console.log(data);
     $.post(url, data, function (result) {
-        console.log(result);
+        console.log(result[Object][result][1]);
 
     } );
 
