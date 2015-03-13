@@ -292,35 +292,18 @@ def sendinfo():
 
 @app.route("/addfave", methods=['POST'])
 def addfave():
+    new_favorite = model.Favorites()
+
     favorite = request.form.get("data")
-    favorite2 = []
-    favorite2.extend(favorite)
+    print favorite
+    user_id = session['user']
+    print user_id
 
-    print favorite2
-    print "here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    new_favorite.user_id = user_id
+    new_favorite.doctor_id = favorite
 
-    user = session['user']
-    print user
-
-    this_user = model.session.query(model.User).filter(model.User.id == user).one()
-    print this_user
-
-    faves = this_user.faves
-    print faves
-
-    if faves == None:
-        model.session.query(model.User).filter(model.User.id == user).update({'faves': favorite2})
-        model.session.commit()
-    else:
-        faves = faves.extend(favorite)
-        print faves
-        print "in else"
-        # model.session.query(model.User).filter(model.User.id == user).update({'faves': fave})
-        # model.session.commit()
-
-
-
-
+    model.session.add(new_favorite)
+    model.session.commit()
 
     return "yes"
 

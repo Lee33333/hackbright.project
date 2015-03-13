@@ -27,7 +27,6 @@ class User(Base):
     first_name = Column(String(64))
     email = Column(String(64), nullable=False, unique=True)
     zipcode = Column(String(15), nullable=True)
-    faves = Column(String(300), nullable=True)
 
     def __repr__(self):
         return "<user id = %r, email = %s>" % (self.id, self.email)
@@ -82,6 +81,21 @@ class Rating(Base):
     def __repr__(self):
         return "<Rating id = %d, doctor id = %d, user_id = %d, Rating = %d>" % (self.id, self.doctor_id, self.user_id, self.rating)
 
+class Favorites(Base):
+    __tablename__= "favorites"
+
+    id = Column(Integer, primary_key=True)
+    doctor_id = Column(Integer, ForeignKey('doctors.id'))
+    user_id = Column(Integer, ForeignKey('users.id'))
+
+    user = relationship("User",
+            backref=backref("favorites", order_by=id))
+
+    doctor = relationship("Doctor",
+            backref=backref("favorites", order_by=id))
+
+    def __repr__(self):
+        return "<Rating id = %d, doctor id = %d, user_id = %d>" % (self.id, self.doctor_id, self.user_id)
 
 # End class declarations
 
