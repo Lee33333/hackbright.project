@@ -74,6 +74,16 @@
   padding:0;
 }
 
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover{
+  background-color: #0B756A;
+  border-color: #0B756A;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover{
+background-color: #0B756A;
+  border-color: #0B756A;
+}
+
 .list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
   background-color: #0D8C7F;
   
