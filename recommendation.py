@@ -89,7 +89,7 @@ def add_new_user():
         new_user.facebook_id = fb_user['id']
         new_user.first_name = fb_user['first_name']
         new_user.email = fb_user['email']
-        new_user.faves = [""]
+        new_user.faves= None
 
         # commit new user to database
         model.session.add(new_user)
@@ -292,8 +292,12 @@ def sendinfo():
 
 @app.route("/addfave", methods=['POST'])
 def addfave():
-    fave = request.form.get("data")
-    print fave
+    favorite = request.form.get("data")
+    favorite2 = []
+    favorite2.extend(favorite)
+
+    print favorite2
+    print "here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
     user = session['user']
     print user
@@ -302,15 +306,19 @@ def addfave():
     print this_user
 
     faves = this_user.faves
+    print faves
 
     if faves == None:
-        model.session.query(model.User).filter(model.User.id == user).update({'faves': fave})
+        model.session.query(model.User).filter(model.User.id == user).update({'faves': favorite2})
         model.session.commit()
+    else:
+        faves = faves.extend(favorite)
+        print faves
+        print "in else"
+        # model.session.query(model.User).filter(model.User.id == user).update({'faves': fave})
+        # model.session.commit()
 
-    #FIXME add a way to add to the list without deleting the previous one
 
-
-    print faves
 
 
 
