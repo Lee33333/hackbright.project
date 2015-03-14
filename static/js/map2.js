@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 
     pinLayer.on('mouseover', function(e) {
-    e.layer.openPopup();
+        e.layer.openPopup();
     });
 
 
@@ -85,7 +85,7 @@ $(document).ready(function(){
 
         var url = "/ratings/" + id;
 
-            $("#faves").on('click', function(evt){
+        $("#faves").on('click', function(evt){
             evt.preventDefault();
             console.log("in faves");
             $.post("/addfave", {"data" : id}, function(result){
@@ -102,41 +102,41 @@ $(document).ready(function(){
                 // $("modal2text").append(($.each(result.result), function(key, value) {
 
                 // }));
-                for (var key in result.result) {
+            for (var key in result.result) {
                 if (result.result.hasOwnProperty(key)) {
-                console.log(key + " -> " + result.result[key]);
-                $("#modal2text").append(key + " -> " + result.result[key][0] +" "+ result.result[key][1] +" "+  result.result[key][2]+" ");
+                    console.log(key + " -> " + result.result[key]);
+                    $("#modal2text").append(key + " -> " + result.result[key][0] +" "+ result.result[key][1] +" "+  result.result[key][2]+" ");
                 }
-                }
+            }
 
 
-            });
+        });
         });
 
         $("#provider-detail").load(url, function(){
             reviewEvent(id);
 
-    });
+        });
 
-});
+    });
 
 // FIXME rename!!! grabs, serializes contents of review form and posts it to /addreview route
 function reviewEvent(id) {
+    
+    $("#textmess").on('submit', function(evt) {
+        evt.preventDefault();
+        $("submitphone").attr("disabled",true);
+        var phone = $("#phone").val();
+        console.log("in event listender");
+        console.log(phone);
+        sendInfo(id, phone);
+        $("#textmess").hide();
         
-        $("#textmess").on('submit', function(evt) {
-            evt.preventDefault();
-            $("submitphone").attr("disabled",true);
-            var phone = $("#phone").val();
-            console.log("in event listender");
-            console.log(phone);
-            sendInfo(id, phone);
-            $("#textmess").hide();
-            
-        });
+    });
 
 
-        $("#reviewform").on('submit', function(evt){
-            evt.preventDefault();
+    $("#reviewform").on('submit', function(evt){
+        evt.preventDefault();
             //gets contents of submit review form
             var contents = $(this).serializeArray();
             //appends doctor id
@@ -148,12 +148,12 @@ function reviewEvent(id) {
                // return the list of comments for the doctor
 
                // FIXME here we're loading another url in an attempt to refresh review but only works once
-            var url2 = "/ratings/" + id;
+               var url2 = "/ratings/" + id;
 
-            $("#provider-detail").load(url2, function(){
+               $("#provider-detail").load(url2, function(){
                 $("#reviewform").hide();
             });
-            });
+           });
 
         });
 }
@@ -194,36 +194,36 @@ function mapSearch(){
         //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
         if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === '') {
             return createLatLng(feature) &&
-                (feature.properties['ins'] === "yes") &&
-                (feature.properties['trans'] === "yes");
+            (feature.properties['ins'] === "yes") &&
+            (feature.properties['trans'] === "yes");
         }
         else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === '') {
             return createLatLng(feature) &&
-                (feature.properties['trans'] === "yes");
+            (feature.properties['trans'] === "yes");
         }
         else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === '') {
             return createLatLng(feature) &&
-                (feature.properties['ins'] === "yes");
+            (feature.properties['ins'] === "yes");
         }
         else if (showIns.className === '' && showTrans.className === '' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['therapy'] === "yes");
+            (feature.properties['therapy'] === "yes");
         }
         else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['therapy'] === "yes")&&
-                (feature.properties['ins'] === "yes");
+            (feature.properties['therapy'] === "yes")&&
+            (feature.properties['ins'] === "yes");
         }
         else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['therapy'] === "yes")&&
-                (feature.properties['trans'] === "yes");
+            (feature.properties['therapy'] === "yes")&&
+            (feature.properties['trans'] === "yes");
         }
         else if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === 'active') {
             return createLatLng(feature) &&
-                (feature.properties['therapy'] === "yes")&&
-                (feature.properties['trans'] === "yes")&&
-                (feature.properties['ins'] === "yes");
+            (feature.properties['therapy'] === "yes")&&
+            (feature.properties['trans'] === "yes")&&
+            (feature.properties['ins'] === "yes");
         }
         else {
             return createLatLng(feature);
@@ -234,8 +234,8 @@ function mapSearch(){
 
 function createLatLng(feature){
     return(CENTER.distanceTo(L.latLng(
-    feature.geometry.coordinates[1],
-    feature.geometry.coordinates[0])) < RADIUS);
+        feature.geometry.coordinates[1],
+        feature.geometry.coordinates[0])) < RADIUS);
 
 }
 
@@ -257,9 +257,9 @@ function getGeocode(address){
         //call the mapSearch function
         mapSearch();
     //if we fail to get a response we'll print error, should do more here
-    }).fail(function(error){
-        console.log('ERROR: ',error);
-    });
+}).fail(function(error){
+    console.log('ERROR: ',error);
+});
 
 }
 
