@@ -79,7 +79,7 @@ $(document).ready(function(){
         var id = e.layer.feature.properties.idd;
         var cert= e.layer.feature.properties.cert;
         $("#sendtext").html('<form class="form-inline" id="textmess"><h4>Get a text with this doctors information </h4><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br>');
-        $("#basic-info").html('<br><button id="faves" name="faves" class="btn btn-default">Add to my Favorites</button><br><br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div><br>');
+        $("#basic-info").html('<br><button id="faves" name="faves" class="btn btn-default">Add/Remove from Favorites</button><br><br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div><br>');
 
 
 

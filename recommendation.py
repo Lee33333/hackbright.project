@@ -310,7 +310,13 @@ def addfave():
         model.session.add(new_favorite)
         model.session.commit()
 
+    else:
+
+        model.session.delete(this_favorite)
+        model.session.commit()
+
     return "yes"
+ 
 
 @app.route("/returnfaves", methods=['Post'])
 def getfaces():
