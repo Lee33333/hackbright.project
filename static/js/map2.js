@@ -93,6 +93,7 @@ $(document).ready(function(){
             });
             $.post("/returnfaves", function(result){
                 console.log(result.result);
+                $("#modal2text").empty();
 
                 // $.each(result.result, function(key, value){
                 //     console.log(key + value);
@@ -105,9 +106,10 @@ $(document).ready(function(){
             for (var key in result.result) {
                 if (result.result.hasOwnProperty(key)) {
                     console.log(key + " -> " + result.result[key]);
-                    $("#modal2text").append(key + " -> " + result.result[key][0] +" "+ result.result[key][1] +" "+  result.result[key][2]+" ");
+                    $("#modal2text").append('<div class="list-group"><a href="#" class="list-group-item active">'+key+'</a><a href="#" class="list-group-item">'+result.result[key][0]+'</a><a href="#" class="list-group-item">'+result.result[key][1]+'</a><a href="#" class="list-group-item">'+result.result[key][2]+'</a></div>');
                 }
             }
+
 
 
         });
