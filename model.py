@@ -5,25 +5,28 @@ from geojson import Feature, Point, FeatureCollection
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 
 
-#Creates engine,session, echo prints sqla calls, commits are not auto
+# Creates engine,session, echo prints sqla calls, commits are not auto
 engine = create_engine("sqlite:///doctors.db", echo=True)
-session = scoped_session(sessionmaker(bind=engine, autocommit=False, autoflush=False))
+session = scoped_session(
+    sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
-#Base is a class in sqla that my tables are instantiated from
+# Base is a class in sqla that my tables are instantiated from
 Base = declarative_base()
 Base.query = session.query_property()
 
-#Renaming a function inmported from geopy library
+# Renaming a function inmported from geopy library
 geolocator = Nominatim()
 
-#Class declarations 
+# Class declarations
 
-#The User class
+# The User class
+
+
 class User(Base):
-    __tablename__= "users"
+    __tablename__ = "users"
 
-    id = Column(Integer, primary_key=True) 
-    facebook_id = Column(String(30), unique=True)  
+    id = Column(Integer, primary_key=True)
+    facebook_id = Column(String(30), unique=True)
     first_name = Column(String(64))
     email = Column(String(64), nullable=False, unique=True)
     zipcode = Column(String(15), nullable=True)
@@ -33,13 +36,14 @@ class User(Base):
 
 # The Doctor class
 
+
 class Doctor(Base):
     __tablename__ = 'doctors'
 
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), nullable=False)
     cert = Column(Unicode(50), nullable=True)
-    business_name = Column(Unicode (100), nullable=True)
+    business_name = Column(Unicode(100), nullable=True)
     address = Column(Unicode(500), nullable=False)
     suite = Column(Unicode(500), nullable=True)
     phone_number = Column(Unicode(25), nullable=True)
@@ -54,12 +58,12 @@ class Doctor(Base):
     pub_insurance = Column(String(5), nullable=True)
     specialties = Column(Unicode(500), nullable=True)
 
-    
-
     def __repr__(self):
         return "<Doctor name=%s, Doctor id=%d>" % (self.name, self.id)
 
-#The Rating class. User and Doctor have a two way relationship through Ratings.
+# The Rating class. User and Doctor have a two way relationship through
+# Ratings.
+
 
 class Rating(Base):
     __tablename__ = "ratings"
@@ -70,29 +74,31 @@ class Rating(Base):
     rating = Column(Integer, nullable=False)
     review = Column(String(500), nullable=True)
 
-#User has many ratings, and a rating has one user, rating references user id
+# User has many ratings, and a rating has one user, rating references user id
     user = relationship("User",
-            backref=backref("ratings", order_by=id))
+                        backref=backref("ratings", order_by=id))
 
-#Doctor has many ratings and a rating has one doctor, rating references doctor id
+# Doctor has many ratings and a rating has one doctor, rating references
+# doctor id
     doctor = relationship("Doctor",
-            backref=backref("ratings", order_by=id))
+                          backref=backref("ratings", order_by=id))
 
     def __repr__(self):
         return "<Rating id = %d, doctor id = %d, user_id = %d, Rating = %d>" % (self.id, self.doctor_id, self.user_id, self.rating)
 
+
 class Favorites(Base):
-    __tablename__= "favorites"
+    __tablename__ = "favorites"
 
     id = Column(Integer, primary_key=True)
     doctor_id = Column(Integer, ForeignKey('doctors.id'))
     user_id = Column(Integer, ForeignKey('users.id'))
 
     user = relationship("User",
-            backref=backref("favorites", order_by=id))
+                        backref=backref("favorites", order_by=id))
 
     doctor = relationship("Doctor",
-            backref=backref("favorites", order_by=id))
+                          backref=backref("favorites", order_by=id))
 
     def __repr__(self):
         return "<Rating id = %d, doctor id = %d, user_id = %d>" % (self.id, self.doctor_id, self.user_id)
@@ -115,11 +121,13 @@ def addgeo():
     session.commit()
     return
 
+
 def getgeo(address):
     """ Return the latitude and longitude in a tuple"""
     location = geolocator.geocode(address, timeout=5000)
 
     return (location.latitude, location.longitude)
+
 
 def getlonlat():
     """ Queries all doctors in db and creates GeoJson about them """
@@ -129,7 +137,7 @@ def getlonlat():
     coordinates = []
 
     for doctor in all_doctors:
-        
+
         longitude = doctor.lon
         latitude = doctor.lat
         name = doctor.name
@@ -139,7 +147,7 @@ def getlonlat():
         medical = doctor.medical
         therapy = doctor.therapy
         cert = doctor.cert
-        
+
         if doctor.pub_insurance == "yes":
             ins = "yes"
         else:
@@ -150,13 +158,13 @@ def getlonlat():
         else:
             phone = doctor.phone_number
 
-
-        #Functions from the geojson library create geoson objects with the details specified
-        my_feature = Feature(geometry=Point((longitude, latitude)), properties={"title": name, "Address":address, "phone" : phone, "idd" : idd, "ins": ins, "marker-color": "#D95929", "trans" : trans, "therapy" :therapy, "medical" : medical, "cert" : cert})
+        # Functions from the geojson library create geoson objects with the
+        # details specified
+        my_feature = Feature(geometry=Point((longitude, latitude)), properties={
+                             "title": name, "Address": address, "phone": phone, "idd": idd, "ins": ins, "marker-color": "#D95929", "trans": trans, "therapy": therapy, "medical": medical, "cert": cert})
         coordinates.append(my_feature)
-        
-        
-    #We return all this geojson as a feature collection
+
+    # We return all this geojson as a feature collection
     new_coords = FeatureCollection(coordinates)
     return new_coords
 
@@ -167,5 +175,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
