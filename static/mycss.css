@@ -179,3 +179,10 @@ font-weight: 700;
 .alignl{
   text-align: left;
 }
+
+.btn-default :visited{
+  background-color: yellow;
+}
+#myModal{
+  text-align: left;
+}
