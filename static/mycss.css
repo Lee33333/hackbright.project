@@ -104,6 +104,7 @@ background-color: #0B756A;
 
 body{
   margin:0;
+  font-size:16px;
 }
 
 .center{
@@ -111,10 +112,6 @@ body{
 }
 
 .well{
-  margin-right:20px;
-}
-
-.list-group-item{
   margin-right:20px;
 }
 
@@ -153,4 +150,12 @@ body{
 .h1, .h2, .h3, h1, h2, h3{
 margin-top: 15px;
 margin-bottom: 15px
+}
+
+.btn{
+font-size: 16px;
+}
+
+.form-control{
+  font-size: 16px;
 }
