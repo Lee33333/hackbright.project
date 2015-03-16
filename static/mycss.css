@@ -56,9 +56,11 @@
 
 .navbar-inverse .navbar-brand{
   color:white;
-  font-size:30px;
+  font-size:36px;
   text-align: center;
   padding-left: 15px;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 900; 
 
 
 }
@@ -67,6 +69,8 @@
   color:white;
   font-size:20px;
   border-color:white;
+  font-family: 'Maven Pro', sans-serif;
+  font-weight: 700; 
 }
 
 .navbar-brand{
@@ -105,6 +109,7 @@ background-color: #0B756A;
 body{
   margin:0;
   font-size:16px;
+  font-family: 'Maven Pro', sans-serif;
 }
 
 .center{
@@ -154,6 +159,7 @@ margin-bottom: 15px
 
 .btn{
 font-size: 16px;
+font-weight: 700; 
 }
 
 .form-control{
