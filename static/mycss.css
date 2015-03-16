@@ -137,8 +137,20 @@ body{
 
 .background{
   background: #F4FFF9;
+  padding-left:25px;
+  padding-right: 25px;
+  height:870px;
 }
 
 .row{
  margin-right:0;
+}
+
+.left{
+  padding-right:0;
+}
+
+.h1, .h2, .h3, h1, h2, h3{
+margin-top: 15px;
+margin-bottom: 15px
 }
