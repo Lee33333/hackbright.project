@@ -10,7 +10,7 @@
   font-weight: bold;
 }
 .menu-ui a {
-  font-size:14px;
+  font-size:16px;
   color:#063559;
   display:block;
   margin:0;padding:0;
@@ -99,7 +99,7 @@ background-color: #0B756A;
 
 }
 #radiustext{
-  width:80px;
+  width:90px;
 }
 
 .field{
