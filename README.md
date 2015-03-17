@@ -1,4 +1,4 @@
-<b> LGBT MD </b><br>
+<b> LGBT MD </b><br><br>
 <i>Everyone deserves a trustworthy doctor. Find Yours.</i>
 
 <b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
