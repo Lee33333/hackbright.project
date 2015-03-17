@@ -1,4 +1,4 @@
-<b> LGBT MD </b><br><br>
+<img src="/img/Logo.png">
 <i>Everyone deserves a trustworthy doctor. Find Yours.</i><br>
 
 <img src="/img/Front.png">
