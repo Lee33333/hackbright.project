@@ -6,18 +6,8 @@ import csv
 
 GLMADIR = "https://glmaimpak.networkats.com/members_online_new/members/dir_provider.asp?action=search&address_zip_radius=25&address_state_code=CA&address_city=san+Francisco&location_type=S&pn=4"
 
-# this function gets the text from your url
-
-
-# def download():
-    
-#     print(soup.prettify())
-
-# # here beautiful soup traverses through the text, identifying the areas
-# # you want to select by attribute
-
-
 def parse():
+    """Gets URL html and selects appropriate areas"""
 
     response = requests.get(GLMADIR)
 
@@ -31,10 +21,9 @@ def parse():
 
     return found
 
-# this function creates logic to sort the items in what we found
-
 
 def order(found):
+    """Sorts selected info and writes it to file"""
 
     csvf = open("test.csv", "wb")
     writer = csv.writer(csvf)
@@ -68,9 +57,6 @@ def order(found):
 
             i += 1
 
-
-# next we have to output this to a scv using the csv module, in a way that
-# acocunts for divergent formatting
 
 parsed = parse()
 
