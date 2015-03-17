@@ -69,8 +69,6 @@ def facebook_authorized(resp):
     session['user_name'] = me.data['first_name']
     session['favorites'] = [""]
 
-    flash("You are logged in %s." % (me.data['first_name']))
-
     return redirect('/')
 
 

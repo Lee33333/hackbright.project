@@ -28,7 +28,7 @@ def order(found):
     writer = csv.writer(csvf)
     items = [3,5,7,9,11,13,15,17]
 
-    #navigates objects and prints key lines
+    #navigates each object and prints key lines
     for obj in found:
         i = 0
         entry = []
@@ -36,12 +36,10 @@ def order(found):
         for child in obj: 
 
             if i == 1:
-                entry.append(child)
-                #writer.writerow([child.text])
+                entry.append(child.text)
 
             if i in items:
                 entry.append(child)
-                #writer.writerow([child])
 
             i += 1
         writer.writerow(entry)
