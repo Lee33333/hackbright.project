@@ -78,8 +78,8 @@ $(document).ready(function(){
         var phone = e.layer.feature.properties.phone;
         var id = e.layer.feature.properties.idd;
         var cert= e.layer.feature.properties.cert;
-        $("#sendtext").html('<form class="form-inline" id="textmess"><h4>Get a text with this doctors information </h4><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br>');
-        $("#basic-info").html('<br><br><div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a></div><button id="faves" name="faves" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add/Remove</button><br><br>');
+        $("#sendtext").html('<form class="form-inline" id="textmess"><h4>Get a text with this doctors information </h4><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br></div><button id="faves" name="faves" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add/Remove</button><br><br>');
+        $("#basic-info").html('<div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a>');
 
 
 
