@@ -8,10 +8,12 @@ import twilioapi
 
 
 oauth = OAuth()
+app = Flask(__name__)
 
 # Retrieve secret keys from secrets file
 consumer_keys = os.environ.get("app_id")
 consumer_secrets = os.environ.get("app_secret")
+app.secret_key = os.environ.get("app_secret_key")
 
 # COnnect with facebook oauth using the secret keys
 facebook = oauth.remote_app('facebook',
@@ -23,9 +25,6 @@ facebook = oauth.remote_app('facebook',
                             consumer_secret=consumer_secrets,
                             request_token_params={'scope': 'email'}
                             )
-
-app = Flask(__name__)
-app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2f\x03'
 
 
 @app.route("/")
