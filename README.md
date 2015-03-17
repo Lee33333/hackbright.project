@@ -1,8 +1,8 @@
 <img src="/img/Logo.png">
-<i>Everyone deserves a trustworthy doctor. Find Yours.</i><br>
+--------
+<h5><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h5><br>
 
 <img src="/img/Front.png">
-(https://github.com/daria33/hackbright.project/blob/master/img/Front.png)
 
 <b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
 <b>APIs:</b> Twilio API, Facebook OAuth, Mapbox.js, Mapbox GeoCoding API<br>
