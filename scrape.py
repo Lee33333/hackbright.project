@@ -9,21 +9,19 @@ GLMADIR = "https://glmaimpak.networkats.com/members_online_new/members/dir_provi
 # this function gets the text from your url
 
 
-def download():
-    response = requests.get(GLMADIR)
+# def download():
+    
+#     print(soup.prettify())
 
-    soup = BeautifulSoup(response.text)
-
-    print(soup.prettify())
-
-# here beautiful soup traverses through the text, identifying the areas
-# you want to select by attribute
+# # here beautiful soup traverses through the text, identifying the areas
+# # you want to select by attribute
 
 
 def parse():
 
-    page1 = open("page4.html")
-    soup = BeautifulSoup(page1)
+    response = requests.get(GLMADIR)
+
+    soup = BeautifulSoup(response.text)
 
     # these are teh details of the tag we are searching for
 
@@ -51,11 +49,11 @@ def order(found):
 
             if i == 1:
 
-                text = "".join(str(child.text))
+                text = child.text
                 print text
 
             #     # name in <b> tag
-                writer.writerow(child.text)
+                writer.writerow([child.text])
             #     print child.text
 
             # if i == 4:
