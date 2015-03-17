@@ -12,6 +12,10 @@
 
 [Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)<br><br>
 
+<img src="/img/map2.png">
+
+<h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5>
+
 The MIT License (MIT)
 
 Copyright (c) <year> <copyright holders>
