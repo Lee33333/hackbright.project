@@ -1,6 +1,9 @@
 <img src="/img/Logo.png">
 --------
-<h5><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h5><br>
+<h4><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h4><br>
+
+<h3>Technology Stack</h3>
+--------
 
 <b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
 <b>APIs:</b> Twilio API, Facebook OAuth, Mapbox.js, Mapbox GeoCoding API<br>
