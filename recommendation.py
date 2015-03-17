@@ -123,7 +123,6 @@ def logout():
 def add_review():
     '''Recieves data @ new review through post, adds to db'''
 
-    # FIXME create functionality for anonymous ratings? or no?
     new_rating = model.Rating()
 
     review = request.form.get("review")
@@ -178,7 +177,6 @@ def add_doc():
         pub_ins = request.form.get("pub_ins")
 
         # We have to geocode the address
-        # FIXME what will we do if the address is improperly formatted?
         coords = model.getgeo(address)
 
         new_doc = model.Doctor()
@@ -273,6 +271,7 @@ def hello_monkey():
 
 @app.route("/sendinfo", methods=['POST'])
 def sendinfo():
+    """Sends data to twilio function"""
     phone = request.form.get("phone")
     idd = request.form.get("doctor_id")
 
@@ -300,6 +299,7 @@ def sendinfo():
 
 @app.route("/addfave", methods=['POST'])
 def addfave():
+    """Adds favorite doctor"""
 
     favorite = request.form.get("data")
     user_id = session['user']
@@ -327,6 +327,7 @@ def addfave():
 
 @app.route("/returnfaves", methods=['Post'])
 def getfaces():
+    """Retrieves favorite doctors"""
 
     user_id = session['user']
 
