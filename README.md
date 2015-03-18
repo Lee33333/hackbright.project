@@ -1,5 +1,5 @@
 <img src="/img/Logo.png">
-<h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
+<h4>Everyone deserves a trustworthy doctor. Find Yours.</h4><br>
 
 <i><h6>
       3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6> </i>
@@ -34,7 +34,9 @@ Click on the map and see details about your provider. Check out their reviews an
 
 <h4>Thank you</h4>
 --------
-<h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5><br>
+My irreplaceable mentors: Eric, Kyla, and Kate
+My family and my partner
+My classmates adn teh teaching team at Hackbright<br>
 
 <h4>License</h5>
 --------
