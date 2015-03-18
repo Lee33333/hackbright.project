@@ -40,7 +40,7 @@ My classmates and the teaching team at Hackbright<br>
 The Gay and Lesbian Medical Association
 
 
-<h4>License</h5>
+<h4>License</h4>
 --------
 
 The MIT License (MIT)
