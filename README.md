@@ -3,17 +3,19 @@
 
 Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect Lesbian, Gay, Bisexual, and Transgender people to well-trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
 
-<h5>Technology Stack</h5>
+[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
+
+<h4>Technology Stack</h4>
 --------
 <b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
 <b>APIs:</b> Twilio API, Facebook OAuth, Mapbox.js, Mapbox GeoCoding API<br>
 <b>Front-End:</b> HTML/CSS, Bootstrap, JQuery, JavaScript, AJAX<br><br>
 
-[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
 
-<h5>Front Page</h5>
+
+<h4>Front Page</h4>
 <img src="/img/Front.png"><br><br>
-<h5>Map</h5>
+<h4>Map</h4>
 <img src="/img/map2.png"><br>
 
 <h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5>
