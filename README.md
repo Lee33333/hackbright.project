@@ -19,7 +19,9 @@ Discover providers near you by searching by both location and type. Bookmark you
 --------
 Finding the right doctor can be a challenge. LGBT people face additional obstacles:
 
-<i>3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.<br>Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</i>
+<i>3.3% of medical schools dedicate <b>zero</b> hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.<br><br>Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</i>
+
+Today, there is no centralized, interactive resource to address this problem in the San Francisco Bay Area.
 
 <h4>Front Page</h4>
 --------
@@ -37,7 +39,8 @@ Click on the map for details about your provider. Check out their reviews and ad
 
 <h4>The Story</h4>
 --------
-I began this project by contacting the Gay and Lesbian Medical Association (GLMA), a non-profit organization of LGBT medical providers. GLMA was excited about LGBT MD and agreed to let me use their data. However, they were unable to provide me with formatted csv files. I used BeautifulSoup and regular expressions to create a scraper to scrape the data I needed from their site. 
+
+I began this project by contacting the Gay and Lesbian Medical Association (GLMA), a non-profit organization of LGBT medical providers. GLMA was excited about my idea and agreed to let me use their data. However, they were unable to provide me with formatted csv files. I used BeautifulSoup and regular expressions to create a scraper to scrape the data I needed from their site. 
 
 On the backend, I am using the Flask web framework. It calls my SQLite database using SQLAlchemy. I used the Python GeoPy library to geocode every provider's address and created GeoJSON objects for each person using the Python GeoJSON library. 
 
