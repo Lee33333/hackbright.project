@@ -1,5 +1,5 @@
 <img src="/img/Logo.png">
-<h4><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h4>
+<h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
 
 <i><h6>
       3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6> </i>
