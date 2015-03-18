@@ -14,12 +14,18 @@ Driven to solve a longstanding problem in her community, Daria created LGBT MD t
 
 
 <h4>Front Page</h4>
+--------
 <img src="/img/Front.png"><br><br>
 <h4>Map</h4>
+--------
 <img src="/img/map2.png"><br>
 
+<h4>Thank you</h4>
+--------
 <h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5>
 
+<h5>License</h5>
+--------
 The MIT License (MIT)
 
 Copyright (c) <year> <copyright holders>
