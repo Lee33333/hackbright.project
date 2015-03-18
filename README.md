@@ -5,7 +5,7 @@
       3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6> </i>
 
 Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
-<br>
+
 [Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
 
 <h4>Technology Stack</h4>
@@ -18,7 +18,7 @@ Driven to solve a longstanding problem in her community, Daria created LGBT MD t
 
 
 
-<br><h4>Front Page</h4>
+<h4>Front Page</h4>
 --------
 <img src="/img/Front.png"><br><br>
 Login through with Facebook to create an account. Search within a customized radius of your home. <br>
@@ -27,12 +27,12 @@ Login through with Facebook to create an account. Search within a customized rad
 <img src="/img/map2.png"><br>
 Toggle catagories to find providers of mental health services, providers who accept public health insurance, and trans-friendly services. Map created using the MapBox.JS API.
 
-<br><h4>Interactivity</h4>
+<h4>Interactivity</h4>
 --------
 <img src="/img/docs.png"><br>
 Click on the map and see details about your provider. Check out their reviews and add your own. Text yourself a provider's contact information using the Twilio API. Bookmark providers as favorites and add new providers directly to the directory.
 
-<br><h4>Thank you</h4>
+<h4>Thank you</h4>
 --------
 My irreplaceable mentors: Eric, Kyla, and Kate<br>
 My family and my partner<br>
@@ -40,7 +40,7 @@ My classmates and the teaching team at Hackbright<br>
 The Gay and Lesbian Medical Association
 
 
-<br><h4>License</h5>
+<h4>License</h5>
 --------
 
 The MIT License (MIT)
