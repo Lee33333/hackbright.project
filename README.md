@@ -34,9 +34,10 @@ Click on the map and see details about your provider. Check out their reviews an
 
 <h4>Thank you</h4>
 --------
-My irreplaceable mentors: Eric, Kyla, and Kate
-My family and my partner
-My classmates adn teh teaching team at Hackbright<br>
+My irreplaceable mentors: Eric, Kyla, and Kate<br>
+My family and my partner<br>
+My classmates and the teaching team at Hackbright<br>
+
 
 <h4>License</h5>
 --------
