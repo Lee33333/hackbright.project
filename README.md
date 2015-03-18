@@ -21,11 +21,16 @@ Driven to solve a longstanding problem in her community, Daria created LGBT MD t
 <h4>Front Page</h4>
 --------
 <img src="/img/Front.png"><br><br>
-Login through with Facebook to create an account. Search within a radius of your home. <br>
+Login through with Facebook to create an account. Search within a customized radius of your home. <br>
 <h4>Map</h4>
 --------
 <img src="/img/map2.png"><br>
-Toggle catagories to find providers of mental health services, providers who accept public health insurance, and trans-friendly services. 
+Toggle catagories to find providers of mental health services, providers who accept public health insurance, and trans-friendly services. Map created using the MapBox.JS API.
+
+<h4>Interactivity</h4>
+--------
+<img src="/img/docs.png"><br>
+Click on the map and see details about your provider. Check out their reviews and add your own. Text yourself a provider's contact information using the Twilio API. Bookmark providers as favorites and add new providers directly to the directory.
 
 <h4>Thank you</h4>
 --------
