@@ -1,8 +1,9 @@
 <img src="/img/Logo.png">
---------
 <h4><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h4><br>
 
-<h3>Technology Stack</h3>
+Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect Lesbian, Gay, Bisexual, and Transgender people to well-trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
+
+<h4>Technology Stack</h4>
 --------
 
 <b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
@@ -11,9 +12,7 @@
 
 <img src="/img/Front.png"><br><br>
 
- Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect Lesbian, Gay, Bisexual, and Transgender people to well-trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
-
-[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)<br><br>
+<h4>[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)</h4><br><br>
 
 <img src="/img/map2.png"><br>
 
