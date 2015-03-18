@@ -1,10 +1,11 @@
 <img src="/img/Logo.png">
 <h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
 
-Driven to solve a longstanding problem in my community, I created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trained medical providers. I'm excited to deploy a full live version and offer this resource to LGBT people in the San Francisco Bay Area.
+Driven to solve a longstanding problem in my community, I created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trustworthy medical providers. I'm excited to deploy a full, live version and offer this resource to LGBT people in the San Francisco Bay Area.
+
+Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.
 
 [Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
-Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.
 
 <h4>Technology Stack</h4>
 --------
@@ -16,9 +17,9 @@ Discover providers near you by searching by both location and type. Bookmark you
 
 <h4>Why LGBT MD?</h4>
 --------
-Finding the right doctor for you can be a challenge. LGBT people face additional obstacles in finding competent healthcare:
+Finding the right doctor can be a challenge. LGBT people face additional obstacles:
 
-<i>3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</i>
+<i>3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.<br>Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</i>
 
 <h4>Front Page</h4>
 --------
@@ -32,24 +33,24 @@ Toggle catagories to find providers of mental health services, providers who acc
 <h4>Interactivity</h4>
 --------
 <img src="/img/docs.png"><br>
-Click on the map and see details about your provider. Check out their reviews and add your own. Text yourself a provider's contact information using the Twilio API. Bookmark providers as favorites and add new providers directly to the directory.
+Click on the map for details about your provider. Check out their reviews and add your own. Text yourself a provider's contact information using the Twilio API. Bookmark providers as favorites and add new providers directly to the directory.
 
 <h4>The Story</h4>
 --------
-I began this project by contacting the Gay and Lesbian Medical Association, a non-profit that collects data about health care providers with verifiable training and experience in LGBT health. They were excited about LGBT MD, however, they were unable to provide me with data to seed my database. I used BeautifulSoup and regular expressions to create a scraper to get the data I needed. 
+I began this project by contacting the Gay and Lesbian Medical Association (GLMA), a non-profit organization of LGBT medical providers. GLMA was excited about LGBT MD and agreed to let me use their data. However, they were unable to provide me with formatted csv files. I used BeautifulSoup and regular expressions to create a scraper to scrape the data I needed from their site. 
 
-On the backend, I am using the Flask web framework that calls my SQLite database using SQLAlchemy. I used the Python GeoPy library to geocode every provider's address and created GeoJSON objects for each person using the python GeoJSON library. 
+On the backend, I am using the Flask web framework. It calls my SQLite database using SQLAlchemy. I used the Python GeoPy library to geocode every provider's address and created GeoJSON objects for each person using the Python GeoJSON library. 
 
-I created a customized map using the MapBox.JS API. My GeoJSON objects are available in my page on load, allowing for easy user iteractivity using JavaScript, AJAX, and JQuery. Users are able to search providers by radius and location, toggle by catagory, and inspect detailed information for each provider, including contact information and user reviews.
+I created a customized map using the MapBox.JS API. My GeoJSON objects are available in the DOM on load, allowing for fast user iteractivity using JavaScript, AJAX, and JQuery. Users are able to search providers by radius and location, toggle by catagory, and inspect detailed information for each provider, including contact information and user reviews.
 
 When logged in through Facebook Oauth, users are able to access additional features such as saving favorites, contributing new doctors to the directory, adding reviews, and texting provider contact info using the Twilio API.
 
-<h4>Thank you</h4>
+<h4>Thank you to</h4>
 --------
-My irreplaceable mentors: Eric, Kyla, and Kate<br>
-My family and my partner, Cam<br>
-My classmates and the teaching team at Hackbright<br>
-The Gay and Lesbian Medical Association
+my irreplaceable mentors: Eric, Kyla, and Kate<br>
+my family and my partner, Cam<br>
+my classmates and the teaching team at Hackbright<br>
+the Gay and Lesbian Medical Association
 
 
 <h4>License</h4>
