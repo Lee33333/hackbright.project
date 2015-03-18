@@ -24,7 +24,7 @@ Driven to solve a longstanding problem in her community, Daria created LGBT MD t
 --------
 <h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5><br>
 
-<h4>License</h54
+<h4>License</h5>
 --------
 The MIT License (MIT)
 
