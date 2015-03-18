@@ -19,9 +19,9 @@ Discover providers near you by searching by both location and type. Bookmark you
 --------
 Finding the right doctor can be a challenge. LGBT people face additional obstacles:
 
-<i>3.3% of medical schools dedicate <b>zero</b> hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.<br><br>Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</i>
+<i>3.3% of medical schools dedicate <b>zero</b> hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.</i><br>-Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)
 
-Today, there is no centralized, interactive resource to address this problem in the San Francisco Bay Area.
+There is no centralized, interactive resource to address this problem in the San Francisco Bay Area.
 
 <h4>Front Page</h4>
 --------
@@ -50,10 +50,10 @@ When logged in through Facebook Oauth, users are able to access additional featu
 
 <h4>Thank you to</h4>
 --------
-my irreplaceable mentors: Eric, Kyla, and Kate<br>
-my family and my partner, Cam<br>
-my classmates and the teaching team at Hackbright<br>
-the Gay and Lesbian Medical Association
+- my irreplaceable mentors: Eric, Kyla, and Kate<br>
+- my family and my partner, Cam<br>
+- my classmates and the teaching team at Hackbright<br>
+- the Gay and Lesbian Medical Association
 
 
 <h4>License</h4>
