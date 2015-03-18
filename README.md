@@ -1,7 +1,7 @@
 <img src="/img/Logo.png">
-<h4>Everyone deserves a trustworthy doctor. Find Yours.</h4><br>
+<h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
 
-Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
+Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.
 
 [Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
 
@@ -15,8 +15,9 @@ Driven to solve a longstanding problem in her community, Daria created LGBT MD t
 
 <h4>Why LGBT MD?</h4>
 --------
-<i><h6>
-      3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6> </i>
+Finding the right doctor for you can be a challenge. LGBT people face additional obstacles in finding competent healthcare:
+
+<i><h6>3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6> </i>
 
 <h4>Front Page</h4>
 --------
