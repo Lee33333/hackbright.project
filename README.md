@@ -1,24 +1,38 @@
 <img src="/img/Logo.png">
---------
-<h4><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h4><br>
+<h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
 
-<h3>Technology Stack</h3>
---------
+<i><h6>
+      3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable.Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6> </i>
 
+Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
+
+[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
+
+<h4>Technology Stack</h4>
+--------
 <b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
+
 <b>APIs:</b> Twilio API, Facebook OAuth, Mapbox.js, Mapbox GeoCoding API<br>
+
 <b>Front-End:</b> HTML/CSS, Bootstrap, JQuery, JavaScript, AJAX<br><br>
 
+
+
+<h4>Front Page</h4>
+--------
 <img src="/img/Front.png"><br><br>
-
- Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect Lesbian, Gay, Bisexual, and Transgender people to well-trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
-
-[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)<br><br>
-
+Login through with Facebook to create an account. Search within a radius of your home. <br>
+<h4>Map</h4>
+--------
 <img src="/img/map2.png"><br>
+Toggle catagories to find providers of mental health services, providers who accept public health insurance, and trans-friendly services. 
 
-<h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5>
+<h4>Thank you</h4>
+--------
+<h5>Thank to my irreplaceable mentors, Eric, Kate, and Kyla, and to the teaching team at Hackbright.</h5><br>
 
+<h4>License</h5>
+--------
 The MIT License (MIT)
 
 Copyright (c) <year> <copyright holders>
