@@ -1,7 +1,9 @@
 <img src="/img/Logo.png">
 <h4><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h4>
 
-<h4>[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)</h4><br><br>
+<h4>[Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)</h4>
+
+<br><br>
 
 Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect Lesbian, Gay, Bisexual, and Transgender people to well-trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
 
