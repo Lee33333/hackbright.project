@@ -2,7 +2,7 @@
 <h4><i>Everyone deserves a trustworthy doctor. Find Yours.</i></h4>
 
 <i><h6>     3.3% of medical schools dedicate zero hours of their curriculum to LGBT health. On average, medical schools dedicate five hours to LGBT health education, and the quality of this education is widely variable. 
-Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6></i><br>
+Findings from “Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education” JAMA (2011)</h6></i>
 
 Driven to solve a longstanding problem in her community, Daria created LGBT MD to connect Lesbian, Gay, Bisexual, and Transgender people to well-trained medical providers. Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.<br>
 
