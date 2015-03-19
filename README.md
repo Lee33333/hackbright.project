@@ -37,7 +37,7 @@ Toggle catagories to find providers of mental health services, providers who acc
 <img src="/img/docs.png"><br>
 Click on the map for details about your provider. Check out their reviews and add your own. Text yourself a provider's contact information using the Twilio API. Bookmark providers as favorites and add new providers directly to the directory.
 
-<h4>The Story</h4>
+<h4>How</h4>
 --------
 
 I began this project by contacting the Gay and Lesbian Medical Association (GLMA), a non-profit organization of LGBT medical providers. GLMA was excited about my idea and agreed to let me use their data. However, they were unable to provide me with formatted csv files. I used BeautifulSoup and regular expressions to create a scraper to scrape the data I needed from their site. 
