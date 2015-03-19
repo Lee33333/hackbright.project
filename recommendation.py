@@ -15,7 +15,7 @@ consumer_keys = os.environ.get("app_id")
 consumer_secrets = os.environ.get("app_secret")
 app.secret_key = os.environ.get("app_secret_key")
 
-# COnnect with facebook oauth using the secret keys
+# Connect with facebook oauth using the secret keys
 facebook = oauth.remote_app('facebook',
                             base_url='https://graph.facebook.com/',
                             request_token_url=None,
@@ -54,16 +54,17 @@ def facebook_authorized(resp):
 
     print "in authorized"
 
-    # when would this ever happen?
+    #error handling
     if resp is None:
         flash("Facebook authentication error.")
         print "no data!"
         return redirect('/')
 
+    #adds information about our user to the session
     session['logged_in'] = True
     session['oauth_token'] = (resp['access_token'], '')
     me = facebook.get('/me')
-
+    #calls function to create or retrieve user object, adds additional info to the session
     user = add_new_user()
     session['user'] = user.id
     session['user_name'] = me.data['first_name']
@@ -82,7 +83,7 @@ def add_new_user():
     existing_user = model.session.query(model.User).filter(
         model.User.facebook_id == fb_user['id']).first()
 
-    # if user not present, instantiates new user objecy
+    # if user not present, instantiates new user object
     if existing_user is None:
         new_user = model.User()
         new_user.facebook_id = fb_user['id']
@@ -99,6 +100,7 @@ def add_new_user():
             model.User.facebook_id == fb_user['id']).first()
         return new_user
 
+    #work with queried user
     else:
         return existing_user
 
@@ -121,12 +123,14 @@ def logout():
 def add_review():
     '''Recieves data @ new review through post, adds to db'''
 
+    #create new rating object
     new_rating = model.Rating()
 
     review = request.form.get("review")
     rating = request.form.get("rating")
     doctor_id = request.form.get("doctor_id")
 
+    #add attributes to new object
     new_rating.doctor_id = doctor_id
     new_rating.user_id = session['user']
     new_rating.review = review
@@ -214,6 +218,7 @@ def add_doc():
 
         return redirect("/")
 
+    #communicates to user that we have found a matching entry
     else:
 
         flash("Doctor already exists!")
@@ -258,24 +263,28 @@ def show_ratings(idd):
         return render_template("name.html", rating=rating, no_review=no_review, idd=idd)
 
 
-@app.route("/twil", methods=['GET', 'POST'])
-def hello_monkey():
-    """Respond to incoming calls with a simple text message."""
+# @app.route("/twil", methods=['GET', 'POST'])
+# def hello_monkey():
+#     """Respond to incoming calls with a simple text message."""
 
-    resp = twilio.twiml.Response()
-    resp.message("Hello, Mobile Monkey")
-    return str(resp)
+#     resp = twilio.twiml.Response()
+#     resp.message("Hello, Mobile Monkey")
+#     return str(resp)
 
 
 @app.route("/sendinfo", methods=['POST'])
 def sendinfo():
     """Sends data to twilio function"""
+
+    #get info sent from the page form
     phone = request.form.get("phone")
     idd = request.form.get("doctor_id")
 
+    #query to see which drs info we need to text
     this_doc = model.session.query(model.Doctor).filter(
         model.Doctor.id == idd).one()
 
+    #get the info we need to construct the text message and format it
     doc_name = this_doc.name
     doc_address = this_doc.address
     doc_phone = this_doc.phone_number
@@ -284,9 +293,7 @@ def sendinfo():
     data = " " + doc_name + " " + doc_cert + \
         " " + doc_phone + " " + doc_address
 
-    print data
-
-    # FIXME this logic seems to be failingsend the dr, message, and phone,
+    # send the dr, message, and phone,
     # then check to see if it returns true or false
     if twilioapi.send_message(phone, data) == True:
 
@@ -302,9 +309,11 @@ def addfave():
     favorite = request.form.get("data")
     user_id = session['user']
 
+    #check if a favorite match for this dr and suer already exists
     this_favorite = model.session.query(model.Favorites).filter(and_(
         model.Favorites.user_id == user_id, model.Favorites.doctor_id == favorite)).first()
 
+    #if no match exists, and new favorite
     if this_favorite == None:
 
         new_favorite = model.Favorites()
@@ -315,6 +324,7 @@ def addfave():
         model.session.add(new_favorite)
         model.session.commit()
 
+    #if match does exist, remove dr from favorites
     else:
 
         model.session.delete(this_favorite)
@@ -329,11 +339,13 @@ def getfaces():
 
     user_id = session['user']
 
+    #get all the favorite objects assosciated with this user
     all_faves = model.session.query(model.Favorites).filter(
         model.Favorites.user_id == user_id).all()
 
     fave_docs = {}
 
+    #fetch the data we need to display off the object, and add it to the dictionary with the key being the name of the dr
     for item in all_faves:
         name = item.doctor.name
         if item.doctor.phone_number is None:
@@ -344,6 +356,7 @@ def getfaces():
         cert = item.doctor.cert
         fave_docs[name] = [cert, phone, address]
 
+        #jsonify the dictionary
     return jsonify(result=fave_docs)
 
 

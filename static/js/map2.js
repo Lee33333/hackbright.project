@@ -28,7 +28,6 @@ $(document).ready(function() {
     showAll.className = '';
     this.className = 'active';
     mapSearch();
-        //why is this this way?
     return false;
   };
 
@@ -55,7 +54,6 @@ $(document).ready(function() {
     showAll.className = '';
     this.className = 'active';
     mapSearch();
-        //why is this this way?
     return false;
   };
 
@@ -91,7 +89,6 @@ $(document).ready(function() {
           //append the results of the returnfaves route to the favorites modal
           for (var key in result.result) {
             if (result.result.hasOwnProperty(key)) {
-              console.log(key + " -> " + result.result[key]);
               $("#modal2text").append('<div class="list-group"><a href="#" class="list-group-item active">'+key+'</a><a href="#" class="list-group-item">'+result.result[key][0]+'</a><a href="#" class="list-group-item">'+result.result[key][1]+'</a><a href="#" class="list-group-item">'+result.result[key][2]+'</a></div>');
             }
           }
@@ -106,7 +103,7 @@ $(document).ready(function() {
 
   });
 
-// FIXME rename!!! grabs, serializes contents of review form and posts it to /addreview route
+// grabs, serializes contents of review form and posts it to /addreview route
   function reviewEvent(id) {
     $("#textmess").on('submit', function(evt) {
       evt.preventDefault();
@@ -138,7 +135,7 @@ $(document).ready(function() {
 
 });
 
-//serialize the contents of the form, add doctor id and phone number, and send them in a post request to the /sendinfo route
+//serialize the contents of the form, add doctor id and phone number, and send them in a post request to the /sendinfo route for twilio api
 function sendInfo(id, phone) {
   var url = "/sendinfo";
   var data = $(this).serializeArray();
@@ -159,7 +156,7 @@ function mapSearch() {
     map.removeLayer(pinLayer);
   }
 
-    //add the pin layer to map
+    //add the new pin layer to map
   pinLayer.addTo(map);
 
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
@@ -203,7 +200,7 @@ function mapSearch() {
   });
 }
 
-//displays only the pins (geojson objects) that are less than the radius awaya from the specified center point
+//displays only the pins (geojson objects) that are less than the radius away from the specified center point
 function createLatLng(feature) {
   return (CENTER.distanceTo(L.latLng(
         feature.geometry.coordinates[1],

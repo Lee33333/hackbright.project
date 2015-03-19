@@ -4,10 +4,10 @@ import os
 
 
 def send_message(phone, info):
-
-    print info
+    ''' Accepts message and phone number, sends text through twilio'''
 
     try:
+        #retrieves appropriate secret keys
         consumer_key = os.environ.get("ACCOUNT_SID")
         consumer_token = os.environ.get("AUTH_TOKEN")
 
@@ -20,6 +20,6 @@ def send_message(phone, info):
 
     except twilio.TwilioRestException as e:
         print e
-    return False
+        return False
 
     return True
