@@ -1,10 +1,10 @@
 //GeoJson of all the doctors passed from / route
 coordinates = coordinates.obj;
 
-//creates a featureLayer from out GeoJson
+//creates a featureLayer from GeoJson
 var pinLayer = L.mapbox.featureLayer(coordinates);
 
-//populates map with out featureLayer
+//populates map with featureLayer
 pinLayer.addTo(map);
 
 //gets toggle elements from the html
@@ -13,7 +13,7 @@ var showAll = document.getElementById('filter-all');
 var showTrans = document.getElementById('filter-trans');
 var showTherapy = document.getElementById('filter-therapy');
 
-//establishes variables for the search center and radius
+//establishes initial variables for the search center and radius
 var CENTER = L.latLng(37.8, -122.4);
 var RADIUS = 20 * 1609.34;
 
@@ -23,7 +23,7 @@ $(document).ready(function() {
     e.layer.openPopup();
   });
 
-    //events listener on "show all" changes the value of it's class name and calls mapSearch
+    //event listener on "show ins" changes the value of it's class name and calls mapSearch
   showIns.onclick = function(e) {
     showAll.className = '';
     this.className = 'active';
@@ -32,7 +32,7 @@ $(document).ready(function() {
     return false;
   };
 
-    //events listener on "show all" changes the value of it's class name and calls mapSearch
+    //event listener on "show all" changes the value of it's class name and calls mapSearch
   showAll.onclick = function() {
     showIns.className = '';
     this.className = 'active';
@@ -42,6 +42,7 @@ $(document).ready(function() {
     return false;
   };
 
+  //event listener on "show trans" changes the value of it's class name and calls mapSearch
   showTrans.onclick = function() {
     showAll.className = '';
     this.className = 'active';
@@ -49,6 +50,7 @@ $(document).ready(function() {
     return false;
   };
 
+  //event listener on "show therapy" changes the value of it's class name and calls mapSearch
   showTherapy.onclick = function(e) {
     showAll.className = '';
     this.className = 'active';
@@ -77,16 +79,16 @@ $(document).ready(function() {
 
     var url = "/ratings/" + id;
 
+    //when faves button is clicked, add or delete doctor from favorites modal
     $("#faves").on('click', function(evt) {
       evt.preventDefault();
-      console.log("in faves");
+      //send post requests to the addfave and returnfaves routes
       $.post("/addfave", {"data" : id}, function(result) {
-        console.log("yes, it worked");
       });
       $.post("/returnfaves", function(result) {
-          console.log(result.result);
           $("#modal2text").empty();
 
+          //append the results of the returnfaves route to the favorites modal
           for (var key in result.result) {
             if (result.result.hasOwnProperty(key)) {
               console.log(key + " -> " + result.result[key]);
@@ -110,12 +112,11 @@ $(document).ready(function() {
       evt.preventDefault();
       $("submitphone").attr("disabled", true);
       var phone = $("#phone").val();
-      console.log("in event listender");
-      console.log(phone);
       sendInfo(id, phone);
       $("#textmess").hide();     
     });
 
+    //on submit in the review form, prevent default action
     $("#reviewform").on('submit', function(evt) {
       evt.preventDefault();
             //gets contents of submit review form
@@ -125,12 +126,8 @@ $(document).ready(function() {
       var url = "/addreview";
             //sends this info in post to the add review route
       $.post(url, contents, function(result) {
-               // Your Flask has addded that review
-               // return the list of comments for the doctor
-
-               // FIXME here we're loading another url in an attempt to refresh review but only works once
         var url2 = "/ratings/" + id;
-
+        //reload the reviews form to update contents, hide the option to add review
         $("#provider-detail").load(url2, function() {
           $("#reviewform").hide();
           });
@@ -141,14 +138,12 @@ $(document).ready(function() {
 
 });
 
+//serialize the contents of the form, add doctor id and phone number, and send them in a post request to the /sendinfo route
 function sendInfo(id, phone) {
-  console.log("in send info");
-  console.log(phone);
   var url = "/sendinfo";
   var data = $(this).serializeArray();
   data.push({"name": "doctor_id", "value": id});
   data.push({"name": "phone", "value": phone});
-  console.log(data);
   $.post(url, data, function(result) {
     console.log(result[Object][result][1]);
 
@@ -169,28 +164,34 @@ function mapSearch() {
 
     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
   pinLayer.setFilter(function showDrs(feature) {
-        //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
+        //if show insurance class and show trans classes are active, grab center and radius, and show pub insurance and trans pins within radius
     if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === '') {
       return createLatLng(feature) &&
       (feature.properties['ins'] === "yes") &&
       (feature.properties['trans'] === "yes");
+      //if show trans class is active, grab center and radius, and show trans pins within radius
     }else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === '') {
       return createLatLng(feature) &&
       (feature.properties['trans'] === "yes");
+      //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
     }else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === '') {
       return createLatLng(feature) &&
       (feature.properties['ins'] === "yes");
+    //if show therapy class is active, grab center and radius, and show therapy pins within radius
     }else if (showIns.className === '' && showTrans.className === '' && showTherapy.className === 'active') {
       return createLatLng(feature) &&
       (feature.properties['therapy'] === "yes");
+      //if show insurance class and show therapy classes are active, grab center and radius, and show pub insurance and therapy pins within radius
     }else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === 'active') {
       return createLatLng(feature) &&
       (feature.properties['therapy'] === "yes")&&
       (feature.properties['ins'] === "yes");
+      //if show therapy class and show trans classes are active, grab center and radius, and show therapy and trans pins within radius
     }else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === 'active') {
       return createLatLng(feature) &&
       (feature.properties['therapy'] === "yes")&&
       (feature.properties['trans'] === "yes");
+      //if all three classes are active, grab center and radius, and show pub insurance, therapy, and trans pins within radius
     }else if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === 'active') {
       return createLatLng(feature) &&
       (feature.properties['therapy'] === "yes")&&
@@ -202,6 +203,7 @@ function mapSearch() {
   });
 }
 
+//displays only the pins (geojson objects) that are less than the radius awaya from the specified center point
 function createLatLng(feature) {
   return (CENTER.distanceTo(L.latLng(
         feature.geometry.coordinates[1],
