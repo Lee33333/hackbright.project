@@ -10,13 +10,9 @@ import twilioapi
 oauth = OAuth()
 app = Flask(__name__)
 
-#for Heroku
+# PORT=int(os.environ.get("PORT" ,5000))
 
-DEBUG="NO_DEBUG" not in os.environ
-
-PORT=int(os.environ.get("PORT",5000))
-
-app.run(debug=DEBUG, port=PORT)
+# app.run(debug=True,host="127.0.0.1" ,port=PORT)
 
 # Retrieve secret keys from secrets file
 consumer_keys = os.environ.get("app_id")

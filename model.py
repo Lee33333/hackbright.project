@@ -3,10 +3,11 @@ from sqlalchemy import create_engine, ForeignKey, Column, Integer, String, Float
 from geopy.geocoders import Nominatim
 from geojson import Feature, Point, FeatureCollection
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
+import os
 
 
 # Creates engine,session, echo prints sqla calls, commits are not auto
-engine = create_engine("sqlite:///doctors.db", echo=True)
+engine = create_engine(os.environ.get("DATABASE_URL"), echo=True)
 session = scoped_session(
     sessionmaker(bind=engine, autocommit=False, autoflush=False))
 
