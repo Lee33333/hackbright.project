@@ -4,6 +4,7 @@ from geopy.geocoders import Nominatim
 from geojson import Feature, Point, FeatureCollection
 from sqlalchemy.orm import sessionmaker, scoped_session, relationship, backref
 import os
+import psycopg2
 
 
 # Creates engine,session, echo prints sqla calls, commits are not auto
