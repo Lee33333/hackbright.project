@@ -5,6 +5,7 @@ Flask==0.10.1
 Flask-OAuth==0.12
 geojson==1.0.9
 geopy==1.9.0
+gunicorn==19.3.0
 httplib2==0.9
 itsdangerous==0.24
 Jinja2==2.7.3
@@ -16,7 +17,6 @@ pep8==1.6.2
 psycopg2==2.6
 pyasn1==0.1.7
 pyasn1-modules==0.0.5
-pylint==1.4.3
 pytz==2014.10
 requests==2.5.1
 rsa==3.1.4

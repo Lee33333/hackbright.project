@@ -1,2 +1,3 @@
-web: python recommendation.py -p $PORT
+web: gunicorn app:app
+init: python recommendation.py
 
