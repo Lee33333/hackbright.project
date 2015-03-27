@@ -1,1 +1,1 @@
-web:python recommendation.py
+web: python recommendation.py
