@@ -9,6 +9,7 @@ import psycopg2
 
 # Creates engine,session, echo prints sqla calls, commits are not auto
 engine = create_engine(os.environ.get("DATABASE_URL"), echo=True)
+
 session = scoped_session(
     sessionmaker(bind=engine, autocommit=False, autoflush=False))
 

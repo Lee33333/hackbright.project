@@ -12,8 +12,6 @@ app = Flask(__name__)
 
 PORT=int(os.environ.get("PORT" ,5000))
 
-app.run(debug=True,host="127.0.0.1" ,port=PORT)
-
 
 # Retrieve secret keys from secrets file
 consumer_keys = os.environ.get("app_id")
@@ -365,5 +363,5 @@ def getfaces():
     return jsonify(result=fave_docs)
 
 
-# if __name__ == "__main__":
-#     app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0" ,port=PORT)
