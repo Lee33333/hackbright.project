@@ -12,7 +12,7 @@ Discover providers near you by searching by both location and type. Bookmark you
 
 <h4>Technology Stack</h4>
 --------
-<b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, Beautiful Soup <br>
+<b>Application: </b>Python, Flask, Jinja, SQLAlchemy, SQLite, PostgreSQL, Beautiful Soup <br>
 
 <b>APIs:</b> Twilio API, Facebook OAuth, Mapbox.js, Mapbox GeoCoding API<br>
 
