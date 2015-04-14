@@ -120,6 +120,7 @@ body{
 
 .well{
   margin-right:20px;
+  font-weight:normal;
 }
 
 .btn-primary:hover {
