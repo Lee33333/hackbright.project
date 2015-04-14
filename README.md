@@ -1,12 +1,14 @@
 <img src="/img/Logo.png">
 <h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
 
+[Demo Version (some features restricted) lgbtmd.herokuapp.com](https://lgbtmd.herokuapp.com)
+
 Driven to solve a longstanding problem in my community, I created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trustworthy medical providers. I'm excited to deploy a full, live version and offer this resource to LGBT people in the San Francisco Bay Area.
 
 Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.
 
 [Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
-[Demo Version (some features restricted until live release) lgbtmd.herokuapp.com](https://lgbtmd.herokuapp.com)
+
 
 <h4>Technology Stack</h4>
 --------
