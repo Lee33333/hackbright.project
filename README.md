@@ -6,6 +6,7 @@ Driven to solve a longstanding problem in my community, I created LGBT MD to con
 Discover providers near you by searching by both location and type. Bookmark your favorites and text yourself their contact info. Contribute reviews and new providers to help others find the care they need.
 
 [Screencast Demo of LGBT MD](http://youtu.be/j_h-nyEkpcI)
+[Demo Version (some features restricted until live release) lgbtmd.herokuapp.com](https://lgbtmd.herokuapp.com)
 
 <h4>Technology Stack</h4>
 --------
