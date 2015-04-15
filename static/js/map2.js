@@ -213,7 +213,7 @@ function getGeocode(address) {
     //converts address to a url form replacing spaces with +
   address = address.replace(/ /g, "+");
     //the url for the get request
-  var mapBoxUrl = "http://api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
+  var mapBoxUrl = "//api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
     // send this url with a get request to the mapbox geocoder api
   $.get(mapBoxUrl, function(response) {
         //  get an object back and pull out lat/lon
