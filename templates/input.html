@@ -1,135 +1,237 @@
-{% extends 'base.html' %}
-{% block body %}
+    {% extends 'base.html' %} {% block body %}<br>
 
+    <div class="collapse" id="collapseExample">
+        <div class="well alignl">
+            <div class="center">
+                <h4 style="font-weight: bold">The right doctor can be hard to
+                find.</h4>
+            </div>
 
-<br>
-<div class="collapse" id="collapseExample">
-	<div class="well alignl"> 
-		<div class="center"><h4><b>The right doctor can be hard to find. </b></h4></div><h4>LGBT people face additional obstacles in accessing well-trained health care professionals:</h4>
-		"<b>33.3%</b> of medical schools dedicate <b>zero</b> hours of their curriculum to LGBT health."<a href="http://www.ncbi.nlm.nih.gov/pubmed/21900137">  Lesbian, gay, bisexual, and transgender-related content in undergraduate medical education. JAMA (2011)</a><br>
-		The providers in LGBT MD are verified by either the <a href="http://www.glma.org">Gay and Lesbian Medical Association</a> or recommended by community members.
-		</p>
-	</div>
-</div>
+            <h4>LGBT people face additional obstacles in accessing well-trained
+            health care professionals:</h4>"<b>33.3%</b> of medical schools
+            dedicate <b>zero</b> hours of their curriculum to LGBT
+            health."<a href=
+            "http://www.ncbi.nlm.nih.gov/pubmed/21900137">Lesbian, gay,
+            bisexual, and transgender-related content in undergraduate medical
+            education. JAMA (2011)</a><br>
+            The providers in LGBT MD are verified by either the <a href=
+            "http://www.glma.org">Gay and Lesbian Medical Association</a> or
+            recommended by community members.
+            <p>
+        </div>
+    </div>
 
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Add a doctor to LGBT MD</h4>
-                  </div>
-                  <div class="modal-body">
+    <div class="modal fade" id="myModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" type=
+                    "button"><span>&times;</span></button>
 
-                    <form class="form-horizontal" action="/adddoc" id="doc_form" method="POST">
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control field" id="doc_name" name="doc_name" placeholder="Doctor Name" required autofocus>
-                        </div>
-                      </div>
-                      <div class="form-group ">
-                        <div class="col-sm-10">
-                          <select id="cert" name="cert">
-                            <option value="MD">MD (Medical Doctor)</option>
-                            <option value="NP">NP (Nurse Practitioner)</option>
-                            <option value="RN">RN (Registered Nurse)</option>
-                            <option value="DDS">DDS (Dentist)</option>
-                            <option value="OD">OD (Doctor of Optometry</option>
-                            <option value="DC">DC (Chiropractor)</option>
-                            <option value="MFT">MFT (Masters of Family Therapy)</option>
-                            <option value="LCSW">LCSW (Licensed Social Worker)</option>
-                            <option value="DO">DO (Doctor of Osteopathy)</option>
-                            <option value="PA">PA (Physicians Assistant)</option>
-                            <option value="PSYD">Psy.D (Dr. of Psychology)</option>
-                            <option value="PHD">PhD (Doctor of Philosophy)</option>
-                            <option value="CM">CM (Certified Midwife)</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control field" name="biz_name" id="biz_name" placeholder="Business Name" autofocus>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control field" name="address" id="address" placeholder="Address" required autofocus>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control field" name="suite_number" id="suite" placeholder="Suite (optional)" autofocus>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control field" name="phone2" id="phone2" placeholder="Phone Number" autofocus>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          Would you like your submission to be anonymous?
-                          <select name="anon">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          Gender: 
-                          <select name="gender">
-                            <option value="F">Female</option>
-                            <option value="T">Transgender</option>
-                            <option value="M">Male</option>
-                            <option name="O">Other Gender</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          Transgender Health Specialty?
-                          <select name="trans">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          Reproductive Health Specialty?
-                          <select name="repro">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="col-sm-10">
-                          Accepts Public Insurance?
-                          <select name="pub_ins">
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <div class="modal-footer">
-                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button type="submit" id="docsubmit" class="btn btn-primary" name="submit"class="btn btn-default">Add Doctor</button>
-                       </div>
-                     </div>
-                   </form>
+                    <h4 class="modal-title" id="myModalLabel">Add a doctor to
+                    LGBT MD</h4>
+                </div>
 
-                 </div>
-               </div>
-             </div>
-           </div>
+                <div class="modal-body">
+                    <form action="/adddoc" class="form-horizontal" id=
+                    "doc_form" method="post" name="doc_form">
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input autofocus="" class="form-control field"
+                                id="doc_name" name="doc_name" placeholder=
+                                "Doctor Name" required="" type="text">
+                            </div>
+                        </div>
 
-<div id="basic-info" class="alignl"></div>
-<div id="provider-detail" class="alignl"></div> 
-<div id="sendtext" class="alignl">    
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <select id="cert" name="cert">
+                                    <option value="MD">
+                                        MD (Medical Doctor)
+                                    </option>
 
-</div>
+                                    <option value="NP">
+                                        NP (Nurse Practitioner)
+                                    </option>
 
+                                    <option value="RN">
+                                        RN (Registered Nurse)
+                                    </option>
 
-{% endblock %}
+                                    <option value="DDS">
+                                        DDS (Dentist)
+                                    </option>
+
+                                    <option value="OD">
+                                        OD (Doctor of Optometry
+                                    </option>
+
+                                    <option value="DC">
+                                        DC (Chiropractor)
+                                    </option>
+
+                                    <option value="MFT">
+                                        MFT (Masters of Family Therapy)
+                                    </option>
+
+                                    <option value="LCSW">
+                                        LCSW (Licensed Social Worker)
+                                    </option>
+
+                                    <option value="DO">
+                                        DO (Doctor of Osteopathy)
+                                    </option>
+
+                                    <option value="PA">
+                                        PA (Physicians Assistant)
+                                    </option>
+
+                                    <option value="PSYD">
+                                        Psy.D (Dr. of Psychology)
+                                    </option>
+
+                                    <option value="PHD">
+                                        PhD (Doctor of Philosophy)
+                                    </option>
+
+                                    <option value="CM">
+                                        CM (Certified Midwife)
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input autofocus="" class="form-control field"
+                                id="biz_name" name="biz_name" placeholder=
+                                "Business Name" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input autofocus="" class="form-control field"
+                                id="address" name="address" placeholder=
+                                "Address" required="" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input autofocus="" class="form-control field"
+                                id="suite" name="suite_number" placeholder=
+                                "Suite (optional)" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <input autofocus="" class="form-control field"
+                                id="phone2" name="phone2" placeholder=
+                                "Phone Number" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                Would you like your submission to be anonymous?
+                                <select name="anon">
+                                    <option value="yes">
+                                        Yes
+                                    </option>
+
+                                    <option value="no">
+                                        No
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                Gender: <select name="gender">
+                                    <option value="F">
+                                        Female
+                                    </option>
+
+                                    <option value="T">
+                                        Transgender
+                                    </option>
+
+                                    <option value="M">
+                                        Male
+                                    </option>
+
+                                    <option>
+                                        Other Gender
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                Transgender Health Specialty? <select name=
+                                "trans">
+                                    <option value="yes">
+                                        Yes
+                                    </option>
+
+                                    <option value="no">
+                                        No
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                Reproductive Health Specialty? <select name=
+                                "repro">
+                                    <option value="yes">
+                                        Yes
+                                    </option>
+
+                                    <option value="no">
+                                        No
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                Accepts Public Insurance? <select name=
+                                "pub_ins">
+                                    <option value="yes">
+                                        Yes
+                                    </option>
+
+                                    <option value="no">
+                                        No
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="modal-footer">
+                                <button class="btn btn-default" data-dismiss=
+                                "modal" type=
+                                "button">Close</button><button class=
+                                "btn btn-default" id="docsubmit" name="submit"
+                                type="submit">Add Doctor</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="alignl" id="basic-info"></div>
+
+    <div class="alignl" id="provider-detail"></div>
+
+    <div class="alignl" id="sendtext"></div>{% endblock %}
