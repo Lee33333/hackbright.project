@@ -72,8 +72,12 @@ $(document).ready(function() {
     var phone = e.layer.feature.properties.phone;
     var id = e.layer.feature.properties.idd;
     var cert = e.layer.feature.properties.cert;
-    var sendText = '<form class="form-inline" id="textmess"><h4>Get a text with this doctors info! (disabled in demo version) </h4><div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div><button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br></div><button id="faves" name="faves" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add/Remove</button><br><br>'
-    var basicInfo = '<div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a><a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a>'
+    var sendText = '<form class="form-inline" id="textmess"><h4>Get a text with this doctors info! (disabled in demo version) </h4>' +
+      '<div class="form-group"><input id="phone" type="text" class="form-control" placeholder="Your phone number" required/></div>' +
+      '<button type="submit" id="submitphone" name="reviewsubmit" class="btn btn-default">Text Me</button></form><br></div>' +
+      '<button id="faves" name="faves" class="btn btn-primary"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Add/Remove</button><br><br>'
+    var basicInfo = '<div class="list-group"><a href="#" class="list-group-item active">'+ name + ' '+ cert +'</a>' +
+      '<a href="#" class="list-group-item">'+phone+'</a><a href="#" class="list-group-item">'+address+'</a>'
     $("#sendtext").html(sendText);
     $("#basic-info").html(basicInfo);
 
@@ -91,7 +95,9 @@ $(document).ready(function() {
           //append the results of the returnfaves route to the favorites modal
           for (var key in result.result) {
             if (result.result.hasOwnProperty(key)) {
-              var modalText = '<div class="list-group"><a href="#" class="list-group-item active">'+key+'</a><a href="#" class="list-group-item">'+result.result[key][0]+'</a><a href="#" class="list-group-item">'+result.result[key][1]+'</a><a href="#" class="list-group-item">'+result.result[key][2]+'</a></div>'
+              var modalText = '<div class="list-group"><a href="#" class="list-group-item active">'+key+'</a>' +
+                '<a href="#" class="list-group-item">'+result.result[key][0]+'</a>' +
+                '<a href="#" class="list-group-item">'+result.result[key][1]+'</a><a href="#" class="list-group-item">'+result.result[key][2]+'</a></div>'
               $("#modal2text").append(modalText);
             }
           }
