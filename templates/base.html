@@ -17,6 +17,10 @@
 
   <link rel="stylesheet" type="text/css" href="/static/mycss.css">
 
+  <style>
+    #map {height:900px; width:100%; margin:0;}
+
+  </style>
 
 
 
@@ -107,7 +111,6 @@
 
           <div>
             <!-- Modal -->
-
            <div class="body">   
             {% block body %}{% endblock %}
           </div>
@@ -123,7 +126,7 @@
               <h4 class="modal-title" id="myModalLabel">Your Favorite Doctors</h4>
             </div>
             <div class="modal-body" id="modal2text">
-              None, login to add favorites.
+              None, log in to add favorites.
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
