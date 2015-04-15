@@ -9,6 +9,7 @@ import twilioapi
 
 oauth = OAuth()
 app = Flask(__name__)
+app.debug = True
 
 PORT=int(os.environ.get("PORT" ,5000))
 
