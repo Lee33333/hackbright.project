@@ -157,88 +157,88 @@ function sendInfo(id, phone) {
 
 }
 
-//updates the pins displayed on map
-function mapSearch() {
+// //updates the pins displayed on map
+// function mapSearch() {
 
-    //remove current pinLayer from map
-  if (map.hasLayer(pinLayer)) {
-    map.removeLayer(pinLayer);
-  }
+//     //remove current pinLayer from map
+//   if (map.hasLayer(pinLayer)) {
+//     map.removeLayer(pinLayer);
+//   }
 
-    //add the new pin layer to map
-  pinLayer.addTo(map);
+//     //add the new pin layer to map
+//   pinLayer.addTo(map);
 
-    //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
-  pinLayer.setFilter(function showDrs(feature) {
-        //if show insurance class and show trans classes are active, grab center and radius, and show pub insurance and trans pins within radius
-    if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === '') {
-      return createLatLng(feature) &&
-      (feature.properties['ins'] === "yes") &&
-      (feature.properties['trans'] === "yes");
-      //if show trans class is active, grab center and radius, and show trans pins within radius
-    }else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === '') {
-      return createLatLng(feature) &&
-      (feature.properties['trans'] === "yes");
-      //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
-    }else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === '') {
-      return createLatLng(feature) &&
-      (feature.properties['ins'] === "yes");
-    //if show therapy class is active, grab center and radius, and show therapy pins within radius
-    }else if (showIns.className === '' && showTrans.className === '' && showTherapy.className === 'active') {
-      return createLatLng(feature) &&
-      (feature.properties['therapy'] === "yes");
-      //if show insurance class and show therapy classes are active, grab center and radius, and show pub insurance and therapy pins within radius
-    }else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === 'active') {
-      return createLatLng(feature) &&
-      (feature.properties['therapy'] === "yes")&&
-      (feature.properties['ins'] === "yes");
-      //if show therapy class and show trans classes are active, grab center and radius, and show therapy and trans pins within radius
-    }else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === 'active') {
-      return createLatLng(feature) &&
-      (feature.properties['therapy'] === "yes")&&
-      (feature.properties['trans'] === "yes");
-      //if all three classes are active, grab center and radius, and show pub insurance, therapy, and trans pins within radius
-    }else if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === 'active') {
-      return createLatLng(feature) &&
-      (feature.properties['therapy'] === "yes")&&
-      (feature.properties['trans'] === "yes")&&
-      (feature.properties['ins'] === "yes");
-    }else {
-      return createLatLng(feature);
-    }
-  });
-}
+//     //setFilter takes GeoJSON object, evaluates it, and returns true to show it and false to hide it
+//   pinLayer.setFilter(function showDrs(feature) {
+//         //if show insurance class and show trans classes are active, grab center and radius, and show pub insurance and trans pins within radius
+//     if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === '') {
+//       return createLatLng(feature) &&
+//       (feature.properties['ins'] === "yes") &&
+//       (feature.properties['trans'] === "yes");
+//       //if show trans class is active, grab center and radius, and show trans pins within radius
+//     }else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === '') {
+//       return createLatLng(feature) &&
+//       (feature.properties['trans'] === "yes");
+//       //if show insurance class is active, grab center and radius, and show pub insurance pins within radius
+//     }else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === '') {
+//       return createLatLng(feature) &&
+//       (feature.properties['ins'] === "yes");
+//     //if show therapy class is active, grab center and radius, and show therapy pins within radius
+//     }else if (showIns.className === '' && showTrans.className === '' && showTherapy.className === 'active') {
+//       return createLatLng(feature) &&
+//       (feature.properties['therapy'] === "yes");
+//       //if show insurance class and show therapy classes are active, grab center and radius, and show pub insurance and therapy pins within radius
+//     }else if (showIns.className === 'active' && showTrans.className === '' && showTherapy.className === 'active') {
+//       return createLatLng(feature) &&
+//       (feature.properties['therapy'] === "yes")&&
+//       (feature.properties['ins'] === "yes");
+//       //if show therapy class and show trans classes are active, grab center and radius, and show therapy and trans pins within radius
+//     }else if (showIns.className === '' && showTrans.className === 'active' && showTherapy.className === 'active') {
+//       return createLatLng(feature) &&
+//       (feature.properties['therapy'] === "yes")&&
+//       (feature.properties['trans'] === "yes");
+//       //if all three classes are active, grab center and radius, and show pub insurance, therapy, and trans pins within radius
+//     }else if (showIns.className === 'active' && showTrans.className === 'active' && showTherapy.className === 'active') {
+//       return createLatLng(feature) &&
+//       (feature.properties['therapy'] === "yes")&&
+//       (feature.properties['trans'] === "yes")&&
+//       (feature.properties['ins'] === "yes");
+//     }else {
+//       return createLatLng(feature);
+//     }
+//   });
+// }
 
-//displays only the pins (geojson objects) that are less than the radius away from the specified center point
-function createLatLng(feature) {
-  return (CENTER.distanceTo(L.latLng(
-        feature.geometry.coordinates[1],
-        feature.geometry.coordinates[0])) < RADIUS);
+// //displays only the pins (geojson objects) that are less than the radius away from the specified center point
+// function createLatLng(feature) {
+//   return (CENTER.distanceTo(L.latLng(
+//         feature.geometry.coordinates[1],
+//         feature.geometry.coordinates[0])) < RADIUS);
 
-}
+// }
 
-//gets geocoded information for address with MapBox API
-function getGeocode(address) {
-    //converts address to a url form replacing spaces with +
-  address = address.replace(/ /g, "+");
-    //the url for the get request
-  var mapBoxUrl = "//api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
-    // send this url with a get request to the mapbox geocoder api
-  $.get(mapBoxUrl, function(response) {
-        //  get an object back and pull out lat/lon
-    var lon = (response.features[0].center[0]);
-    var lat = (response.features[0].center[1]);
-        // create a latLng object with the coordinates we got
-    CENTER = L.latLng(lat, lon);
-        //get radius value from form and convert it to miles
-    RADIUS = $("#radiustext").val() * 1609.34;
-        //call the mapSearch function
-    mapSearch();
-    //if we fail to get a response we'll print error, should do more here
-  }).fail(function(error) {
-  console.log('ERROR: ', error);
-});
+// //gets geocoded information for address with MapBox API
+// function getGeocode(address) {
+//     //converts address to a url form replacing spaces with +
+//   address = address.replace(/ /g, "+");
+//     //the url for the get request
+//   var mapBoxUrl = "//api.tiles.mapbox.com/v4/geocode/mapbox.places/"+address+".json?access_token="+L.mapbox.accessToken;
+//     // send this url with a get request to the mapbox geocoder api
+//   $.get(mapBoxUrl, function(response) {
+//         //  get an object back and pull out lat/lon
+//     var lon = (response.features[0].center[0]);
+//     var lat = (response.features[0].center[1]);
+//         // create a latLng object with the coordinates we got
+//     CENTER = L.latLng(lat, lon);
+//         //get radius value from form and convert it to miles
+//     RADIUS = $("#radiustext").val() * 1609.34;
+//         //call the mapSearch function
+//     mapSearch();
+//     //if we fail to get a response we'll print error, should do more here
+//   }).fail(function(error) {
+//   console.log('ERROR: ', error);
+// });
 
-}
+// }
 
 
