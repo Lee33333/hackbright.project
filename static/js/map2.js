@@ -19,6 +19,9 @@ var RADIUS = 20 * 1609.34;
 
 //waits for all DOM elements to load
 $(document).ready(function() {
+
+  if (map.tap) map.tap.disable();
+  
   pinLayer.on('mouseover', function(e) {
     e.layer.openPopup();
   });
