@@ -1,166 +1,168 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 
-    <title>LGBT MD</title>
+  <title>LGBT MD</title>
 
-    <link href='/static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
-    <meta content='initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'>
-    <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet'>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link href='//fonts.googleapis.com/css?family=Maven+Pro:400,700,900' rel='stylesheet' type='text/css'>
-    <link href="/static/mycss.css" rel="stylesheet" type="text/css">
-    <style>
-
-
-    </style>
+  <link href='/static/bootstrap/css/bootstrap.min.css' rel='stylesheet'>
+  <meta content='initial-scale=1,maximum-scale=1,user-scalable=no' name='viewport'>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <link href='//fonts.googleapis.com/css?family=Maven+Pro:400,700,900' rel='stylesheet' type='text/css'>
+  <link href="/static/mycss.css" rel="stylesheet" type="text/css">
 </head>
-
 <body>
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid" id="#nav">
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed" data-target=
-                "#bs-example-navbar-collapse-1" data-toggle="collapse" type=
-                "button"><span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span> <span class="icon-bar"></span>
-                <span class="icon-bar"></span></button>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid" id="nav">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-target=
+        "#bs-example-navbar-collapse-1" data-toggle="collapse" type=
+        "button"><span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span> <span class="icon-bar"></span>
+        <span class="icon-bar"></span></button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
 
-            <div class="collapse navbar-collapse" id=
-            "bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/" id="LGBTMD">LGBT MD</a>
-                    </li>
+      <div class="collapse navbar-collapse text-center" id=
+      "bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/" id="LGBTMD">LGBT MD</a>
+        </li>
 
-                    <li>
-                        <h4>(demo version)</h4>
-                    </li>
+        <li>
+          <h4>(demo version)</h4>
+        </li>
 
-                    <li>{% if session['logged_in'] == True %} <a href=
-                    "#">Welcome, {{session['user_name']}}</a>{% endif %}
-                    </li>
-                </ul>
+        <li>{% if session['logged_in'] == True %} <a href=
+          "#">Welcome, {{session['user_name']}}</a>{% endif %}
+        </li>
+      </ul>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a data-target="#myModal2" data-toggle="modal" href=
-                        "#"><span class="glyphicon glyphicon-star"></span></a>
-                    </li>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a data-target="#myModal2" data-toggle="modal" href=
+          "#"><span class="glyphicon glyphicon-star"></span></a>
+        </li>
 
-                    <li>{% if session['logged_in'] == True
-                        %}<a data-target="#myModal" data-toggle="modal" href=
-                        "#">Add a doctor</a>{% endif %}
-                    </li>
+        <li>{% if session['logged_in'] == True
+          %}<a data-target="#myModal" data-toggle="modal" href=
+          "#">Add a doctor</a>{% endif %}
+        </li>
 
-                    <li>{% if session['logged_in'] != True %}<a href=
-                    "/login">Login with Facebook</a>{% endif %} {% if
-                    session['logged_in'] == True %}<a href="/logout">Logout</a>
-                    {% endif %}
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
+        <li>{% if session['logged_in'] != True %}<a href=
+          "/login">Login with Facebook</a>{% endif %} {% if
+          session['logged_in'] == True %}<a href="/logout">Logout</a>
+          {% endif %}
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-    <div class="container-fluid" id="right">
+
+
+<div class="container-fluid map-container height" >
+  <div class="row height">
+    <div class="col-xs-12 col-sm-7 height">
+      <!-- Map -->
+      <div id="map"></div>
+      <meta data-obj="{{coordinates}}" id="data"/>
+      <nav class='menu-ui' id='menu-ui'>
+        <a class='active' href='#' id='filter-all'>All
+          Providers</a> <a href='#' id='filter-therapy'>Mental
+          Health</a> <a href='#' id='filter-ins'>Public Insurance</a>
+          <a href='#' id='filter-trans'>Trans Friendly</a>  
+        </nav>
+      </div>
+      <!-- Side bar -->
+      <div class="col-xs-12 col-sm-5 bg-sd">
         <div class="row">
-            <div class="col-xs-12 col-md-7 left">
-                <div id='map'></div>
-                <meta data-obj="{{coordinates}}" id="data">
+          <div class="col-xs-12">
+            <h3 class="center"><br><b>Everyone deserves a trustworthy doctor.<br>
+              Find yours.</b></h3><br>
 
-                <nav class='menu-ui' id='menu-ui'>
-                    <a class='active' href='#' id='filter-all'>All
-                    Providers</a> <a href='#' id='filter-therapy'>Mental
-                    Health</a> <a href='#' id='filter-ins'>Public Insurance</a>
-                    <a href='#' id='filter-trans'>Trans Friendly</a>
-                </nav>
+              {% with messages = get_flashed_messages() %} {% if messages
+              %} {% for message in messages %}
+
+              <ul class="flashes">
+                <li>{{message}}</li>
+              </ul>{% endfor %} {% endif %} {% endwith %}
             </div>
+          </div>
+          <div class="row">
+           <div class="col-xs-12">
+            <form class="form-inline center">
+              <div class="form-group">
+                <label for="radiustext">Radius:</label>
+                <input class="form-control" id="radiustext" name=
+                "radius" placeholder="miles" required="" type=
+                "number">
+              </div>
 
-            <div class="col-xs-6 col-md-5">
-                <div class="background">
-                    <h3 class="center"><br>
-                    <b>Everyone deserves a trustworthy doctor.<br>
-                    Find yours.</b></h3><br>
-                    {% with messages = get_flashed_messages() %} {% if messages
-                    %} {% for message in messages %}
+              <div class="form-group">
+                <label for="address">Zip:</label> 
+                <input class="form-control" id="address" name="address"
+                placeholder="zip code" required="" type="text">
+              </div>
 
-                    <ul class="flashes">
-                        <li>{{message}}</li>
-                    </ul>{% endfor %} {% endif %} {% endwith %}
+              <input class="btn btn-primary" id="radiussubmit"
+              name="submit" type="submit" value="Find">
+            </form><br/>
 
-                    <form class="form-inline center">
-                        <div class="form-group">
-                            <label for="radiustext">Radius:</label>
-                            <input class="form-control" id="radiustext" name=
-                            "radius" placeholder="miles" required="" type=
-                            "number">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address">Zip:</label> <input class=
-                            "form-control" id="address" name="address"
-                            placeholder="zip code" required="" type="text">
-                        </div><input class="btn btn-primary" id="radiussubmit"
-                        name="submit" type="submit" value="Find">
-                    </form><br>
-
-                    <div id="why">
-                        <a class="btn btn-primary" data-toggle="collapse" href=
-                        "#collapseExample">Why LGBT MD?</a>
-
-                        <div>
-                            <!-- Button trigger modal -->
-
-                            <div>
-                                <!-- Modal -->
-
-                                <div class="body">
-                                    {% block body %}{% endblock %}
-                                </div>
-                            </div>
-                        </div><!-- Modal -->
-
-                        <div class="modal fade" id="myModal2" tabindex="-1">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button class="close" data-dismiss=
-                                        "modal" type=
-                                        "button"><span>&times;</span></button>
-
-                                        <h4 class="modal-title" id=
-                                        "myModalLabel">Your Favorite
-                                        Doctors</h4>
-                                    </div>
-
-                                    <div class="modal-body" id="modal2text">
-                                        None, login to add favorites.
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button class="btn btn-default"
-                                        data-dismiss="modal" type=
-                                        "button">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div><script>
-                        L.mapbox.accessToken = 'pk.eyJ1IjoiZGFyaWEzMyIsImEiOiJWbW94aHJBIn0.X1zLt9sD6VtHx5wPwjj9Xg';
-                        var map = L.mapbox.map('map', 'daria33.2e60eb40').setView([37.76872, -122.44929], 13);
-                        var coordinates = $('#data').data();
-
-
-                        </script> <script src="../static/js/map2.js"></script> 
-                    </div>
+            <div class="row">
+              <div class="col-xs-12">
+                <div id="why">
+                  <a class="btn btn-primary" data-toggle="collapse" href=
+                  "#collapseExample">Why LGBT MD?</a>
+                  <div class="body">
+                    {% block body %}{% endblock %}
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div> 
+    </div> 
+      <div class="modal fade" id="myModal2" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" data-dismiss=
+          "modal" type=
+          "button"><span>&times;</span></button>
+
+          <h4 class="modal-title" id=
+          "myModalLabel">Your Favorite
+          Doctors</h4>
+        </div>
+
+        <div class="modal-body" id="modal2text">
+          None, login to add favorites.
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-default"
+          data-dismiss="modal" type=
+          "button">Close</button>
+        </div>
+      </div>
     </div>
+  </div>
+  </div>
+
+
+  <!-- Map Script -->
+  <script>
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGFyaWEzMyIsImEiOiJWbW94aHJBIn0.X1zLt9sD6VtHx5wPwjj9Xg';
+    var map = L.mapbox.map('map', 'daria33.2e60eb40').setView([37.76872, -122.44929], 13);
+    var coordinates = $('#data').data() 
+  </script> 
+  <script src="../static/js/map2.js"></script> 
+
 </body>
 </html>

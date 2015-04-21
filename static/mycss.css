@@ -1,4 +1,17 @@
-#map {height:900px; width:100%; margin:0;}
+ #map { 
+  position:absolute; 
+  top:0; 
+  bottom:0; 
+  width:100%; 
+}
+ .map-container{
+  position: relative;
+  padding: 0;
+}
+
+ html, body, .height{
+  height: 100%;
+ }
 
 .menu-ui {
   background:#fff;
@@ -142,11 +155,9 @@ body{
   color:white;
 }
 
-.background{
+.bg-sd{
   background: #FFFFFC;
-  padding-left:25px;
-  padding-right: 25px;
-  height:870px;
+  height: 100%;
 }
 
 .row{
@@ -192,4 +203,16 @@ font-weight: 700;
 }
 #myModal{
   text-align: left;
+}
+
+@media (max-width: 768px){
+  .height{
+    height: 80%;
+  }
+  .bg-sd{
+    height: auto;
+  }
+  .form-control{
+      display: inline;
+  }
 }
