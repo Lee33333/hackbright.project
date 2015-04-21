@@ -2,6 +2,7 @@
 <h4>Everyone deserves a trustworthy doctor. Find Yours.</h4>
 
 [Demo Version: lgbtmd.herokuapp.com](https://lgbtmd.herokuapp.com)
+Live version is in development, if you are interested in collaborating, contact me: daria 33 at gmail
 
 Driven to solve a longstanding problem in my community, I created LGBT MD to connect lesbian, gay, bisexual, and transgender people to trustworthy medical providers. I'm excited to deploy a full, live version and offer this resource to LGBT people in the San Francisco Bay Area.
 
@@ -53,7 +54,7 @@ When logged in through Facebook Oauth, users are able to access additional featu
 
 <h4>Thank you to</h4>
 --------
-- my irreplaceable mentors: Eric, Kyla, and Kate<br>
+- my friends and mentors: Eric, Kyla, Kate, and Lo<br>
 - my family and my partner, Cam<br>
 - my cohort and the teaching team at Hackbright<br>
 - the Gay and Lesbian Medical Association
