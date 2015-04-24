@@ -47,10 +47,14 @@
           <a data-target="#myModal2" data-toggle="modal" href=
           "#"><span class="glyphicon glyphicon-star"></span></a>
         </li>
+        <li>
+          <a data-target="#aboutModal" data-toggle="modal" href=
+          "#">About</a>
+        </li>
 
         <li>{% if session['logged_in'] == True
           %}<a data-target="#myModal" data-toggle="modal" href=
-          "#">Add a doctor</a>{% endif %}
+          "#">Add a Provider</a>{% endif %}
         </li>
 
         <li>{% if session['logged_in'] != True %}<a href=

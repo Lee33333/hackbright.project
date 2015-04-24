@@ -27,6 +27,12 @@ Finding the right doctor can be a challenge. LGBT people face additional obstacl
 
 There is no centralized, interactive resource to address this problem in the San Francisco Bay Area. I set out to create it.
 
+<h4>How to Contribute</h4>
+--------
+I am looking for collaborators to complete the live version. Features to come include: a moderation page, a search by provider type, the ability to flag entries for correction, a user agreement that addresses privacy and liability.
+
+If you can contribute through building, legal advice for the user agreement, or ideas for grant funding, please contact me -  daria 33 at g mail.
+
 <h4>Front Page</h4>
 --------
 <img src="/img/Front.png"><br><br>
@@ -44,7 +50,7 @@ Click on the map for details about your provider. Check out their reviews and ad
 <h4>How</h4>
 --------
 
-I began this project by contacting the Gay and Lesbian Medical Association (GLMA), a non-profit organization of LGBT medical providers. GLMA was excited about my idea and agreed to let me use their data. However, they were unable to provide me with formatted csv files. I used BeautifulSoup and regular expressions to create a scraper to scrape the data I needed from their site. 
+I began this project by contacting the Health Professionals Advancing LGBT Equality (GLMA), a non-profit organization of LGBT medical providers. GLMA was excited about my idea and agreed to let me use their data. However, they were unable to provide me with formatted csv files. I used BeautifulSoup and regular expressions to create a scraper to scrape the data I needed from their site. 
 
 On the backend, I am using the Flask web framework. It calls my SQLite database using SQLAlchemy. I used the Python GeoPy library to geocode every provider's address and created GeoJSON objects for each person using the Python GeoJSON library. 
 
