@@ -20,7 +20,10 @@ var RADIUS = 20 * 1609.34;
 //waits for all DOM elements to load
 $(document).ready(function() {
 
-  if (map.tap) map.tap.disable();
+  $('#star').on('click', function(e){
+    displayFaves();
+
+  });
   
   pinLayer.on('mouseover', function(e) {
     e.layer.openPopup();
@@ -92,20 +95,8 @@ $(document).ready(function() {
       //send post requests to the addfave and returnfaves routes
       $.post("/addfave", {"data" : id}, function(result) {
       });
-      $.post("/returnfaves", function(result) {
-          $("#modal2text").empty();
-
-          //append the results of the returnfaves route to the favorites modal
-          for (var key in result.result) {
-            if (result.result.hasOwnProperty(key)) {
-              var modalText = '<div class="list-group"><a href="#" class="list-group-item active">'+key+'</a>' +
-                '<a href="#" class="list-group-item">'+result.result[key][0]+'</a>' +
-                '<a href="#" class="list-group-item">'+result.result[key][1]+'</a><a href="#" class="list-group-item">'+result.result[key][2]+'</a></div>'
-              $("#modal2text").append(modalText);
-            }
-          }
-
-        });
+    displayFaves();
+    
     });
 
     $("#provider-detail").load(url, function() {
@@ -146,6 +137,23 @@ $(document).ready(function() {
   }
 
 });
+
+function displayFaves(){
+        $.post("/returnfaves", function(result) {
+          $("#modal2text").empty();
+
+          //append the results of the returnfaves route to the favorites modal
+          for (var key in result.result) {
+            if (result.result.hasOwnProperty(key)) {
+              var modalText = '<div class="list-group"><a href="#" class="list-group-item active">'+key+'</a>' +
+                '<a href="#" class="list-group-item">'+result.result[key][0]+'</a>' +
+                '<a href="#" class="list-group-item">'+result.result[key][1]+'</a><a href="#" class="list-group-item">'+result.result[key][2]+'</a></div>'
+              $("#modal2text").append(modalText);
+            }
+          }
+
+        });
+}
 
 //serialize the contents of the form, add doctor id and phone number, and send them in a post request to the /sendinfo route for twilio api
 function sendInfo(id, phone) {
